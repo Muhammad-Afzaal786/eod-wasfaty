@@ -1,9 +1,9 @@
 import React, { Fragment, useRef } from "react";
 import { Card, CardBody } from "reactstrap";
-import { userCol } from "../Heloper/Columns";
+import { fieldSurveyCol, regionCol, userCol } from "../Heloper/Columns";
 import Pagination from "../Heloper/Components/Pagination";
 
-const List = () => {
+const FieldSurveyList = () => {
   const pagination = useRef();
 
   const paginationCall = (data) => {
@@ -15,7 +15,7 @@ const List = () => {
         <CardBody className="rounded">
           <Pagination
             refs={pagination}
-            columns={userCol}
+            columns={fieldSurveyCol}
             getDataCall={paginationCall}
             filterView={false}
             showAllToggle={true}
@@ -34,4 +34,4 @@ const List = () => {
   );
 };
 
-export default List;
+export default FieldSurveyList;

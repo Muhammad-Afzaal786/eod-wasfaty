@@ -14,6 +14,10 @@ import PublicRoute from "@components/routes/PublicRoute";
 import { isObjEmpty } from "@utils";
 import Add from "../../views/User/Add";
 import List from "../../views/User/List";
+import AddRegion from "../../views/Region/Add";
+import RegionList from "../../views/Region/List";
+import AddSurvey from "../../views/FieldSurevy/Add";
+import FieldSurveyList from "../../views/FieldSurevy/List";
 
 const getLayout = {
   blank: <BlankLayout />,
@@ -48,6 +52,22 @@ const Routes = [
   {
     path: "/user/list",
     element: <List />,
+  },
+  {
+    path: "/region/add",
+    element: <AddRegion />,
+  },
+  {
+    path: "/region/list",
+    element: <RegionList />,
+  },
+  {
+    path: "/fieldSurvey/add",
+    element: <AddSurvey />,
+  },
+  {
+    path: "/fieldSurvey/list",
+    element: <FieldSurveyList />,
   },
   {
     path: "/login",

@@ -1,4 +1,4 @@
-import { Mail, Home, Users } from "react-feather";
+import { Mail, Home, Users, Circle } from "react-feather";
 
 export default [
   {
@@ -19,9 +19,37 @@ export default [
     ],
   },
   {
-    id: "secondPage",
-    title: "Second Page",
-    icon: <Mail size={20} />,
-    navLink: "/second-page",
+    id: "region",
+    title: "Region",
+    icon: <Circle size={20} />,
+    children: [
+      {
+        id: "add",
+        title: "Add",
+        navLink: "region/add",
+      },
+      {
+        id: "list",
+        title: "List",
+        navLink: "region/list",
+      },
+    ],
+  },
+  {
+    id: "Field Survey",
+    title: "Field Survey",
+    icon: <Circle size={20} />,
+    children: [
+      {
+        id: "add",
+        title: "Add",
+        navLink: "fieldSurvey/add",
+      },
+      {
+        id: "list",
+        title: "List",
+        navLink: "fieldSurvey/list",
+      },
+    ],
   },
 ];
