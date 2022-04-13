@@ -1,11 +1,9 @@
-import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink } from 'reactstrap'
+import React from 'react'
 
-const FieldSurvey = () => {
+const Home = () => {
   return (
-    <>
-       
-    </>
+    <div>Home</div>
   )
 }
 
-export default FieldSurvey
+export default Home
