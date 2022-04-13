@@ -1,5 +1,4 @@
 import { Mail, Home, Users, Circle } from "react-feather";
-
 export default [
   {
     id: "user",
@@ -49,7 +48,12 @@ export default [
         id: "list",
         title: "List",
         navLink: "fieldSurvey/list",
+       
       },
+     
     ],
   },
+  
+    
+  
 ];

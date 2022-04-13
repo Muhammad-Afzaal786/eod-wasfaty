@@ -7,7 +7,6 @@ import Layout from '@layouts/VerticalLayout'
 
 // ** Menu Items Array
 import navigation from '@src/navigation/vertical'
-
 const VerticalLayout = props => {
   // const [menuData, setMenuData] = useState([])
 
@@ -19,6 +18,7 @@ const VerticalLayout = props => {
   return (
     <Layout menuData={navigation} {...props}>
       <Outlet />
+   
     </Layout>
   )
 }
