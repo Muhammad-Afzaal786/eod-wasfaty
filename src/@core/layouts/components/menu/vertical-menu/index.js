@@ -8,7 +8,7 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 // ** Vertical Menu Components
 import VerticalMenuHeader from "./VerticalMenuHeader";
 import VerticalNavMenuItems from "./VerticalNavMenuItems";
-
+import bottomPattern from "../../../../../assets/images/pages/patern.svg";
 const Sidebar = (props) => {
   // ** Props
   const { menuCollapsed, menu, skin, menuData } = props;
@@ -90,6 +90,11 @@ const Sidebar = (props) => {
                   currentActiveGroup={currentActiveGroup}
                   setCurrentActiveGroup={setCurrentActiveGroup}
                 />
+              </ul>
+              <ul>
+                {/* <div className="SideBottom bg-danger">
+                  <img src={bottomPattern} alt="bottomImage" />
+                </div> */}
               </ul>
             </PerfectScrollbar>
           </Fragment>

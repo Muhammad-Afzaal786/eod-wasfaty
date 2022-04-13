@@ -1,0 +1,109 @@
+@import "../../bootstrap-extended/include"; // Bootstrap includes
+@import "../../components/include"; // Components includes
+/***** React Table ******/
+
+.ReactTable {
+  border-top: none;
+  border-radius: 5px;
+  .rt-thead {
+    &.-header {
+      border-radius: 5px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      box-shadow: none;
+      background-color: $primary;
+    }
+    .rt-tr {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      color: #fff !important;
+      background-color: $primary !important;
+    }
+    .rt-th {
+      box-shadow: none;
+      background-color: $primary;
+      font-style: normal;
+      font-size: 13px !important;
+      font-weight: 300 !important;
+      color: #fff !important;
+
+      line-height: 21px;
+    }
+    .rt-resizable-header {
+      width: 0px !important;
+    }
+    .rt-resizable-header-content {
+      font-weight: 600;
+    }
+  }
+  .rt-tbody {
+    text-align: center;
+    .rt-td {
+      padding: 0.5rem;
+      margin-top: 1rem;
+    }
+    .rt-tr-group {
+      .rt-tr {
+        .rt-td {
+          width: 0;
+        }
+      }
+    }
+  }
+  .pagination-bottom {
+    .-pagination {
+      box-shadow: none;
+      border-top-width: 1px;
+      .-previous {
+      }
+      .-btn {
+        background-color: $primary;
+        color: $white;
+        &:not([disabled]):hover {
+          background-color: darken($color: $primary, $amount: 5%);
+        }
+      }
+    }
+  }
+
+  &.nested-table {
+    .rt-tbody {
+      .rt-tr-group {
+        .rt-td:first-child {
+          background-color: $body-bg !important;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 769px) {
+  .ReactTable {
+    .pagination-bottom {
+      .-pagination {
+        .-previous,
+        .-center,
+        .-next {
+          flex: unset !important;
+          .-btn {
+            padding: 0.5rem 4rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 769px) {
+  .ReactTable {
+    .pagination-bottom {
+      .-pagination {
+        justify-content: center;
+        .-previous,
+        .-next {
+          margin: 1rem 0;
+        }
+      }
+    }
+  }
+}

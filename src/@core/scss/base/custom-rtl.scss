@@ -10,14 +10,20 @@
 // Variables
 // ------------------------------
 
-@import 'bootstrap-extended/include'; // Bootstrap includes
-@import 'components/include'; // Components includes
+@import "bootstrap-extended/include"; // Bootstrap includes
+@import "components/include"; // Components includes
 
 pre,
 code,
 kbd,
 samp {
   direction: ltr;
+}
+.SideBottom {
+  z-index: 0;
+  position: absolute;
+  bottom: 0;
+  color: white;
 }
 // Align icons position
 .main-menu {
@@ -37,16 +43,24 @@ samp {
     align-items: center;
   }
 }
-[type='tel'],
-[type='url'],
-[type='email'],
-[type='number'] {
+[type="tel"],
+[type="url"],
+[type="email"],
+[type="number"] {
   direction: rtl;
 }
 
 // Transformed menu icons
-.vertical-layout.vertical-menu-modern.menu-expanded .main-menu .navigation li.has-sub > a:after,
-.vertical-layout.vertical-overlay-menu.menu-open .main-menu .navigation li.has-sub > a:after {
+.vertical-layout.vertical-menu-modern.menu-expanded
+  .main-menu
+  .navigation
+  li.has-sub
+  > a:after,
+.vertical-layout.vertical-overlay-menu.menu-open
+  .main-menu
+  .navigation
+  li.has-sub
+  > a:after {
   transform: rotate(180deg);
 }
 .vertical-layout.vertical-menu-modern.menu-expanded
@@ -58,8 +72,15 @@ samp {
 }
 
 // Horizontal menu
-.horizontal-menu .header-navbar.navbar-horizontal .dropdown-menu .dropdown-toggle::after {
-  background-image: url(str-replace(str-replace($chevron-left, 'currentColor', $body-color), '#', '%23'));
+.horizontal-menu
+  .header-navbar.navbar-horizontal
+  .dropdown-menu
+  .dropdown-toggle::after {
+  background-image: url(str-replace(
+    str-replace($chevron-left, "currentColor", $body-color),
+    "#",
+    "%23"
+  ));
 }
 
 // Dropdown RTL Changes
@@ -102,7 +123,11 @@ samp {
 .dropstart {
   .dropdown-toggle {
     &::before {
-      background-image: url(str-replace(str-replace($chevron-right, 'currentColor', $white), '#', '%23')) !important;
+      background-image: url(str-replace(
+        str-replace($chevron-right, "currentColor", $white),
+        "#",
+        "%23"
+      )) !important;
     }
   }
   .dropdown-menu {
@@ -113,7 +138,11 @@ samp {
 .dropend {
   .dropdown-toggle {
     &::after {
-      background-image: url(str-replace(str-replace($chevron-left, 'currentColor', $white), '#', '%23')) !important;
+      background-image: url(str-replace(
+        str-replace($chevron-left, "currentColor", $white),
+        "#",
+        "%23"
+      )) !important;
     }
   }
   .dropdown-menu {
@@ -128,10 +157,14 @@ samp {
 }
 
 // Select2
-.select2-container--default .select2-selection--single .select2-selection__arrow {
+.select2-container--default
+  .select2-selection--single
+  .select2-selection__arrow {
   left: 1px;
 }
-.select2-container--default .select2-selection--multiple .select2-selection__choice {
+.select2-container--default
+  .select2-selection--multiple
+  .select2-selection__choice {
   float: right;
 }
 .select2-search__field {
@@ -186,7 +219,7 @@ table.dataTable thead .sorting_desc:before {
 }
 
 // Breadcrumb
-.breadcrumb:not([class*='breadcrumb-']),
+.breadcrumb:not([class*="breadcrumb-"]),
 .breadcrumb.breadcrumb-chevron {
   .breadcrumb-item + .breadcrumb-item {
     &:before {
@@ -243,14 +276,14 @@ table.dataTable thead .sorting_desc:before {
   }
 }
 
-code[class*='language-'],
-pre[class*='language-'] {
+code[class*="language-"],
+pre[class*="language-"] {
   direction: ltr;
 }
 
 @media print {
-  code[class*='language-'],
-  pre[class*='language-'] {
+  code[class*="language-"],
+  pre[class*="language-"] {
     text-shadow: none;
   }
 }
@@ -267,7 +300,7 @@ pre[class*='language-'] {
 // Popover & Tooltip
 .bs-popover-start .popover-arrow::before,
 .bs-tooltip-start .tooltip-arrow::before,
-.bs-popover-auto[data-popper-placement^='left'] .popover-arrow::before {
+.bs-popover-auto[data-popper-placement^="left"] .popover-arrow::before {
   border-width: 0.4rem 0 0.4rem 0.4rem;
   border-left-color: $tooltip-bg;
   left: -1px;
@@ -283,14 +316,14 @@ pre[class*='language-'] {
 }
 .bs-popover-start .popover-arrow,
 .bs-tooltip-start .tooltip-arrow,
-.bs-popover-auto[data-popper-placement^='left'] .popover-arrow {
+.bs-popover-auto[data-popper-placement^="left"] .popover-arrow {
   right: auto;
   left: 100%;
 }
 
 .bs-popover-end .popover-arrow::before,
 .bs-tooltip-end .tooltip-arrow::before,
-.bs-popover-auto[data-popper-placement^='right'] .popover-arrow::before {
+.bs-popover-auto[data-popper-placement^="right"] .popover-arrow::before {
   border-width: 0.4rem 0.4rem 0.4rem 0;
   border-right-color: $tooltip-bg;
   right: -1px;
@@ -306,7 +339,7 @@ pre[class*='language-'] {
 }
 .bs-popover-end .popover-arrow,
 .bs-tooltip-end .tooltip-arrow,
-.bs-popover-auto[data-popper-placement^='right'] .popover-arrow {
+.bs-popover-auto[data-popper-placement^="right"] .popover-arrow {
   left: auto;
   right: 100%;
 }
