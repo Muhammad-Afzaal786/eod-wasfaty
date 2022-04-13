@@ -17,6 +17,7 @@ import List from "../../views/User/List";
 import AddRegion from "../../views/Region/Add";
 import RegionList from "../../views/Region/List";
 import AddSurvey from "../../views/FieldSurevy/Add";
+import FieldSurveyList from "../../views/FieldSurevy/List";
 
 const getLayout = {
   blank: <BlankLayout />,
@@ -66,7 +67,7 @@ const Routes = [
   },
   {
     path: "/fieldSurvey/list",
-    element: <RegionList />,
+    element: <FieldSurveyList />,
   },
   {
     path: "/login",

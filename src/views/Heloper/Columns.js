@@ -109,3 +109,59 @@ export const regionCol = [
     sortable: false,
   },
 ];
+//field survey columns
+export const fieldSurveyCol = [
+  {
+    Header: "INSPECTOR NAME",
+    accessor: "name",
+    sortable: false,
+    Cell: ({ row }) => {
+      return (
+        <div>
+          <span className=" Black">{row.name}</span>
+        </div>
+      );
+    },
+  },
+  {
+    Header: "INSPECTOR ADDRESS",
+    accessor: "address",
+    sortable: false,
+    Cell: ({ row }) => {
+      return (
+        <div>
+          <span className=" Black">{row.name}</span>
+        </div>
+      );
+    },
+  },
+  {
+    Header: "TOURISM LICENSE NUMBER",
+    accessor: "number",
+    sortable: false,
+    Cell: ({ row }) => {
+      return (
+        <div>
+          <span className=" Black">{row.name}</span>
+        </div>
+      );
+    },
+  },
+  {
+    Header: "SUBMISSION AT",
+    accessor: "create_at",
+    sortable: false,
+    Cell: ({ row }) => {
+      return (
+        <div>
+          <span className=" Black">{row.name}</span>
+        </div>
+      );
+    },
+  },
+  {
+    Header: "ACTION",
+    accessor: "_id",
+    sortable: false,
+  },
+];
