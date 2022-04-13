@@ -32,7 +32,7 @@ const Add = () => {
     <React.Fragment>
       <Card>
         <CardHeader className="bg-primary">
-          <CardTitle className="text-white">Add user</CardTitle>
+          <CardTitle className="text-white">Field Survey</CardTitle>
         </CardHeader>
         <CardBody>
           <Form>
