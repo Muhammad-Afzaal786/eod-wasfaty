@@ -92,9 +92,9 @@ const Sidebar = (props) => {
                 />
               </ul>
               <ul>
-                {/* <div className="SideBottom bg-danger">
+                <div className="SideBottom">
                   <img src={bottomPattern} alt="bottomImage" />
-                </div> */}
+                </div>
               </ul>
             </PerfectScrollbar>
           </Fragment>
