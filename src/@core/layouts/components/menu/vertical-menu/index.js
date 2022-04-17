@@ -1,10 +1,9 @@
 // ** React Imports
 import { Fragment, useState, useRef } from "react";
-
 // ** Third Party Components
 import classnames from "classnames";
 import PerfectScrollbar from "react-perfect-scrollbar";
-
+import sideImage from './BottomPic.svg'
 // ** Vertical Menu Components
 import VerticalMenuHeader from "./VerticalMenuHeader";
 import VerticalNavMenuItems from "./VerticalNavMenuItems";
@@ -42,6 +41,7 @@ const Sidebar = (props) => {
       }
     }
   };
+  
 
   return (
     <Fragment>
@@ -92,9 +92,15 @@ const Sidebar = (props) => {
                 />
               </ul>
               <ul>
-                {/* <div className="SideBottom bg-danger">
-                  <img src={bottomPattern} alt="bottomImage" />
-                </div> */}
+                <div className="SideBottom h-50  w-100 " >
+                  <img src={sideImage} alt="bottomImage" className="h-100 w-100"
+                  
+
+                  />
+              
+ 
+                  
+                </div>
               </ul>
             </PerfectScrollbar>
           </Fragment>
