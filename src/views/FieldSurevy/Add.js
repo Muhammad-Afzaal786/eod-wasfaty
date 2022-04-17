@@ -19,6 +19,7 @@ import {
   userCreateObj,
 } from "../Heloper/Object";
 import Validation from "../Heloper/Components/FieldValidation";
+import Violation from "./Violation";
 
 const AddSurvey = () => {
   const [data, setData] = useState(fieldSurveyObj);
@@ -62,6 +63,7 @@ const AddSurvey = () => {
       });
     });
   };
+  console.log(data);
   return (
     <React.Fragment>
       <Card>
@@ -419,48 +421,13 @@ const AddSurvey = () => {
 
                 <Col lg="12 mb-2">
                   <Label>
-                    the civil defense license picture{" "}
+                    the civil defense license picture
                     <strong className="text-danger">* </strong>
                   </Label>
                   <input type="file" id="myFile" name="filename" />
                 </Col>
 
-                <Col lg="12 mb-2">
-                  <Label>
-                    Is there a violation
-                    <strong className="text-danger">*</strong>
-                  </Label>
-                  <Select
-                    options={[
-                      { label: "YES", value: "yes" },
-                      { label: "NO", value: "no" },
-                    ]}
-                    className="react-select"
-                    classNamePrefix="select"
-                    // value={data?.facility_working}
-                    // onChange={(e) => handleChange("facility_working", e)}
-                  />
-                </Col>
-                {/* for yes case If there is violation */}
-                <Col lg="12 mb-2">
-                  <Label>
-                    violation items <strong className="text-danger">*</strong>
-                  </Label>
-                  <Select
-                    options={[]}
-                    className="react-select"
-                    classNamePrefix="select"
-                    // value={data?.facility_working}
-                    // onChange={(e) => handleChange("facility_working", e)}
-                  />
-                </Col>
-                <Col lg="12" className="mb-2">
-                  <div>
-                    <Button outline color="primary" type="submit">
-                      Adding a new violation
-                    </Button>
-                  </div>
-                </Col>
+                <Violation handleChange={handleChange} data={data} />
               </Row>
             )}
 

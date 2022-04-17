@@ -50,6 +50,10 @@ const Routes = [
     element: <Add />,
   },
   {
+    path: "/user/update/:id",
+    element: <Add />,
+  },
+  {
     path: "/user/list",
     element: <List />,
   },

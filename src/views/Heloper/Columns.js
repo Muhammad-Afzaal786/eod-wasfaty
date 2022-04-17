@@ -1,3 +1,6 @@
+import Action from "./Action/EditDelete";
+import { delete_user } from "./Apicall/endPoints";
+
 export const userCol = [
   {
     Header: "NAME",
@@ -6,7 +9,7 @@ export const userCol = [
     Cell: ({ row }) => {
       return (
         <div>
-          <span className=" Black">{row.name}</span>
+          <span className=" Black">{row._original?.name}</span>
         </div>
       );
     },
@@ -18,23 +21,12 @@ export const userCol = [
     Cell: ({ row }) => {
       return (
         <div>
-          <span className=" Black">{row.name}</span>
+          <span className=" Black">{row._original?.fatherName}</span>
         </div>
       );
     },
   },
-  {
-    Header: "FATHER NAME",
-    accessor: "father_name",
-    sortable: false,
-    Cell: ({ row }) => {
-      return (
-        <div>
-          <span className=" Black">{row.name}</span>
-        </div>
-      );
-    },
-  },
+
   {
     Header: "FAMILY NAME",
     accessor: "family_name",
@@ -42,7 +34,7 @@ export const userCol = [
     Cell: ({ row }) => {
       return (
         <div>
-          <span className=" Black">{row.name}</span>
+          <span className=" Black">{row._original?.familyName}</span>
         </div>
       );
     },
@@ -54,7 +46,7 @@ export const userCol = [
     Cell: ({ row }) => {
       return (
         <div>
-          <span className=" Black">{row.name}</span>
+          <span className=" Black">{row._original?.email}</span>
         </div>
       );
     },
@@ -66,7 +58,7 @@ export const userCol = [
     Cell: ({ row }) => {
       return (
         <div>
-          <span className=" Black">{row.name}</span>
+          <span className=" Black">{row._original.type}</span>
         </div>
       );
     },
@@ -75,6 +67,20 @@ export const userCol = [
     Header: "ACTION",
     accessor: "_id",
     sortable: false,
+    Cell: ({ row }) => {
+      return (
+        <div>
+          <Action
+            editOp={true}
+            deleteOp={true}
+            endPoint={delete_user}
+            name="user"
+            path="/user/update/"
+            _id={row._id}
+          />
+        </div>
+      );
+    },
   },
 ];
 //region list column

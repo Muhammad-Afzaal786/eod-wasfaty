@@ -19,4 +19,7 @@ export const fieldSurveyObj = {
   location: { longitude: "", latitude: "" },
   remarks: "",
   inspectorRelation: [],
+  facility_working: [],
+  reasonOpt: [],
+  commercial_name_file: "",
 };

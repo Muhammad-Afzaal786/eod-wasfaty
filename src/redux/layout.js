@@ -1,33 +1,34 @@
 // ** Redux Imports
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 // ** ThemeConfig Import
-import themeConfig from '@configs/themeConfig'
+import themeConfig from "@configs/themeConfig";
 
 const initialMenuCollapsed = () => {
-  const item = window.localStorage.getItem('menuCollapsed')
+  const item = window.localStorage.getItem("menuCollapsed");
   //** Parse stored json or if none return initialValue
-  return item ? JSON.parse(item) : themeConfig.layout.menu.isCollapsed
-}
+  return item ? JSON.parse(item) : themeConfig.layout.menu.isCollapsed;
+};
 
 const initialDirection = () => {
-  const item = window.localStorage.getItem('direction')
+  const item = window.localStorage.getItem("direction");
   //** Parse stored json or if none return initialValue
-  return item ? JSON.parse(item) : themeConfig.layout.isRTL
-}
+  return item ? JSON.parse(item) : themeConfig.layout.isRTL;
+};
 
 const initialSkin = () => {
-  const item = window.localStorage.getItem('skin')
+  const item = window.localStorage.getItem("skin");
   //** Parse stored json or if none return initialValue
-  return item ? JSON.parse(item) : themeConfig.layout.skin
-}
+  return item ? JSON.parse(item) : themeConfig.layout.skin;
+};
 
 export const layoutSlice = createSlice({
-  name: 'layout',
+  name: "layout",
   initialState: {
     skin: initialSkin(),
     isRTL: initialDirection(),
     layout: themeConfig.layout.type,
+    deleteAction: "",
     lastLayout: themeConfig.layout.type,
     menuCollapsed: initialMenuCollapsed(),
     footerType: themeConfig.layout.footer.type,
@@ -35,52 +36,60 @@ export const layoutSlice = createSlice({
     menuHidden: themeConfig.layout.menu.isHidden,
     contentWidth: themeConfig.layout.contentWidth,
     routerTransition: themeConfig.layout.routerTransition,
-    navbarColor: themeConfig.layout.navbar.backgroundColor
+    navbarColor: themeConfig.layout.navbar.backgroundColor,
   },
   reducers: {
     handleRTL: (state, action) => {
-      state.isRTL = action.payload
-      window.localStorage.setItem('direction', JSON.stringify(action.payload))
+      state.isRTL = action.payload;
+      window.localStorage.setItem("direction", JSON.stringify(action.payload));
     },
     handleSkin: (state, action) => {
-      state.skin = action.payload
-      window.localStorage.setItem('skin', JSON.stringify(action.payload))
+      state.skin = action.payload;
+      window.localStorage.setItem("skin", JSON.stringify(action.payload));
     },
     handleLayout: (state, action) => {
-      state.layout = action.payload
+      state.layout = action.payload;
+    },
+    handleDeleteOP: (state, action) => {
+      console.log("-------->", state, action);
+      state.deleteAction = action.payload;
     },
     handleFooterType: (state, action) => {
-      state.footerType = action.payload
+      state.footerType = action.payload;
     },
     handleNavbarType: (state, action) => {
-      state.navbarType = action.payload
+      state.navbarType = action.payload;
     },
     handleMenuHidden: (state, action) => {
-      state.menuHidden = action.payload
+      state.menuHidden = action.payload;
     },
     handleLastLayout: (state, action) => {
-      state.lastLayout = action.payload
+      state.lastLayout = action.payload;
     },
     handleNavbarColor: (state, action) => {
-      state.navbarColor = action.payload
+      state.navbarColor = action.payload;
     },
     handleContentWidth: (state, action) => {
-      state.contentWidth = action.payload
+      state.contentWidth = action.payload;
     },
     handleMenuCollapsed: (state, action) => {
-      state.menuCollapsed = action.payload
-      window.localStorage.setItem('menuCollapsed', JSON.stringify(action.payload))
+      state.menuCollapsed = action.payload;
+      window.localStorage.setItem(
+        "menuCollapsed",
+        JSON.stringify(action.payload)
+      );
     },
     handleRouterTransition: (state, action) => {
-      state.routerTransition = action.payload
-    }
-  }
-})
+      state.routerTransition = action.payload;
+    },
+  },
+});
 
 export const {
   handleRTL,
   handleSkin,
   handleLayout,
+  handleDeleteOP,
   handleLastLayout,
   handleMenuHidden,
   handleNavbarType,
@@ -88,7 +97,7 @@ export const {
   handleNavbarColor,
   handleContentWidth,
   handleMenuCollapsed,
-  handleRouterTransition
-} = layoutSlice.actions
+  handleRouterTransition,
+} = layoutSlice.actions;
 
-export default layoutSlice.reducer
+export default layoutSlice.reducer;

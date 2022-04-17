@@ -25,6 +25,14 @@ samp {
   bottom: 0;
   color: white;
 }
+.loginMain {
+  background-color: red;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 // Align icons position
 .main-menu {
   .navigation li > a > svg,

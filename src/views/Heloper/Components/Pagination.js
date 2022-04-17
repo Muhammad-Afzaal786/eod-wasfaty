@@ -32,6 +32,9 @@ import {
 } from "react-feather";
 import ListLoading from "../ListLoading";
 import ExportExcel from "./ExportExcel";
+import { connect, useSelector } from "react-redux";
+import { errorHandle } from "../Action/ErrorHandle";
+
 // import "../../../@core/scss/base/plugins/tables/rtable.scss";
 
 class Pagination extends Component {
@@ -74,41 +77,23 @@ class Pagination extends Component {
 
       page: this.state.showAll ? 0 : page,
     };
-    this.setState({
-      data: [{ name: "test", email: "dds", type: "admin" }],
-      loading: false,
-    });
-    // this.props.getDataCall(data).then(
-    //   (response) => {
-    //     // console.log(response.data.pagination);
-    //     this.setState(
-    //       {
-    //         data: response.data?.pagination?.data,
-    //         pages: response.data?.pagination?.last_page,
-    //         page: response.data?.pagination?.current_page,
-    //         total: response.data?.pagination?.total,
-    //         loading: false,
-    //       },
-    //       () => {
-    //         if (response?.data?.pagination?.data?.length === 0) {
-    //           this.setState({ Notfound: true });
-    //         } else {
-    //           this.setState({ Notfound: false });
-    //         }
-    //       }
-    //     );
-    //     this.setState({ loading: false });
-    //   },
-    //   (error) => {
-    //     // this.reactTable.reload();
-    //     if (ErrorShow(error) === false) {
-    //       handleLogout();
-    //       this.props.history.push("/login");
-    //     } else {
-    //       toast.error(ErrorShow(error));
-    //     }
-    //   }
-    // );
+
+    this.props.getDataCall(data).then(
+      (response) => {
+        this.setState({
+          data: response.data?.data.data,
+          pages: response.data?.data.last_page,
+          page: response.data?.data.current_page,
+          total: response.data?.data.total,
+          loading: false,
+        });
+        this.setState({ loading: false });
+      },
+      (error) => {
+        // errorHandle(error);
+        // this.props.navigate("/login");
+      }
+    );
   };
 
   paginationStateData = () => {
@@ -203,6 +188,7 @@ class Pagination extends Component {
       selectMulti,
       headers,
     } = this.props;
+
     const multicolumns = [
       {
         Header: (state) => (
@@ -236,7 +222,7 @@ class Pagination extends Component {
         width: 70,
       },
     ];
-
+    console.log(this.props.deleteOpt);
     return (
       <React.Fragment>
         <Card>
@@ -333,5 +319,11 @@ class Pagination extends Component {
     );
   }
 }
+const mapState = (state) => {
+  return {
+    deleteOpt: state.layout.deleteOp,
+  };
+};
+export default connect(mapState, null)(Pagination);
 
-export default Pagination;
+// export default Pagination;

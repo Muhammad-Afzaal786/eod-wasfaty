@@ -11,11 +11,17 @@ import {
   Label,
   Input,
   Button,
+  Alert,
 } from "reactstrap";
 import "@styles/react/pages/page-authentication.scss";
 import logo from "../assets/images/pages/MOT.png";
+import toast from "react-hot-toast";
+import { SC } from "./Heloper/Apicall/ServerCall";
+import { login } from "./Heloper/Apicall/endPoints";
+import { X } from "react-feather";
 const Login = () => {
   const navigate = useNavigate();
+  const [validation, setValidation] = useState(false);
   const [formData, setformData] = useState({
     email: "",
     password: "",
@@ -32,10 +38,41 @@ const Login = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/");
+    const data = {
+      email: formData.email,
+      password: formData.password,
+    };
+    if (data.email === "" || data.password === "") {
+      setValidation(true);
+    } else {
+      SC.postCallLoginAdmin(login, data).then(
+        (res) => {
+          if (res.status === 200 && res.data) {
+            let token = res.data;
+            localStorage.setItem("userData", JSON.stringify(token));
+            navigate("/");
+          }
+        },
+        (error) => {
+          if (error.toString() === "Error: Request failed with status code 401")
+            setValidation(true);
+        }
+      );
+    }
   };
 
   return (
+    // <div className="loginMain">
+    //   <Row className="bg-primary w-50 d-flex justify-content-center align-item-center">
+    //     <Col lg="6">
+    //       <Card>
+    //         <CardHeader>
+    //           <CardTitle>gdfgdg</CardTitle>
+    //         </CardHeader>
+    //       </Card>
+    //     </Col>
+    //   </Row>
+    // </div>
     <div className="app-content content ">
       <div className="content-wrapper">
         <Row className="auth-inner py-2 content-header  ">
@@ -45,18 +82,34 @@ const Login = () => {
                 <div className="auth-wrapper auth-v1 px-2">
                   <div className="auth-inner my-auto">
                     <div className="card-header ">
+                      {/* <Alert color="danger" isOpen={validation}>
+                      <div className="alert-body">
+                        <X size={15} onClick/>{" "}
+                        <span className="ms-1">
+                          the value is <strong>invalid</strong> you can only
+                          enter numbers
+                        </span>
+                      </div>
+                    </Alert> */}
                       <Col className="px-xl-2 mx-auto " sm="8" md="6" lg="12">
                         <div className="card mb-0 bg-blue">
                           <div className="card-header">
                             <CardTitle tag="h2" className="fw-bold mb-1 ">
-                              <img src={logo} className="img-fluid " alt="mot-logo" />
+                              <img
+                                src={logo}
+                                className="img-fluid "
+                                alt="mot-logo"
+                              />
                             </CardTitle>
                           </div>
                           <div className="card-body">
                             <CardText>
-                              <h4 className="card-title mb-1">Welcome to EOD-MOT 👋</h4>
+                              <h4 className="card-title mb-1">
+                                Welcome to EOD-MOT 👋
+                              </h4>
                               <p className="card-text">
-                                Please sign-in to your account and start the adventure
+                                Please sign-in to your account and start the
+                                adventure
                               </p>{" "}
                             </CardText>
                             <div className="">
@@ -80,7 +133,10 @@ const Login = () => {
                                 </div>
                                 <div className="mb-1">
                                   <div className="d-flex justify-content-between">
-                                    <Label className="form-label" for="password">
+                                    <Label
+                                      className="form-label"
+                                      for="password"
+                                    >
                                       Password
                                     </Label>
                                     <Link to="/forgot-password">
@@ -123,10 +179,10 @@ const Login = () => {
                         </div>
                       </Col>
                     </div>
-                    </div>
                   </div>
                 </div>
               </div>
+            </div>
           </Col>
         </Row>
       </div>
