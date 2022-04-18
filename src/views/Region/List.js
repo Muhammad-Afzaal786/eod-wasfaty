@@ -28,7 +28,7 @@ const RegionList = () => {
             minRows={5}
             history={history}
             // headers={userRequestHeader}
-            // endPoint={get_requester}
+            endPoint={region_index}
             // selectMulti
             // activateUser
           />
