@@ -20,6 +20,7 @@ import {
 } from "../Heloper/Object";
 import Validation from "../Heloper/Components/FieldValidation";
 import Violation from "./Violation";
+import WizardHorizontal from "./Wizard";
 
 const AddSurvey = () => {
   const [data, setData] = useState(fieldSurveyObj);
@@ -66,7 +67,15 @@ const AddSurvey = () => {
   console.log(data);
   return (
     <React.Fragment>
-      <Card>
+      <Row>
+        <h2 className="stepFromTitle">EOD Operation Form</h2>
+      </Row>
+      <Row>
+        <Col lg="12">
+          <WizardHorizontal />
+        </Col>
+      </Row>
+      {/* <Card>
         <CardHeader className="bg-primary">
           <CardTitle className="text-white">Field Survey</CardTitle>
         </CardHeader>
@@ -457,7 +466,7 @@ const AddSurvey = () => {
             </Row>
           </Form>
         </CardBody>
-      </Card>
+      </Card> */}
     </React.Fragment>
   );
 };

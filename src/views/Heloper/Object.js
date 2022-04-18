@@ -18,8 +18,11 @@ export const fieldSurveyObj = {
   tourism_License_number: "",
   location: { longitude: "", latitude: "" },
   remarks: "",
-  inspectorRelation: [],
-  facility_working: [],
+  inspectorRelation: true,
+  facility_working: true,
+  specified_period: false,
+  update_method: false,
+  license_valid: true,
   reasonOpt: [],
   commercial_name_file: "",
 };

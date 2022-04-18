@@ -25,6 +25,24 @@ samp {
   bottom: 0;
   color: white;
 }
+.Black {
+  color: black;
+}
+.stepFromTitle {
+  font-weight: 600;
+  color: #261d56;
+}
+.switchLabel {
+  color: #333333;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 28px;
+}
+.customWidth {
+  width: 5.3rem !important;
+  height: 2.7rem !important;
+}
 .loginMain {
   background-color: red;
   width: 100%;

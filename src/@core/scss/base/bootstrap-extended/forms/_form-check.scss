@@ -1,5 +1,5 @@
 .form-check:not(.form-switch) {
-  .form-check-input[type='checkbox'] {
+  .form-check-input[type="checkbox"] {
     &:checked {
       background-size: 65%;
     }
@@ -37,7 +37,7 @@
   .form-check-input {
     border: none;
     &:not(:checked) {
-      background-color: $switch-bg-color;
+      background-color: $danger;
     }
     &:active {
       filter: none;
@@ -70,8 +70,9 @@
     }
     .switch-text-left,
     .switch-icon-left {
-      left: 6px;
-      top: 0;
+      left: 10px;
+      top: 8px;
+      font-weight: bold;
       color: $white;
       opacity: 0;
       transform: translateX(8px);
@@ -79,8 +80,9 @@
     }
     .switch-text-right,
     .switch-icon-right {
-      left: 25px;
-      top: 0;
+      left: 40px;
+      top: 8px;
+      font-weight: bold;
       opacity: 1;
       transform: translateX(0px);
       transition: opacity 0.08s ease, transform 0.15s ease;
