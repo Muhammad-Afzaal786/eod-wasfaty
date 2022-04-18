@@ -84,7 +84,7 @@ const AddRegion = () => {
     }
     if (params.id) {
       console.log(params.id)
-      SC.deleteCall(region_delete + "/" + params.id).then(
+      SC.deleteCall(region_delete + "/" + params.id, postData).then(
         (res) => {
           if (res.status === 200 && res.data) {
             toast.success(res.data?.data);
