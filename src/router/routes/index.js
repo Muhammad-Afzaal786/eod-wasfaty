@@ -62,6 +62,10 @@ const Routes = [
     element: <AddRegion />,
   },
   {
+    path: "/region/update/:id",
+    element: <AddRegion />,
+  },
+  {
     path: "/region/list",
     element: <RegionList />,
   },

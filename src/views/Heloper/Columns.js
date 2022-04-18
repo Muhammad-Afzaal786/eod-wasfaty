@@ -113,6 +113,20 @@ export const regionCol = [
     Header: "ACTION",
     accessor: "_id",
     sortable: false,
+    Cell: ({ row }) => {
+      return (
+        <div>
+          <Action
+            editOp={true}
+            deleteOp={true}
+            endPoint={delete_user}
+            name="region"
+            path="/region/update/"
+            _id={row._id}
+          />
+        </div>
+      );
+    },
   },
 ];
 //field survey columns
