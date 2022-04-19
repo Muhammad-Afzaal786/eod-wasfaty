@@ -30,7 +30,7 @@ const RegionList = () => {
             // headers={userRequestHeader}
             endPoint={region_index}
             // selectMulti
-            // activateUser
+            // activateUser 
           />
         </CardBody>
       </Card>

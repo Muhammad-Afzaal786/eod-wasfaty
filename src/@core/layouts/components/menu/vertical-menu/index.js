@@ -7,10 +7,10 @@ import sideImage from './BottomPic.svg'
 // ** Vertical Menu Components
 import VerticalMenuHeader from "./VerticalMenuHeader";
 import VerticalNavMenuItems from "./VerticalNavMenuItems";
-import bottomPattern from "../../../../../assets/images/pages/patern.svg";
+// import bottomPattern from "../../../../../assets/images/pages/patern.svg";
 const Sidebar = (props) => {
   // ** Props
-  const { menuCollapsed, menu, skin, menuData } = props;
+  const {menuCollapsed, menu, skin, menuData } = props;
 
   // ** States
   const [groupOpen, setGroupOpen] = useState([]);
@@ -52,6 +52,8 @@ const Sidebar = (props) => {
             expanded: menuHover || menuCollapsed === false,
             "menu-light": skin !== "semi-dark" && skin !== "dark",
             "menu-dark": skin === "semi-dark" || skin === "dark",
+          },{
+
           }
         )}
         onMouseEnter={onMouseEnter}
