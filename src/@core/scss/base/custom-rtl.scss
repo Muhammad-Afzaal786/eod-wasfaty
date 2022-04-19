@@ -43,6 +43,20 @@ samp {
   width: 5.3rem !important;
   height: 2.7rem !important;
 }
+.Attachment {
+  border: 2px $secondary dotted;
+  padding: 1.5rem;
+  border-radius: 12px !important;
+}
+.roundImage {
+  background: #ccddff;
+  width: 84px;
+  height: 84px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+}
 .loginMain {
   background-color: red;
   width: 100%;

@@ -90,8 +90,7 @@ class Pagination extends Component {
         this.setState({ loading: false });
       },
       (error) => {
-        // errorHandle(error);
-        // this.props.navigate("/login");
+        errorHandle(error, this.props.navigate);
       }
     );
   };
@@ -184,8 +183,9 @@ class Pagination extends Component {
       showTotal,
       filter,
       endPoint,
-
+      title,
       selectMulti,
+      navigate,
       headers,
     } = this.props;
 
@@ -225,27 +225,31 @@ class Pagination extends Component {
     console.log(this.props.deleteOpt);
     return (
       <React.Fragment>
+        <div className="mb-1 d-flex justify-content-between">
+          <h3 className="stepFromTitle">{title}</h3>
+          <div>
+            {downloadData && (
+              <React.Fragment>
+                <ExportExcel
+                  className="downloadbtn"
+                  fileName={downloadFileName}
+                  headers={headers}
+                  currentRecordsRef={this.reactTable}
+                  columnsData={columns}
+                  // filterStates={this.state.filterStates}
+                  endPoint={endPoint}
+                  Total={this.state.total}
+                />
+              </React.Fragment>
+            )}
+          </div>
+        </div>
         <Card>
-          <CardHeader className="pagination-wnd">
+          {/* <CardHeader className="pagination-wnd">
             <CardTitle className="d-flex justify-content-end w-100">
-              <div>
-                {downloadData && (
-                  <React.Fragment>
-                    <ExportExcel
-                      className="downloadbtn"
-                      fileName={downloadFileName}
-                      headers={headers}
-                      currentRecordsRef={this.reactTable}
-                      columnsData={columns}
-                      // filterStates={this.state.filterStates}
-                      endPoint={endPoint}
-                      Total={this.state.total}
-                    />
-                  </React.Fragment>
-                )}
-              </div>
+              
             </CardTitle>
-          </CardHeader>
+          </CardHeader> */}
 
           <CardBody>
             <ListLoading loading={this.state.loading} />

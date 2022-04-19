@@ -1,5 +1,5 @@
 // ** React Imports
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // ** Custom Components
 import Avatar from "@components/avatar";
@@ -26,8 +26,19 @@ import {
 
 // ** Default Avatar Image
 import defaultAvatar from "@src/assets/images/portrait/small/avatar-s-11.jpg";
+import { SC } from "../../../../views/Heloper/Apicall/ServerCall";
+import { Logout } from "../../../../views/Heloper/Apicall/endPoints";
 
 const UserDropdown = () => {
+  let navigate = useNavigate();
+  const logOut = () => {
+    SC.getCall(Logout).then((res) => {
+      if (res.status === 200) {
+        localStorage.clear();
+        navigate("/login");
+      }
+    });
+  };
   return (
     <UncontrolledDropdown tag="li" className="dropdown-user nav-item">
       <DropdownToggle
@@ -48,7 +59,7 @@ const UserDropdown = () => {
         />
       </DropdownToggle>
       <DropdownMenu end>
-        <DropdownItem tag={Link} to="/login">
+        <DropdownItem onClick={() => logOut()} className="w-100">
           <Power size={14} className="me-75" />
           <span className="align-middle">Logout</span>
         </DropdownItem>

@@ -24,7 +24,8 @@ import {
 } from "../Heloper/Apicall/endPoints";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
+import { isUserLoggedIn } from "@utils";
 
 const Add = () => {
   const [data, setData] = useState(userCreateObj);
@@ -118,173 +119,171 @@ const Add = () => {
       }
     }
   };
-  return (
-    <React.Fragment>
-      <Card>
-        <CardHeader className="bg-primary">
-          <CardTitle className="text-white">
-            {params.id ? "Update user" : "Create user"}
-          </CardTitle>
-        </CardHeader>
-        <CardBody>
-          <Form onSubmit={handleSubmit}>
-            <Row className="mt-1">
-              <Col lg="12">
-                <Label>
-                  Name <strong className="text-danger">*</strong>
-                </Label>
-                <Input
-                  placeholder="user name"
-                  value={data.name}
-                  onChange={(e) => handleChange("name", e.target.value)}
-                  invalid={data.name === "" && validation ? true : false}
-                />
-                <Validation
-                  type="text"
-                  value={data.name}
-                  validation={validation}
-                />
-              </Col>
-            </Row>
-            <Row className="mt-1">
-              <Col lg="12">
-                <Label>
-                  Father Name <strong className="text-danger">*</strong>
-                </Label>
-                <Input
-                  placeholder="father name"
-                  value={data.father_name}
-                  onChange={(e) => handleChange("father_name", e.target.value)}
-                  invalid={data.father_name === "" && validation ? true : false}
-                />
-                <Validation
-                  type="text"
-                  value={data.father_name}
-                  validation={validation}
-                />
-              </Col>
-            </Row>
-            <Row className="mt-1">
-              <Col lg="12">
-                <Label>
-                  Family Name <strong className="text-danger">*</strong>
-                </Label>
-                <Input
-                  placeholder="family name"
-                  value={data.family_name}
-                  onChange={(e) => handleChange("family_name", e.target.value)}
-                  invalid={data.family_name === "" && validation ? true : false}
-                />
-                <Validation
-                  type="text"
-                  value={data.family_name}
-                  validation={validation}
-                />
-              </Col>
-            </Row>
-            <Row className="mt-1">
-              <Col lg="12">
-                <Label>
-                  Email <strong className="text-danger">*</strong>
-                </Label>
-                <Input
-                  placeholder="user email"
-                  type="email"
-                  value={data.email}
-                  disabled={params.id ? true : false}
-                  onChange={(e) => {
-                    handleChange("email", e.target.value);
-                    setEmailMsg([]);
-                  }}
-                  invalid={
-                    (data.email === "" || emailMsg?.length > 0) && validation
-                      ? true
-                      : false
-                  }
-                />
-                {emailMsg?.length > 0 ? (
-                  <FormFeedback
-                    invalid={
-                      emailMsg?.length > 0 && validation ? "true" : "false"
-                    }
-                  >
-                    {emailMsg[0]}
-                  </FormFeedback>
-                ) : (
+  if (isUserLoggedIn()) {
+    return (
+      <React.Fragment>
+        <Card>
+          <CardHeader className="bg-primary">
+            <CardTitle className="text-white">
+              {params.id ? "Update user" : "Create user"}
+            </CardTitle>
+          </CardHeader>
+          <CardBody>
+            <Form onSubmit={handleSubmit}>
+              <Row className="mt-1">
+                <Col lg="12">
+                  <Label>
+                    Name <strong className="text-danger">*</strong>
+                  </Label>
+                  <Input
+                    placeholder="user name"
+                    value={data.name}
+                    onChange={(e) => handleChange("name", e.target.value)}
+                    invalid={data.name === "" && validation ? true : false}
+                  />
                   <Validation
                     type="text"
-                    value={data.email}
+                    value={data.name}
                     validation={validation}
                   />
-                )}
-              </Col>
-            </Row>
-            <Row className="mt-1">
-              <Col lg="12">
-                <Label>
-                  Password <strong className="text-danger">*</strong>
-                </Label>
-                <Input
-                  placeholder="user Password"
-                  type="password"
-                  value={data.password}
-                  onChange={(e) =>
-                    handleChange("password", e.target.value?.trim())
-                  }
-                  invalid={data.password === "" && validation ? true : false}
-                />
-                <Validation
-                  type="text"
-                  value={data.password}
-                  validation={validation}
-                />
-              </Col>
-            </Row>
-            <Row className="mt-1">
-              <Col lg="12">
-                <Label>
-                  Role <strong className="text-danger">*</strong>
-                </Label>
-                <Select
-                  options={ruleOpt}
-                  className="react-select"
-                  classNamePrefix="select"
-                  value={data.rule}
-                  onChange={(e) => handleChange("rule", e)}
-                />
-                <Validation
-                  type="select"
-                  value={data.rule}
-                  validation={validation}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <div className="mt-1">
-                <Button color="primary" type="submit">
-                  Submit
-                </Button>
-              </div>
-            </Row>
-          </Form>
-        </CardBody>
-      </Card>
-    </React.Fragment>
-  );
+                </Col>
+              </Row>
+              <Row className="mt-1">
+                <Col lg="12">
+                  <Label>
+                    Father Name <strong className="text-danger">*</strong>
+                  </Label>
+                  <Input
+                    placeholder="father name"
+                    value={data.father_name}
+                    onChange={(e) =>
+                      handleChange("father_name", e.target.value)
+                    }
+                    invalid={
+                      data.father_name === "" && validation ? true : false
+                    }
+                  />
+                  <Validation
+                    type="text"
+                    value={data.father_name}
+                    validation={validation}
+                  />
+                </Col>
+              </Row>
+              <Row className="mt-1">
+                <Col lg="12">
+                  <Label>
+                    Family Name <strong className="text-danger">*</strong>
+                  </Label>
+                  <Input
+                    placeholder="family name"
+                    value={data.family_name}
+                    onChange={(e) =>
+                      handleChange("family_name", e.target.value)
+                    }
+                    invalid={
+                      data.family_name === "" && validation ? true : false
+                    }
+                  />
+                  <Validation
+                    type="text"
+                    value={data.family_name}
+                    validation={validation}
+                  />
+                </Col>
+              </Row>
+              <Row className="mt-1">
+                <Col lg="12">
+                  <Label>
+                    Email <strong className="text-danger">*</strong>
+                  </Label>
+                  <Input
+                    placeholder="user email"
+                    type="email"
+                    value={data.email}
+                    disabled={params.id ? true : false}
+                    onChange={(e) => {
+                      handleChange("email", e.target.value);
+                      setEmailMsg([]);
+                    }}
+                    invalid={
+                      (data.email === "" || emailMsg?.length > 0) && validation
+                        ? true
+                        : false
+                    }
+                  />
+                  {emailMsg?.length > 0 ? (
+                    <FormFeedback
+                      invalid={
+                        emailMsg?.length > 0 && validation ? "true" : "false"
+                      }
+                    >
+                      {emailMsg[0]}
+                    </FormFeedback>
+                  ) : (
+                    <Validation
+                      type="text"
+                      value={data.email}
+                      validation={validation}
+                    />
+                  )}
+                </Col>
+              </Row>
+              <Row className="mt-1">
+                <Col lg="12">
+                  <Label>
+                    Password <strong className="text-danger">*</strong>
+                  </Label>
+                  <Input
+                    placeholder="user Password"
+                    type="password"
+                    value={data.password}
+                    onChange={(e) =>
+                      handleChange("password", e.target.value?.trim())
+                    }
+                    invalid={data.password === "" && validation ? true : false}
+                  />
+                  <Validation
+                    type="text"
+                    value={data.password}
+                    validation={validation}
+                  />
+                </Col>
+              </Row>
+              <Row className="mt-1">
+                <Col lg="12">
+                  <Label>
+                    Role <strong className="text-danger">*</strong>
+                  </Label>
+                  <Select
+                    options={ruleOpt}
+                    className="react-select"
+                    classNamePrefix="select"
+                    value={data.rule}
+                    onChange={(e) => handleChange("rule", e)}
+                  />
+                  <Validation
+                    type="select"
+                    value={data.rule}
+                    validation={validation}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <div className="mt-1">
+                  <Button color="primary" type="submit">
+                    Submit
+                  </Button>
+                </div>
+              </Row>
+            </Form>
+          </CardBody>
+        </Card>
+      </React.Fragment>
+    );
+  } else {
+    return <Navigate to="/login" />;
+  }
 };
 
 export default Add;
-// import React, { useState } from "react";
-// import { useNavigate } from "react-router";
-// function Add() {
-//   let navigate = useNavigate();
-//   function handleClick() {
-//     navigate("/home");
-//   }
-//   return (
-//     <div>
-//       <button onClick={handleClick}>go home</button>
-//     </div>
-//   );
-// }
-// export default Add;

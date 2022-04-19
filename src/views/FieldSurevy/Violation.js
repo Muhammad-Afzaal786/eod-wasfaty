@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { Button, Col, Input, Label } from "reactstrap";
 import Select, { components } from "react-select";
 import cloneDeep from "clone-deep";
+import SwitchIcons from "../Heloper/Components/Switcher";
+import FileUploader from "../Heloper/Components/FileUploader";
 const initField = {
-  value: "no",
+  value: false,
   violation_item: "",
   violation_Picture: "",
 };
@@ -19,6 +21,24 @@ const Violation = (props) => {
     let fieldTmp = cloneDeep(field);
     fieldTmp[index][key] = fValue;
     setField(fieldTmp);
+  };
+  const CustomLabel = ({ htmlFor, handleChange, index }) => {
+    return (
+      <Label className="form-check-label" htmlFor={htmlFor}>
+        <span
+          className="switch-icon-left"
+          onClick={() => handleChange(index, "value", false)}
+        >
+          Yes
+        </span>
+        <span
+          className="switch-icon-right text-white"
+          onClick={() => handleChange(index, "value", true)}
+        >
+          No
+        </span>
+      </Label>
+    );
   };
   const itemOpt = [
     {
@@ -61,22 +81,28 @@ const Violation = (props) => {
       {/* for yes case If there is violation */}
       {field.map((item, index) => (
         <React.Fragment key={index}>
-          <Col lg="12 mb-1">
+          <div className="d-flex justify-content-between mt-1">
             <Label>
               Is there a violation<strong className="text-danger">*</strong>
             </Label>
-            <Select
-              options={[
-                { label: "YES", value: "yes" },
-                { label: "NO", value: "no" },
-              ]}
-              className="react-select"
-              classNamePrefix="select"
-              // value={data?.facility_working}
-              onChange={(e) => handleChange(index, "value", e.value)}
-            />
-          </Col>
-          {item.value === "yes" && (
+
+            <div className="form-switch form-check-success">
+              <Input
+                type="switch"
+                id="violation"
+                checked={item.value}
+                className="customWidth"
+                name={"violation"}
+                onChange={(e) => handleChange(index, "value", e.target.checked)}
+              />
+              <CustomLabel
+                htmlFor="icon-primary"
+                handleChange={handleChange}
+                index={index}
+              />
+            </div>
+          </div>
+          {item.value && (
             <React.Fragment key={index}>
               <Col lg="12 mb-1">
                 <Label>
@@ -107,54 +133,21 @@ const Violation = (props) => {
                   violation picture
                   <strong className="text-danger">*</strong>
                 </Label>
-                <input type="file" id="myFile" name="filename" />
+                <FileUploader />
               </Col>
             </React.Fragment>
           )}
-
-          {/* {Object.keys(value)?.map((item, index) => (
-            <React.Fragment key={index}>
-              <Col lg="12 mb-1">
-                <Label>
-                  violation items<strong className="text-danger">*</strong>
-                </Label>
-                <Select
-                  options={[
-                    { label: "YES", value: "yes" },
-                    { label: "NO", value: "no" },
-                  ]}
-                  className="react-select"
-                  classNamePrefix="select"
-                  value={item}
-                  onChange={(e) => setItem({ ...item, [index]: e })}
-                />
-              </Col>
-
-              <Col lg="12 mb-2">
-                <Label>
-                  violation picture
-                  <strong className="text-danger">*</strong>
-                </Label>
-                <input type="file" id="myFile" name="filename" />
-              </Col>
-            </React.Fragment>
-          ))} */}
         </React.Fragment>
       ))}
 
       <Col lg="12" className="mb-2">
         <div>
-          <Button
-            outline
-            color="primary"
-            type="button"
-            onClick={() => addField()}
-          >
-            Adding a new violation
+          <Button color="primary" type="button" onClick={() => addField()}>
+            Add Violation
           </Button>
         </div>
       </Col>
-      {field.length > 0 && field[0].value === "yes" && (
+      {field.length > 0 && field[0].value && (
         <>
           <Col lg="12 mb-2">
             <Label>
@@ -166,7 +159,7 @@ const Violation = (props) => {
             <Label>
               Record Picture<strong className="text-danger">*</strong>
             </Label>
-            <input type="file" id="myFile" name="filename" />
+            <FileUploader />
           </Col>
         </>
       )}

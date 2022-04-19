@@ -15,6 +15,7 @@ import { Label, Row, Col, Button, Form, Input, FormFeedback } from "reactstrap";
 // ** Styles
 import "@styles/react/libs/react-select/_react-select.scss";
 import SwitchIcons from "../../Heloper/Components/Switcher";
+import FileUploader from "../../Heloper/Components/FileUploader";
 
 const defaultValues = {
   lastName: "",
@@ -101,26 +102,23 @@ const PersonalInfo = ({
           data?.reasonOpt?.value === "The Facility Does not Exist") && (
           <Row className="mt-1">
             <Col lg="12" className="mb-1">
-              <Label>
+              <Label className="mb-50">
                 Picture if the facility not working
                 <strong className="text-danger">*</strong>
               </Label>
-              <input type="file" id="myFile" name="filename" />
+              <FileUploader handleChange={handleChange} />
             </Col>
           </Row>
         )}
         {data.facility_working && (
           <Row className="mt-1">
             <Col lg="12" className="mb-1">
-              <label>
+              <Label className="mb-50">
                 A picture of the building showing the sign, the commercial name
                 and the main entrance
-                <span>
-                  {" "}
-                  <strong className="text-danger"> * </strong>
-                </span>{" "}
-              </label>
-              <input type="file" id="myFile" name="filename" />
+                <strong className="text-danger"> * </strong>
+              </Label>
+              <FileUploader handleChange={handleChange} />
             </Col>
             <div className="d-flex justify-content-between">
               <Label className="switchLabel">
@@ -173,7 +171,12 @@ const PersonalInfo = ({
                   Reasons for not renewing the license?
                   <strong className="text-danger">*</strong>
                 </Label>
-                <Input />
+                <Input
+                  value={data.not_renewing_the_license}
+                  onChange={(e) =>
+                    handleChange("not_renewing_the_license", e.target.value)
+                  }
+                />
               </Col>
             )}
             <Col lg="12 mb-2">
@@ -181,44 +184,78 @@ const PersonalInfo = ({
                 operator name
                 <strong className="text-danger"> *</strong>
               </Label>
-              <Input />
+              <Input
+                value={data.operator_name}
+                onChange={(e) => handleChange("operator_name", e.target.value)}
+              />
             </Col>
             <Col lg="12 mb-2">
               <Label>
                 operator ID
                 <strong className="text-danger"> *</strong>
               </Label>
-              <Input type="number" />
+              <Input
+                type="number"
+                value={data.operator_id}
+                onChange={(e) => handleChange("operator_id", e.target.value)}
+              />
             </Col>
 
             <Col lg="12 mb-2">
               <Label>The trade name according to license</Label>
-              <Input type="text" />
+              <Input
+                type="text"
+                value={data.trade_name}
+                onChange={(e) => handleChange("trade_name", e.target.value)}
+              />
             </Col>
             <Col lg="12 mb-2">
               <Label>Commercial Registration No.</Label>
-              <Input type="number" />
+              <Input
+                type="number"
+                value={data.registration_no}
+                onChange={(e) =>
+                  handleChange("registration_no", e.target.value)
+                }
+              />
             </Col>
-            <Col lg="12 mb-2">
-              <form>
-                <span>Commercial Registration Image </span>
-                <input type="file" id="myFile" name="filename" />
-              </form>
+            <Col lg="12 mb-1">
+              <Label className="mb-50">Commercial Registration Image </Label>
+              <FileUploader
+                handleChange={handleChange}
+                name="registration_image"
+              />
             </Col>
 
             <Col lg="12 mb-2">
               <Label>Facility Mobile number</Label>
-              <Input type="number" />
+              <Input
+                type="number"
+                value={data.Facility_Mobile_number}
+                onChange={(e) =>
+                  handleChange("Facility_Mobile_number", e.target.value)
+                }
+              />
             </Col>
 
             <Col lg="12 mb-2">
-              <Label>facility number</Label>
-              <Input type="number" />
+              <Label>Facility number</Label>
+              <Input
+                type="number"
+                value={data.facility_number}
+                onChange={(e) =>
+                  handleChange("facility_number", e.target.value)
+                }
+              />
             </Col>
 
             <Col lg="12 mb-2">
               <Label>facility email</Label>
-              <Input type="email" />
+              <Input
+                type="email"
+                value={data.facility_email}
+                onChange={(e) => handleChange("facility_email", e.target.value)}
+              />
             </Col>
 
             <Col lg="12 mb-2">
@@ -226,7 +263,13 @@ const PersonalInfo = ({
                 Facility Room Number
                 <strong className="text-danger">*</strong>
               </Label>
-              <Input type="number" />
+              <Input
+                type="number"
+                value={data.facility_room_number}
+                onChange={(e) =>
+                  handleChange("facility_room_number", e.target.value)
+                }
+              />
             </Col>
 
             <Col lg="12 mb-2">
@@ -234,15 +277,15 @@ const PersonalInfo = ({
                 Tourist license copy?
                 <strong className="text-danger"> * </strong>
               </Label>
-              <input type="file" id="myFile" name="filename" />
+              <FileUploader handleChange={handleChange} />
             </Col>
 
             <Col lg="12 mb-2">
               <Label>
-                Municipal license picture{" "}
+                Municipal license picture
                 <strong className="text-danger">*</strong>
               </Label>
-              <input type="file" id="myFile" name="filename" />
+              <FileUploader handleChange={handleChange} />
             </Col>
 
             <Col lg="12 mb-2">
@@ -250,10 +293,8 @@ const PersonalInfo = ({
                 the civil defense license picture
                 <strong className="text-danger">* </strong>
               </Label>
-              <input type="file" id="myFile" name="filename" />
+              <FileUploader handleChange={handleChange} />
             </Col>
-
-            {/* <Violation handleChange={handleChange} data={data} /> */}
           </Row>
         )}
 

@@ -10,6 +10,8 @@ import SocialLinks from "./steps-with-validation/SocialLinks";
 import PersonalInfo from "./steps-with-validation/PersonalInfo";
 import AccountDetails from "./steps-with-validation/AccountDetails";
 import { fieldSurveyObj } from "../Heloper/Object";
+import { Navigate } from "react-router-dom";
+import { isUserLoggedIn } from "@utils";
 
 const WizardHorizontal = () => {
   const [data, setData] = useState(fieldSurveyObj);
@@ -59,15 +61,28 @@ const WizardHorizontal = () => {
       id: "step-address",
       title: "Step-3",
       subtitle: "Violation",
-      content: <Address stepper={stepper} />,
+      content: (
+        <Address
+          stepper={stepper}
+          handleChange={handleChange}
+          data={data}
+          validation={validation}
+          setValidation={setValidation}
+          setData={setData}
+        />
+      ),
     },
   ];
 
-  return (
-    <div className="horizontal-wizard">
-      <Wizard instance={(el) => setStepper(el)} ref={ref} steps={steps} />
-    </div>
-  );
+  if (isUserLoggedIn) {
+    return (
+      <div className="horizontal-wizard">
+        <Wizard instance={(el) => setStepper(el)} ref={ref} steps={steps} />
+      </div>
+    );
+  } else {
+    return <Navigate to="/login" />;
+  }
 };
 
 export default WizardHorizontal;

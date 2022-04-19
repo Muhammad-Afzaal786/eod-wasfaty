@@ -25,7 +25,7 @@ $gray-900: #2a2e30 !default;
 $black: #22292f !default; // 231f48 22292f
 
 $purple: #013133 !default; //$primary
-$green: #28c76f !default; //$success
+$green: #31bb1a !default; //$success
 $blue: #00cfe8 !default; //$info
 $orange: #ff9f43 !default; //$warning
 $red: #ea5455 !default; //$danger
@@ -54,7 +54,7 @@ $grid-breakpoints: (
   md: 768px,
   lg: 992px,
   xl: 1200px,
-  xxl: 1440px // Custom xxl size,
+  xxl: 1440px // Custom xxl size,,
 ) !default;
 
 $container-max-widths: (
@@ -63,7 +63,7 @@ $container-max-widths: (
   md: 768px,
   lg: 992px,
   xl: 1200px,
-  xxl: 1440px // Custom xxl size,
+  xxl: 1440px // Custom xxl size,,
 ) !default;
 // scss-docs-end container-max-widths
 

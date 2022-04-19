@@ -1,4 +1,5 @@
 import React, { Fragment, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardBody } from "reactstrap";
 import { inspection_index } from "../Heloper/Apicall/endPoints";
 import { SC } from "../Heloper/Apicall/ServerCall";
@@ -7,7 +8,7 @@ import Pagination from "../Heloper/Components/Pagination";
 
 const FieldSurveyList = () => {
   const pagination = useRef();
-
+  const navigate = useNavigate();
   const paginationCall = (data) => {
     return SC.getCall(
       inspection_index + `?page=${data.page}&per_page=${data.pageSize}`
@@ -15,25 +16,23 @@ const FieldSurveyList = () => {
   };
   return (
     <Fragment>
-      <Card>
-        <CardBody className="rounded">
-          <Pagination
-            refs={pagination}
-            columns={fieldSurveyCol}
-            getDataCall={paginationCall}
-            filterView={false}
-            showAllToggle={true}
-            downloadData={true}
-            downloadFileName={"userRequest"}
-            minRows={5}
-            history={history}
-            // headers={userRequestHeader}
-            // endPoint={get_requester}
-            // selectMulti
-            // activateUser
-          />
-        </CardBody>
-      </Card>
+      <Pagination
+        refs={pagination}
+        columns={fieldSurveyCol}
+        getDataCall={paginationCall}
+        filterView={false}
+        showAllToggle={true}
+        downloadData={true}
+        navigate={navigate}
+        downloadFileName={"userRequest"}
+        minRows={5}
+        history={history}
+        title="Field Survey List"
+        // headers={userRequestHeader}
+        // endPoint={get_requester}
+        // selectMulti
+        // activateUser
+      />
     </Fragment>
   );
 };

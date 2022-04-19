@@ -1,5 +1,5 @@
 // ** React Imports
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 // ** Utils
 import { isObjEmpty } from "@utils";
@@ -15,6 +15,10 @@ import Select, { components } from "react-select";
 import { fieldSurveyObj } from "../../Heloper/Object";
 import SwitchIcons from "../../Heloper/Components/Switcher";
 import Validation from "../../Heloper/Components/FieldValidation";
+import { SC } from "../../Heloper/Apicall/ServerCall";
+import { region_index } from "../../Heloper/Apicall/endPoints";
+import { errorHandle } from "../../Heloper/Action/ErrorHandle";
+import { useNavigate } from "react-router-dom";
 
 const defaultValues = {
   email: "",
@@ -29,8 +33,11 @@ const AccountDetails = ({
   setValidation,
 }) => {
   // ** Hooks
+  const navigate = useNavigate();
   const [region, setRegion] = useState([{ label: "test", value: "test" }]);
-
+  useEffect(() => {
+    getRegion();
+  }, []);
   const { handleSubmit } = useForm();
   const onSubmit = () => {
     if (data.city === "" || data.neighborhood === "" || data.street === "") {
@@ -39,6 +46,20 @@ const AccountDetails = ({
     } else {
       stepper.next();
     }
+  };
+  //get region from api
+  const getRegion = () => {
+    SC.getCall(region_index).then(
+      (res) => {
+        if (res.status === 200 && res.data) {
+          let rowData = res.data.data?.data;
+          setRegion(rowData);
+        }
+      },
+      (error) => {
+        errorHandle(error, navigate);
+      }
+    );
   };
   //get current location
   const getLocation = () => {
@@ -54,10 +75,6 @@ const AccountDetails = ({
   };
   return (
     <Fragment>
-      {/* <div className="content-header">
-        <h5 className="mb-0">Account Details</h5>
-        <small className="text-muted">Enter Your Account Details.</small>
-      </div> */}
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Row>
           <Col lg="3">
@@ -68,6 +85,8 @@ const AccountDetails = ({
               options={region}
               className="react-select"
               classNamePrefix="select"
+              getOptionLabel={(Opt) => Opt.name}
+              getOptionValue={(Opt) => Opt._id}
               value={data.region}
               onChange={(e) => handleChange("region", e)}
             />
@@ -209,7 +228,7 @@ const AccountDetails = ({
         <div className="d-flex justify-content-end mt-1">
           <Button type="submit" color="primary" className="btn-next">
             <span className="align-middle d-sm-inline-block d-none">
-              Save & Submit
+              Save & Continue
             </span>
             {/* <ArrowRight
               size={14}

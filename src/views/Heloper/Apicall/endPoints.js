@@ -11,3 +11,4 @@ export const region_create = "region-create";
 export const region_delete = "region-delete";
 export const region_update = "region-update";
 export const region_show = "region-show";
+export const Logout = "logout";

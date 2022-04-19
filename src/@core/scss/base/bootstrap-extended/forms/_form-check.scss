@@ -37,7 +37,7 @@
   .form-check-input {
     border: none;
     &:not(:checked) {
-      background-color: $danger;
+      background-color: #ff7750;
     }
     &:active {
       filter: none;
