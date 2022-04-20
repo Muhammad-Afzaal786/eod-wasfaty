@@ -4,6 +4,7 @@ import { Fragment, useState, useRef } from "react";
 import classnames from "classnames";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import sideImage from "./BottomPic.svg";
+import SideBarImg from "./sideBar-Image.jpg";
 // ** Vertical Menu Components
 import VerticalMenuHeader from "./VerticalMenuHeader";
 import VerticalNavMenuItems from "./VerticalNavMenuItems";
@@ -45,7 +46,6 @@ const Sidebar = (props) => {
   return (
     <Fragment>
       <div
-        style={{ background: "#161361" }}
         className={classnames(
           "main-menu menu-fixed menu-accordion menu-shadow bg-primary",
           {
@@ -71,7 +71,9 @@ const Sidebar = (props) => {
             {/* Vertical Menu Header Shadow */}
             <div className="shadow-bottom" ref={shadowRef}></div>
             {/* Perfect Scrollbar */}
+
             <PerfectScrollbar
+              // style={{backgroundImage:`url(${SideBarImg})` }}
               className="main-menu-content"
               options={{ wheelPropagation: false }}
               onScrollY={(container) => scrollMenu(container)}
