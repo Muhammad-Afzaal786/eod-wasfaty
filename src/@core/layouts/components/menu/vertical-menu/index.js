@@ -3,14 +3,14 @@ import { Fragment, useState, useRef } from "react";
 // ** Third Party Components
 import classnames from "classnames";
 import PerfectScrollbar from "react-perfect-scrollbar";
-import sideImage from './BottomPic.svg'
+import sideImage from "./BottomPic.svg";
 // ** Vertical Menu Components
 import VerticalMenuHeader from "./VerticalMenuHeader";
 import VerticalNavMenuItems from "./VerticalNavMenuItems";
 // import bottomPattern from "../../../../../assets/images/pages/patern.svg";
 const Sidebar = (props) => {
   // ** Props
-  const {menuCollapsed, menu, skin, menuData } = props;
+  const { menuCollapsed, menu, skin, menuData } = props;
 
   // ** States
   const [groupOpen, setGroupOpen] = useState([]);
@@ -41,20 +41,19 @@ const Sidebar = (props) => {
       }
     }
   };
-  
 
   return (
     <Fragment>
       <div
+        style={{ background: "#161361" }}
         className={classnames(
           "main-menu menu-fixed menu-accordion menu-shadow bg-primary",
           {
             expanded: menuHover || menuCollapsed === false,
             "menu-light": skin !== "semi-dark" && skin !== "dark",
             "menu-dark": skin === "semi-dark" || skin === "dark",
-          },{
-
-          }
+          },
+          {}
         )}
         onMouseEnter={onMouseEnter}
         onMouseLeave={() => setMenuHover(false)}
@@ -94,14 +93,15 @@ const Sidebar = (props) => {
                 />
               </ul>
               <ul>
-                <div className="SideBottom h-50  w-100 " >
-                  <img src={sideImage} alt="bottomImage" className="h-100 w-100"
-                  
-
+                <div
+                  className="SideBottom h-50  w-100 "
+                  style={{ mixBlendMode: "luminosity" }}
+                >
+                  <img
+                    src={sideImage}
+                    alt="bottomImage"
+                    className="h-100 w-100"
                   />
-              
- 
-                  
                 </div>
               </ul>
             </PerfectScrollbar>
