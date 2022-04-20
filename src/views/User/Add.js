@@ -120,7 +120,7 @@ const Add = () => {
   };
   return (
     <React.Fragment>
-      <Card>
+      <Card >
         <CardHeader className="bg-primary">
           <CardTitle className="text-white">
             {params.id ? "Update user" : "Create user"}
