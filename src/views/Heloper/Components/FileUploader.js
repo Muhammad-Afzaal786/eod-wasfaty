@@ -6,6 +6,7 @@ import { ArrowDown, ArrowUp, File } from "react-feather";
 
 import file from "../../../assets/images/icons/file.svg";
 import { uploadFileS3 } from "../Minio";
+import FileProgressBar from "./FileProgressBar";
 // import { uploadFileS3 } from "../../../../src/Minio";
 
 // import FilePreview from "./FilePreview";
@@ -15,6 +16,7 @@ function FileUploader(props) {
   const [loading, setLoading] = useState(false);
   const [attachment, setAttachment] = useState([]);
   const [detail, setDetail] = useState([]);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     if (props.call !== "createTickets" && props.Data?.attachment?.length > 0) {
@@ -29,9 +31,15 @@ function FileUploader(props) {
 
   const callBackS3 = (data) => {
     if (attachment?.length <= 9) {
-      console.log(data);
       setAttachment([...attachment, data.Location]);
-      //   props.handleChange("attachment", [...attachment, data.Location]);
+      if (props.call === "violation") {
+        props.handleChange(props.index, props.name, [
+          ...attachment,
+          data.Location,
+        ]);
+      } else {
+        props.handleChange(props.name, [...attachment, data.Location]);
+      }
     } else toast.success("You submit max-10 files!");
     setLoading(false);
   };
@@ -42,16 +50,31 @@ function FileUploader(props) {
     const filteredName = detail?.filter((file, index) => index !== id);
     setDetail(filteredName);
     setAttachment(filteredFiles);
-    props.handleChange("attachment", filteredFiles);
+    props.handleChange(props.name, filteredFiles);
   };
-
+  const thumbs = attachment.map((file, index) => {
+    console.log(file);
+    return (
+      <div className="dz-thumb" key={index}>
+        <a href={file} target="_blank">
+          {/* <figure>{file.name && UFIcon(TR.getFileExtension(file))}</figure> */}
+          <div className="dz-thumb__file__content">
+            {/* <span className="dz-thumb__file__content--fileName">{file}</span> */}
+            <FileProgressBar value={progress} />
+          </div>
+        </a>
+      </div>
+    );
+  });
   return (
     <Fragment>
       <Dropzone
         onDrop={(acceptedFiles) => {
           setLoading(true);
           // convertToBase64(acceptedFiles);
-          uploadFileS3(acceptedFiles[0], callBackS3);
+          uploadFileS3(acceptedFiles[0], callBackS3, (e) => {
+            setProgress(e);
+          });
         }}
       >
         {({ getRootProps, getInputProps }) => (
@@ -71,7 +94,7 @@ function FileUploader(props) {
               </p>
             </div>
 
-            {/* <aside className="d-flex ex1 flex-row ">{thumbs}</aside> */}
+            <aside className="d-flex ex1 flex-row ">{thumbs}</aside>
           </section>
         )}
       </Dropzone>

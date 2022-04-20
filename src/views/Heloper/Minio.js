@@ -1,5 +1,5 @@
 var AWS = require("aws-sdk");
-export const uploadFileS3 = (file, callBackS3) => {
+export const uploadFileS3 = (file, callBackS3, progressCB) => {
   let files = file?.name?.split(" ").join("");
   let ext = files?.split(".").pop();
   let name = files?.split(".")[0];
@@ -28,8 +28,15 @@ export const uploadFileS3 = (file, callBackS3) => {
       ACL: "public-read",
     };
     console.log(REACT_APP_AWS_BUCKET, params);
-    return s3.upload(params, function (err, data) {
-      if (data) callBackS3(data);
-    });
+    return s3
+      .upload(params, function (err, data) {
+        if (data) callBackS3(data);
+      })
+      .on("httpUploadProgress", function (progress) {
+        let progressPercentage = Math.round(
+          (progress.loaded / progress.total) * 100
+        );
+        progressCB(progressPercentage);
+      });
   }
 };

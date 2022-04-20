@@ -1,5 +1,5 @@
 // ** React Imports
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // ** Custom Components
 import Wizard from "@components/wizard";
@@ -12,6 +12,8 @@ import AccountDetails from "./steps-with-validation/AccountDetails";
 import { fieldSurveyObj } from "../Heloper/Object";
 import { Navigate } from "react-router-dom";
 import { isUserLoggedIn } from "@utils";
+import { SC } from "../Heloper/Apicall/ServerCall";
+import { inspection_create } from "../Heloper/Apicall/endPoints";
 
 const WizardHorizontal = () => {
   const [data, setData] = useState(fieldSurveyObj);
@@ -24,7 +26,32 @@ const WizardHorizontal = () => {
   // ** Ref
   const ref = useRef(null);
   // ** State
-  console.log(data);
+  useEffect(() => {
+    if (data.facility_working) {
+      setData({
+        ...data,
+        reasonOpt: [],
+        facility_not_working_file: [],
+        Reasons_for_not_notifying: !data.specified_period
+          ? data.Reasons_for_not_notifying
+          : "",
+      });
+    }
+  }, [data.facility_working, data.specified_period]);
+  const handleSubmit = (value) => {
+    const postData = {
+      ...data,
+      region: data.region?._id,
+      city: data.city?._id,
+      tourism_License_number: data.tourism_License_number?._id,
+      reasonOpt: data.reasonOpt?.value || "",
+      violation_item: value,
+    };
+    console.log("postData", postData);
+    SC.postCall(inspection_create, postData).then((res) => {
+      console.log(res);
+    });
+  };
   const [stepper, setStepper] = useState(null);
   const steps = [
     {
@@ -39,6 +66,7 @@ const WizardHorizontal = () => {
           validation={validation}
           setValidation={setValidation}
           setData={setData}
+          dataSubmit={handleSubmit}
         />
       ),
     },
@@ -54,6 +82,7 @@ const WizardHorizontal = () => {
           validation={validation}
           setValidation={setValidation}
           setData={setData}
+          dataSubmit={handleSubmit}
         />
       ),
     },
@@ -69,11 +98,11 @@ const WizardHorizontal = () => {
           validation={validation}
           setValidation={setValidation}
           setData={setData}
+          dataSubmit={handleSubmit}
         />
       ),
     },
   ];
-
   if (isUserLoggedIn) {
     return (
       <div className="horizontal-wizard">

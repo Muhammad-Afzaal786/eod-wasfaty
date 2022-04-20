@@ -4,24 +4,16 @@ import Select, { components } from "react-select";
 import cloneDeep from "clone-deep";
 import SwitchIcons from "../Heloper/Components/Switcher";
 import FileUploader from "../Heloper/Components/FileUploader";
-const initField = {
-  value: false,
-  violation_item: "",
-  violation_Picture: "",
-};
+import Validation from "../Heloper/Components/FieldValidation";
+
 const Violation = (props) => {
-  const [field, setField] = useState([initField]);
-  const [value, setValue] = useState({});
-  const [item, setItem] = useState([]);
   const addField = () => {
-    setField([...field, initField]);
+    props.setField([
+      ...props.field,
+      { value: false, violation_item: [], violation_Picture: "" },
+    ]);
   };
-  const handleChange = (index, key, fValue) => {
-    //setField({ ...field, [key]: fValue });
-    let fieldTmp = cloneDeep(field);
-    fieldTmp[index][key] = fValue;
-    setField(fieldTmp);
-  };
+
   const CustomLabel = ({ htmlFor, handleChange, index }) => {
     return (
       <Label className="form-check-label" htmlFor={htmlFor}>
@@ -75,11 +67,10 @@ const Violation = (props) => {
 
     { label: "Other", value: "other" },
   ];
-  console.log(field);
   return (
     <React.Fragment>
       {/* for yes case If there is violation */}
-      {field.map((item, index) => (
+      {props.field?.map((item, index) => (
         <React.Fragment key={index}>
           <div className="d-flex justify-content-between mt-1">
             <Label>
@@ -93,11 +84,13 @@ const Violation = (props) => {
                 checked={item.value}
                 className="customWidth"
                 name={"violation"}
-                onChange={(e) => handleChange(index, "value", e.target.checked)}
+                onChange={(e) =>
+                  props.handleChange(index, "value", e.target.checked)
+                }
               />
               <CustomLabel
                 htmlFor="icon-primary"
-                handleChange={handleChange}
+                handleChange={props.handleChange}
                 index={index}
               />
             </div>
@@ -112,10 +105,18 @@ const Violation = (props) => {
                   options={itemOpt}
                   className="react-select"
                   classNamePrefix="select"
-                  //   value={item}
+                  value={{
+                    label: item.violation_item,
+                    value: item.violation_item,
+                  }}
                   onChange={(e) =>
-                    handleChange(index, "violation_item", e.value)
+                    props.handleChange(index, "violation_item", e.value)
                   }
+                />
+                <Validation
+                  value={item.violation_item}
+                  type="select"
+                  validation={props.validation}
                 />
               </Col>
 
@@ -125,7 +126,26 @@ const Violation = (props) => {
                     Violation clause (Explanation of the violation)
                     <strong className="text-danger">*</strong>
                   </Label>
-                  <Input />
+                  <Input
+                    value={item.violation_clause}
+                    onChange={(e) =>
+                      props.handleChange(
+                        index,
+                        "violation_clause",
+                        e.target.value
+                      )
+                    }
+                    invalid={
+                      item.violation_clause === "" && props.validation
+                        ? true
+                        : false
+                    }
+                  />
+                  <Validation
+                    type="text"
+                    value={item.violation_clause}
+                    validation={props.validation}
+                  />
                 </Col>
               )}
               <Col lg="12 mb-1">
@@ -133,7 +153,17 @@ const Violation = (props) => {
                   violation picture
                   <strong className="text-danger">*</strong>
                 </Label>
-                <FileUploader />
+                <FileUploader
+                  handleChange={props.handleChange}
+                  index={index}
+                  name="violation_Picture"
+                  call="violation"
+                />
+                <Validation
+                  type="select"
+                  value={item.violation_Picture}
+                  validation={props.validation}
+                />
               </Col>
             </React.Fragment>
           )}
@@ -147,19 +177,45 @@ const Violation = (props) => {
           </Button>
         </div>
       </Col>
-      {field.length > 0 && field[0].value && (
+      {props.field.length > 0 && props.field[0].value && (
         <>
           <Col lg="12 mb-2">
             <Label>
               violation Number<strong className="text-danger">*</strong>
             </Label>
-            <Input />
+            <Input
+              type="number"
+              value={props.field[0].violation_number}
+              onChange={(e) =>
+                props.handleChange(0, "violation_number", e.target.value)
+              }
+              invalid={
+                props.field[0].violation_number === "" && props.validation
+                  ? true
+                  : false
+              }
+            />
+            <Validation
+              type="text"
+              value={props.field[0].violation_number}
+              validation={props.validation}
+            />
           </Col>
           <Col lg="12 mb-2">
             <Label>
               Record Picture<strong className="text-danger">*</strong>
             </Label>
-            <FileUploader />
+            <FileUploader
+              handleChange={props.handleChange}
+              index={0}
+              name="violation_record_picture"
+              call="violation"
+            />
+            <Validation
+              type="select"
+              value={props.field[0].violation_record_picture}
+              validation={props.validation}
+            />
           </Col>
         </>
       )}

@@ -3,22 +3,7 @@ import ReactTable from "react-table";
 import "react-table/react-table.css";
 import "../../../@core/scss/base/plugins/tables/rtable.scss";
 
-import {
-  Button,
-  CardHeader,
-  InputGroup,
-  UncontrolledButtonDropdown,
-  InputGroupText,
-  Input,
-  UncontrolledDropdown,
-  DropdownToggle,
-  Card,
-  CardTitle,
-  DropdownMenu,
-  DropdownItem,
-  CardBody,
-  Spinner,
-} from "reactstrap";
+import { Card, CardBody, Spinner } from "reactstrap";
 
 import {
   Link2,

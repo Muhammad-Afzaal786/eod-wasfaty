@@ -16,7 +16,12 @@ import { fieldSurveyObj } from "../../Heloper/Object";
 import SwitchIcons from "../../Heloper/Components/Switcher";
 import Validation from "../../Heloper/Components/FieldValidation";
 import { SC } from "../../Heloper/Apicall/ServerCall";
-import { region_index } from "../../Heloper/Apicall/endPoints";
+import {
+  get_form_city,
+  get_form_region,
+  get_form_siteData,
+  region_index,
+} from "../../Heloper/Apicall/endPoints";
 import { errorHandle } from "../../Heloper/Action/ErrorHandle";
 import { useNavigate } from "react-router-dom";
 
@@ -31,29 +36,82 @@ const AccountDetails = ({
   validation,
   setData,
   setValidation,
+  dataSubmit,
 }) => {
   // ** Hooks
   const navigate = useNavigate();
-  const [region, setRegion] = useState([{ label: "test", value: "test" }]);
+  const [region, setRegion] = useState([]);
+  const [city, setCity] = useState([]);
+  const [site, setSite] = useState([]);
+
   useEffect(() => {
-    getRegion();
-  }, []);
+    if (region?.length === 0 && city.length === 0) {
+      getRegion();
+      getCity();
+    } else if (data.region?._id && data.city?._id) {
+      getSite(data.region._id, data.city._id);
+      setData({
+        ...data,
+        tourism_License_number: [],
+      });
+    }
+  }, [data.region, data.city]);
   const { handleSubmit } = useForm();
   const onSubmit = () => {
-    if (data.city === "" || data.neighborhood === "" || data.street === "") {
+    if (
+      data.region?.length === 0 ||
+      data.location.latitude === "" ||
+      data.tourism_License_number?.length === 0 ||
+      data.city?.length === 0 ||
+      data.location.longitude === ""
+    ) {
       setValidation(true);
-      stepper.next();
     } else {
-      stepper.next();
+      if (!data.inspectorRelation) {
+        stepper.next();
+        setValidation(false);
+      } else dataSubmit([]);
     }
   };
   //get region from api
   const getRegion = () => {
-    SC.getCall(region_index).then(
+    SC.getCall(get_form_region).then(
       (res) => {
         if (res.status === 200 && res.data) {
-          let rowData = res.data.data?.data;
+          let rowData = res.data.data;
           setRegion(rowData);
+        }
+      },
+      (error) => {
+        errorHandle(error, navigate);
+      }
+    );
+  };
+  //get city from api
+  const getCity = () => {
+    SC.getCall(get_form_city).then(
+      (res) => {
+        if (res.status === 200 && res.data) {
+          let rowData = res.data.data;
+          setCity(rowData);
+        }
+      },
+      (error) => {
+        errorHandle(error, navigate);
+      }
+    );
+  };
+  //get city from api
+  const getSite = (regId, cityId) => {
+    const data = {
+      regionId: regId,
+      cityId: cityId,
+    };
+    SC.postCall(get_form_siteData, data).then(
+      (res) => {
+        if (res.status === 200 && res.data) {
+          let rowData = res.data.data;
+          setSite(rowData);
         }
       },
       (error) => {
@@ -77,7 +135,7 @@ const AccountDetails = ({
     <Fragment>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Row>
-          <Col lg="3">
+          <Col lg="4">
             <Label>
               Region <strong className="text-danger">*</strong>
             </Label>
@@ -96,75 +154,46 @@ const AccountDetails = ({
               value={data.region}
             />
           </Col>
-          <Col lg="3">
+          <Col lg="4">
             <Label>
               City <strong className="text-danger">*</strong>
             </Label>
-            <Input
+            <Select
+              options={city}
+              className="react-select"
+              classNamePrefix="select"
+              getOptionLabel={(Opt) => Opt.name}
+              getOptionValue={(Opt) => Opt._id}
               value={data.city}
-              onChange={(e) => handleChange("city", e.target.value)}
-              invalid={data.city === "" && validation ? true : false}
+              onChange={(e) => handleChange("city", e)}
             />
             <Validation
-              type="text"
-              value={data.neighborhood}
               validation={validation}
+              type="select"
+              value={data.city}
             />
           </Col>
-          <Col lg="3">
+          <Col lg="4">
             <Label>
-              Neighborhood <strong className="text-danger">*</strong>
+              Tourism License number <strong className="text-danger">*</strong>
             </Label>
-            <Input
-              value={data.neighborhood}
-              onChange={(e) => handleChange("neighborhood", e.target.value)}
-              invalid={data.neighborhood === "" && validation ? true : false}
+            <Select
+              options={site}
+              className="react-select"
+              classNamePrefix="select"
+              getOptionLabel={(Opt) => Opt.licenseNumber}
+              getOptionValue={(Opt) => Opt._id}
+              value={data.tourism_License_number}
+              onChange={(e) => handleChange("tourism_License_number", e)}
             />
             <Validation
-              type="text"
-              value={data.neighborhood}
               validation={validation}
-            />
-          </Col>
-          <Col lg="3">
-            <Label>
-              Street <strong className="text-danger">*</strong>
-            </Label>
-            <Input
-              value={data.street}
-              onChange={(e) => handleChange("street", e.target.value)}
-              invalid={data.street === "" && validation ? true : false}
-            />
-            <Validation
-              type="text"
-              value={data.street}
-              validation={validation}
+              type="select"
+              value={data.tourism_License_number}
             />
           </Col>
         </Row>
-        <Row className="mt-1">
-          <Col lg="12">
-            <Label>
-              Tourism License number
-              <strong className="text-danger">*</strong>
-            </Label>
-            <Input
-              type="number"
-              value={data.tourism_License_number}
-              onChange={(e) =>
-                handleChange("tourism_License_number", e.target.value)
-              }
-              invalid={
-                data.tourism_License_number === "" && validation ? true : false
-              }
-            />
-            <Validation
-              type="text"
-              value={data.tourism_License_number}
-              validation={validation}
-            />
-          </Col>
-        </Row>
+
         <Row className="mt-1">
           <div className="d-flex justify-content-between">
             <span className="switchLabel">
@@ -183,7 +212,19 @@ const AccountDetails = ({
             <Label>
               Longitude <strong className="text-danger">*</strong>
             </Label>
-            <Input type="number" value={data.location.longitude} disabled />
+            <Input
+              type="number"
+              value={data.location.longitude}
+              disabled
+              invalid={
+                data.location.longitude === "" && validation ? true : false
+              }
+            />
+            <Validation
+              type="text"
+              value={data.location.longitude}
+              validation={validation}
+            />
           </Col>
         </Row>
         <Row className="mt-1">
@@ -191,7 +232,19 @@ const AccountDetails = ({
             <Label>
               Latitude <strong className="text-danger">*</strong>
             </Label>
-            <Input type="number" value={data.location.latitude} disabled />
+            <Input
+              type="number"
+              value={data.location.latitude}
+              disabled
+              invalid={
+                data.location.latitude === "" && validation ? true : false
+              }
+            />
+            <Validation
+              type="text"
+              value={data.location.latitude}
+              validation={validation}
+            />
           </Col>
         </Row>
 
@@ -228,7 +281,7 @@ const AccountDetails = ({
         <div className="d-flex justify-content-end mt-1">
           <Button type="submit" color="primary" className="btn-next">
             <span className="align-middle d-sm-inline-block d-none">
-              Save & Continue
+              {!data.inspectorRelation ? "Save & Continue" : "Submit"}
             </span>
             {/* <ArrowRight
               size={14}

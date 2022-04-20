@@ -16,6 +16,7 @@ import { Label, Row, Col, Button, Form, Input, FormFeedback } from "reactstrap";
 import "@styles/react/libs/react-select/_react-select.scss";
 import SwitchIcons from "../../Heloper/Components/Switcher";
 import FileUploader from "../../Heloper/Components/FileUploader";
+import Validation from "../../Heloper/Components/FieldValidation";
 
 const defaultValues = {
   lastName: "",
@@ -29,13 +30,29 @@ const PersonalInfo = ({
   validation,
   setData,
   setValidation,
+  dataSubmit,
 }) => {
   // ** Hooks
   const { handleSubmit } = useForm();
 
-  const onSubmit = (data) => {
-    if (data) {
+  const onSubmit = () => {
+    if (data.facility_working) {
       stepper.next();
+    } else {
+      if (data.reasonOpt?.length === 0) setValidation(true);
+      else if (
+        data?.reasonOpt?.value ===
+          "Converting the activity to month and annual" ||
+        data?.reasonOpt?.value ===
+          "There is no way point for the facility and it is not possibles" ||
+        data?.reasonOpt?.value === "The Facility Does not Exist"
+      ) {
+        if (data.facility_not_working_file?.length === 0) setValidation(true);
+        else dataSubmit([]);
+      } else {
+        stepper.next();
+        setValidation(false);
+      }
     }
   };
   const reasonOpt = [
@@ -92,6 +109,11 @@ const PersonalInfo = ({
                 onChange={(e) => handleChange("reasonOpt", e)}
               />
             </Col>
+            <Validation
+              type="select"
+              value={data?.reasonOpt}
+              validation={validation}
+            />
           </Row>
         )}
 
@@ -106,7 +128,15 @@ const PersonalInfo = ({
                 Picture if the facility not working
                 <strong className="text-danger">*</strong>
               </Label>
-              <FileUploader handleChange={handleChange} />
+              <FileUploader
+                handleChange={handleChange}
+                name="facility_not_working_file"
+              />
+              <Validation
+                type="select"
+                value={data.facility_not_working_file}
+                validation={validation}
+              />
             </Col>
           </Row>
         )}
@@ -118,9 +148,17 @@ const PersonalInfo = ({
                 and the main entrance
                 <strong className="text-danger"> * </strong>
               </Label>
-              <FileUploader handleChange={handleChange} />
+              <FileUploader
+                handleChange={handleChange}
+                name="building_showing_the_sign"
+              />
+              <Validation
+                validation={validation}
+                value={data.building_showing_the_sign}
+                type="select"
+              />
             </Col>
-            <div className="d-flex justify-content-between">
+            <div className="d-flex justify-content-between mb-1">
               <Label className="switchLabel">
                 Have you been notified of registration in the calendar tourism
                 licensing platform within the specified period of 4 days?{" "}
@@ -136,10 +174,25 @@ const PersonalInfo = ({
               <Col lg="12" className="mb-1">
                 <Label>
                   Reasons for not notifying the facility of registration in the
-                  tourism licensing platform{" "}
+                  tourism licensing platform
                   <strong className="text-danger">*</strong>
                 </Label>
-                <Input />
+                <Input
+                  value={data.Reasons_for_not_notifying}
+                  onChange={(e) =>
+                    handleChange("Reasons_for_not_notifying", e.target.value)
+                  }
+                  invalid={
+                    data.Reasons_for_not_notifying === "" && validation
+                      ? true
+                      : false
+                  }
+                />
+                <Validation
+                  type="text"
+                  value={data.Reasons_for_not_notifying}
+                  validation={validation}
+                />
               </Col>
             )}
             <div className="d-flex justify-content-between mb-1">
@@ -176,6 +229,16 @@ const PersonalInfo = ({
                   onChange={(e) =>
                     handleChange("not_renewing_the_license", e.target.value)
                   }
+                  invalid={
+                    data.not_renewing_the_license === "" && validation
+                      ? true
+                      : false
+                  }
+                />
+                <Validation
+                  type="text"
+                  value={data.not_renewing_the_license}
+                  validation={validation}
                 />
               </Col>
             )}
@@ -187,13 +250,16 @@ const PersonalInfo = ({
               <Input
                 value={data.operator_name}
                 onChange={(e) => handleChange("operator_name", e.target.value)}
+                invalid={data.operator_name === "" && validation ? true : false}
+              />
+              <Validation
+                type="text"
+                value={data.operator_name}
+                validation={validation}
               />
             </Col>
             <Col lg="12 mb-2">
-              <Label>
-                operator ID
-                <strong className="text-danger"> *</strong>
-              </Label>
+              <Label>operator ID</Label>
               <Input
                 type="number"
                 value={data.operator_id}
@@ -220,10 +286,18 @@ const PersonalInfo = ({
               />
             </Col>
             <Col lg="12 mb-1">
-              <Label className="mb-50">Commercial Registration Image </Label>
+              <Label className="mb-50">
+                Commercial Registration Image{" "}
+                <strong className="text-danger"> *</strong>{" "}
+              </Label>
               <FileUploader
                 handleChange={handleChange}
                 name="registration_image"
+              />
+              <Validation
+                validation={validation}
+                value={data.registration_image}
+                type="select"
               />
             </Col>
 
@@ -269,6 +343,14 @@ const PersonalInfo = ({
                 onChange={(e) =>
                   handleChange("facility_room_number", e.target.value)
                 }
+                invalid={
+                  data.facility_room_number === "" && validation ? true : false
+                }
+              />
+              <Validation
+                type="text"
+                value={data.facility_room_number}
+                validation={validation}
               />
             </Col>
 
@@ -277,7 +359,15 @@ const PersonalInfo = ({
                 Tourist license copy?
                 <strong className="text-danger"> * </strong>
               </Label>
-              <FileUploader handleChange={handleChange} />
+              <FileUploader
+                handleChange={handleChange}
+                name="Tourist_license_copy"
+              />
+              <Validation
+                type="select"
+                value={data.Tourist_license_copy}
+                validation={validation}
+              />
             </Col>
 
             <Col lg="12 mb-2">
@@ -285,7 +375,15 @@ const PersonalInfo = ({
                 Municipal license picture
                 <strong className="text-danger">*</strong>
               </Label>
-              <FileUploader handleChange={handleChange} />
+              <FileUploader
+                handleChange={handleChange}
+                name={"Municipal_license_picture"}
+              />
+              <Validation
+                value={data.Municipal_license_picture}
+                type="select"
+                validation={validation}
+              />
             </Col>
 
             <Col lg="12 mb-2">
@@ -293,7 +391,15 @@ const PersonalInfo = ({
                 the civil defense license picture
                 <strong className="text-danger">* </strong>
               </Label>
-              <FileUploader handleChange={handleChange} />
+              <FileUploader
+                handleChange={handleChange}
+                name={"the_civil_defense_license_picture"}
+              />
+              <Validation
+                value={data.the_civil_defense_license_picture}
+                type="select"
+                validation={validation}
+              />
             </Col>
           </Row>
         )}
@@ -314,11 +420,13 @@ const PersonalInfo = ({
             </span>
           </Button>
           <Button type="submit" color="primary" className="btn-next">
-            <span className="align-middle d-sm-inline-block d-none">Next</span>
-            <ArrowRight
+            <span className="align-middle d-sm-inline-block d-none">
+              {data.facility_working ? "Save & Continue" : "Submit"}
+            </span>
+            {/* <ArrowRight
               size={14}
               className="align-middle ms-sm-25 ms-0"
-            ></ArrowRight>
+            ></ArrowRight> */}
           </Button>
         </div>
       </Form>

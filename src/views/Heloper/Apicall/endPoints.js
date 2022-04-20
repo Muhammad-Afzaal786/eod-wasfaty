@@ -12,3 +12,7 @@ export const region_delete = "region-delete";
 export const region_update = "region-update";
 export const region_show = "region-show";
 export const Logout = "logout";
+export const get_form_region = "get-form-region";
+export const get_form_city = "get-form-city";
+export const get_form_siteData = "get-form-siteData";
+export const inspection_create = "inspection-create";
