@@ -35,6 +35,23 @@ export default [
     ],
   },
   {
+    id: "site",
+    title: "Site",
+    icon: <Circle size={20} />,
+    children: [
+      {
+        id: "add",
+        title: "Add",
+        navLink: "site/add",
+      },
+      {
+        id: "list",
+        title: "List",
+        navLink: "site/list",
+      },
+    ],
+  },
+  {
     id: "Field Survey",
     title: "Field Survey",
     icon: <Circle size={20} />,

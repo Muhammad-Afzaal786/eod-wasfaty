@@ -16,6 +16,8 @@ import Add from "../../views/User/Add";
 import List from "../../views/User/List";
 import AddRegion from "../../views/Region/Add";
 import RegionList from "../../views/Region/List";
+import AddSite from "../../views/Site/Add";
+import SiteList from "../../views/Site/List";
 import AddSurvey from "../../views/FieldSurevy/Add";
 import FieldSurveyList from "../../views/FieldSurevy/List";
 
@@ -68,6 +70,18 @@ const Routes = [
   {
     path: "/region/list",
     element: <RegionList />,
+  },
+  {
+    path: "/site/add",
+    element: <AddSite />,
+  },
+  {
+    path: "/site/update/:id",
+    element: <AddSite />,
+  },
+  {
+    path: "/site/list",
+    element: <SiteList />,
   },
   {
     path: "/fieldSurvey/add",
