@@ -74,12 +74,14 @@ const Sidebar = (props) => {
 
             <PerfectScrollbar
               // style={{
+
               //   backgroundImage:`url(${SideBarImg})`,
               //   backgroundPosition: 'center',
               //   backgroundSize: 'cover',
-              //   backgroundRepeat: 'no-repeat'
+              //   backgroundRepeat: 'no-repeat',
+             
               //  }}
-              className="main-menu-content"
+              className="main-menu-content "
               options={{ wheelPropagation: false }}
               onScrollY={(container) => scrollMenu(container)}
             >
@@ -101,14 +103,21 @@ const Sidebar = (props) => {
               </ul>
               <ul>
                 <div
-                  className="SideBottom   w-100  img-fluid mx-auto"
-                  style={{ mixBlendMode: "luminosity" }}
+                  className="SideBottom h-50  w-100 "
+                  style={{
+                    backgroundImage:`url(${sideImage})`,
+                    backgroundSize: 'cover',
+                    // backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    mixBlendMode: "luminosity"} }
                 >
-                  <img
+                  {/* <img
                     src={sideImage}
                     alt="bottomImage"
-                    className="h-100 w-100 img-fluid "
-                  />
+                    className=" h-100 w-100 img-fluid "
+                  /> */}
+
+
                 </div>
               </ul>
             </PerfectScrollbar>
