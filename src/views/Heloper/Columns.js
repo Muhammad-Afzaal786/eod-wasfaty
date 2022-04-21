@@ -1,5 +1,6 @@
 import Action from "./Action/EditDelete";
 import { delete_user } from "./Apicall/endPoints";
+import { DateFormat } from "./DateFormat";
 
 export const userCol = [
   {
@@ -138,19 +139,27 @@ export const fieldSurveyCol = [
     Cell: ({ row }) => {
       return (
         <div>
-          <span className=" Black">{row.name}</span>
+          <span className=" Black">{row._original.user?.name}</span>
         </div>
       );
     },
   },
   {
     Header: "INSPECTOR ADDRESS",
-    accessor: "address",
+    accessor: "name",
     sortable: false,
     Cell: ({ row }) => {
       return (
         <div>
-          <span className=" Black">{row.name}</span>
+          {row._original?.site && (
+            <span className=" Black">
+              {row._original?.site?.region?.name +
+                "-" +
+                row._original?.site?.city?.name +
+                "-" +
+                row._original?.site?.streetNameAr}
+            </span>
+          )}
         </div>
       );
     },
@@ -162,7 +171,7 @@ export const fieldSurveyCol = [
     Cell: ({ row }) => {
       return (
         <div>
-          <span className=" Black">{row.name}</span>
+          <span className=" Black">{row._original?.site?.licenseNumber}</span>
         </div>
       );
     },
@@ -174,7 +183,7 @@ export const fieldSurveyCol = [
     Cell: ({ row }) => {
       return (
         <div>
-          <span className=" Black">{row.name}</span>
+          <span className="Black">{DateFormat(row._original.created_at)}</span>
         </div>
       );
     },
@@ -183,5 +192,20 @@ export const fieldSurveyCol = [
     Header: "ACTION",
     accessor: "_id",
     sortable: false,
+    show: false,
+    Cell: ({ row }) => {
+      return (
+        <div>
+          <Action
+            editOp={true}
+            deleteOp={true}
+            endPoint={delete_user}
+            name="user"
+            path="/user/update/"
+            _id={row._id}
+          />
+        </div>
+      );
+    },
   },
 ];
