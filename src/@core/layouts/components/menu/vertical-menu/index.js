@@ -101,13 +101,14 @@ const Sidebar = (props) => {
               </ul>
               <ul>
                 <div
-                  className="SideBottom h-50  w-100 "
+                  className="SideBottom w-100 "
                   style={{
                     backgroundImage: `url(${SideImage})`,
                     backgroundPosition: "center",
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
                     mixBlendMode: "luminosity",
+                    height:"40%"
                   }}
                 >
                   {/* <img
