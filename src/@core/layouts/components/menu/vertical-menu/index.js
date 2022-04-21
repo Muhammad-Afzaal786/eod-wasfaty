@@ -3,11 +3,12 @@ import { Fragment, useState, useRef } from "react";
 // ** Third Party Components
 import classnames from "classnames";
 import PerfectScrollbar from "react-perfect-scrollbar";
-import sideImage from './BottomPic.svg'
+import sideImage from "./BottomPic.svg";
+import SideBarImg from "./sideBar-Image.jpg";
 // ** Vertical Menu Components
 import VerticalMenuHeader from "./VerticalMenuHeader";
 import VerticalNavMenuItems from "./VerticalNavMenuItems";
-import bottomPattern from "../../../../../assets/images/pages/patern.svg";
+// import bottomPattern from "../../../../../assets/images/pages/patern.svg";
 const Sidebar = (props) => {
   // ** Props
   const { menuCollapsed, menu, skin, menuData } = props;
@@ -41,7 +42,6 @@ const Sidebar = (props) => {
       }
     }
   };
-  
 
   return (
     <Fragment>
@@ -52,7 +52,8 @@ const Sidebar = (props) => {
             expanded: menuHover || menuCollapsed === false,
             "menu-light": skin !== "semi-dark" && skin !== "dark",
             "menu-dark": skin === "semi-dark" || skin === "dark",
-          }
+          },
+          {}
         )}
         onMouseEnter={onMouseEnter}
         onMouseLeave={() => setMenuHover(false)}
@@ -70,7 +71,14 @@ const Sidebar = (props) => {
             {/* Vertical Menu Header Shadow */}
             <div className="shadow-bottom" ref={shadowRef}></div>
             {/* Perfect Scrollbar */}
+
             <PerfectScrollbar
+              // style={{
+              //   backgroundImage:`url(${SideBarImg})`,
+              //   backgroundPosition: 'center',
+              //   backgroundSize: 'cover',
+              //   backgroundRepeat: 'no-repeat'
+              //  }}
               className="main-menu-content"
               options={{ wheelPropagation: false }}
               onScrollY={(container) => scrollMenu(container)}
@@ -92,14 +100,15 @@ const Sidebar = (props) => {
                 />
               </ul>
               <ul>
-                <div className="SideBottom h-50  w-100 " >
-                  <img src={sideImage} alt="bottomImage" className="h-100 w-100"
-                  
-
+                <div
+                  className="SideBottom   w-100  img-fluid mx-auto"
+                  style={{ mixBlendMode: "luminosity" }}
+                >
+                  <img
+                    src={sideImage}
+                    alt="bottomImage"
+                    className="h-100 w-100 img-fluid "
                   />
-              
- 
-                  
                 </div>
               </ul>
             </PerfectScrollbar>
