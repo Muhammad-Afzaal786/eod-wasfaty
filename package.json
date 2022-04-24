@@ -60,6 +60,8 @@
     "react-flatpickr": "3.9.1",
     "react-hook-form": "7.18.1",
     "react-hot-toast": "2.2.0",
+    "babel-plugin-react-intl": "5.1.18",
+    "react-intl": "3.11.0",
     "react-i18next": "11.13.0",
     "react-loading-skeleton": "^2.2.0",
     "react-paginate": "7.0.0",

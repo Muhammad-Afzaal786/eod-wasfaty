@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { handleRTL } from "../../../../redux/layout";
 import { useTranslation } from "react-i18next";
+import { IntlContext } from "../../../../utility/context/Internationalization";
 
 function Language() {
   const dispatch = useDispatch();
@@ -9,10 +10,11 @@ function Language() {
 
   const RTL = (lg) => {
     dispatch(handleRTL(lg === "en" ? false : true));
-    i18n.changeLanguage("sa");
+    // i18n.changeLanguage("en");
 
-    // intlContext.switchLanguage(lg);
+    IntlContext.switchLanguage(lg);
   };
+  console.log(i18n, useTranslation());
   return (
     <div>
       <span className="CustomLanguage">
