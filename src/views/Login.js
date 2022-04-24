@@ -17,7 +17,7 @@ import "@styles/react/pages/page-authentication.scss";
 import logo from "../assets/images/pages/MOT.png";
 import toast from "react-hot-toast";
 import { SC } from "./Heloper/Apicall/ServerCall";
-import { login } from "./Heloper/Apicall/endPoints";
+import { login, loginUser } from "./Heloper/Apicall/endPoints";
 import { X } from "react-feather";
 const Login = () => {
   const navigate = useNavigate();
@@ -50,6 +50,12 @@ const Login = () => {
           if (res.status === 200 && res.data) {
             let token = res.data;
             localStorage.setItem("userData", JSON.stringify(token));
+            SC.getCall(loginUser).then((res) => {
+              if (res.status === 200 && res.data) {
+                let userData = res.data.data?.user;
+                localStorage.setItem("loginUser", JSON.stringify(userData));
+              }
+            });
             navigate("/");
           }
         },

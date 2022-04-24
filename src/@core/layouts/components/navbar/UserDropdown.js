@@ -14,6 +14,8 @@ import {
   CreditCard,
   HelpCircle,
   Power,
+  UserPlus,
+  UserX,
 } from "react-feather";
 
 // ** Reactstrap Imports
@@ -39,6 +41,7 @@ const UserDropdown = () => {
       }
     });
   };
+  let user = JSON.parse(localStorage.getItem("loginUser"));
   return (
     <UncontrolledDropdown tag="li" className="dropdown-user nav-item">
       <DropdownToggle
@@ -47,16 +50,50 @@ const UserDropdown = () => {
         className="nav-link dropdown-user-link"
         onClick={(e) => e.preventDefault()}
       >
+        {/* {intlContext.locale === "en" ? (
+          <span className="CustomLanguage">
+            <strong
+              className={
+                intlContext.locale === "sa" ? "Black m-25" : "text-info m-25"
+              }
+              onClick={() => RTL("en")}
+            >
+              {"English "}
+            </strong>
+
+            <strong className="text-info">|</strong>
+            <strong
+              className={
+                intlContext.locale === "en" ? "Black m-25" : "text-info m-25"
+              }
+              onClick={() => RTL("sa")}
+            >
+              {"العربية"}
+            </strong>
+          </span>
+        ) : (
+          <span className="CustomLanguage">
+            <strong
+              className={
+                intlContext.locale === "en" ? "Black m-25" : "text-info m-25"
+              }
+              onClick={() => RTL("sa")}
+            >
+              {"العربية"}
+            </strong>
+
+            <strong className="text-info">|</strong>
+            <strong className="Black m-25" onClick={() => RTL("en")}>
+              {"English "}
+            </strong>
+          </span>
+        )} */}
+
         <div className="user-nav d-sm-flex d-none">
-          <span className="user-name fw-bold">John Doe</span>
-          <span className="user-status">Admin</span>
+          <span className="user-name fw-bold">{user?.name || "?"}</span>
+          <span className="user-status">{user?.type || "admin"}</span>
         </div>
-        <Avatar
-          img={defaultAvatar}
-          imgHeight="40"
-          imgWidth="40"
-          status="online"
-        />
+        <Avatar icon={<User />} imgHeight="40" imgWidth="40" status="online" />
       </DropdownToggle>
       <DropdownMenu end>
         <DropdownItem onClick={() => logOut()} className="w-100">
