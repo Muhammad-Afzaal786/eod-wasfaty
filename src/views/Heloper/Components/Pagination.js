@@ -89,7 +89,11 @@ class Pagination extends Component {
     });
   };
 
-  componentDidUpdate(prevProps, prevState) {}
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.deleteActive !== prevProps.deleteActive) {
+      this.dataCall();
+    }
+  }
 
   handleChange = () => {
     this.setState(
@@ -207,7 +211,6 @@ class Pagination extends Component {
         width: 70,
       },
     ];
-    console.log(this.props.deleteOpt);
     return (
       <React.Fragment>
         <div className="mb-1 d-flex justify-content-between">

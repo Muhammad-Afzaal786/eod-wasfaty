@@ -63,7 +63,8 @@ const AccountDetails = ({
       data.location.latitude === "" ||
       data.tourism_License_number?.length === 0 ||
       data.city?.length === 0 ||
-      data.location.longitude === ""
+      data.location.longitude === "" ||
+      data.remarks === ""
     ) {
       setValidation(true);
     } else {

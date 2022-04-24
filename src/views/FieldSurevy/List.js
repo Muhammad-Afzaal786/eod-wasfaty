@@ -5,6 +5,7 @@ import { inspection_index } from "../Heloper/Apicall/endPoints";
 import { SC } from "../Heloper/Apicall/ServerCall";
 import { fieldSurveyCol, regionCol, userCol } from "../Heloper/Columns";
 import Pagination from "../Heloper/Components/Pagination";
+import { FieldSurveyHeader } from "../Heloper/Header";
 
 const FieldSurveyList = () => {
   const pagination = useRef();
@@ -24,12 +25,12 @@ const FieldSurveyList = () => {
         showAllToggle={true}
         downloadData={true}
         navigate={navigate}
-        downloadFileName={"userRequest"}
+        downloadFileName={"FieldSurveyList"}
         minRows={5}
         history={history}
         title="Field Survey List"
-        // headers={userRequestHeader}
-        // endPoint={get_requester}
+        headers={FieldSurveyHeader}
+        endPoint={inspection_index}
         // selectMulti
         // activateUser
       />

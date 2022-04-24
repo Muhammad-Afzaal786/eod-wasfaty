@@ -8,6 +8,8 @@ import XLSX from "xlsx";
 import { ExportSheet } from "react-xlsx-sheet";
 
 import { connect } from "react-redux";
+import { SC } from "../Apicall/ServerCall";
+import { DateFormat } from "../DateFormat";
 
 class ExportExcel extends Component {
   constructor(props) {
@@ -23,7 +25,54 @@ class ExportExcel extends Component {
     totalPage: 10000,
   };
 
-  getData = () => {};
+  getData = () => {
+    this.setState({ loading: true });
+    SC.getCall(`${this.props.endPoint}?per_page=${this.props.Total}`).then(
+      (res) => {
+        if (res.status === 200 && res.data) {
+          let rowData = res.data.data.data?.map((item) => {
+            if (this.props.endPoint === "user-index") {
+              return {
+                ...item,
+                name: item.name,
+                father_name: item.fatherName,
+                family_name: item.familyName,
+                email: item.email,
+                type: item.type,
+                created_at: DateFormat(item.created_at),
+              };
+            } else if (this.props.endPoint === "region-index") {
+              return {
+                ...item,
+                name: item.name,
+                created_at: DateFormat(item.created_at),
+              };
+            } else if (this.props.endPoint === "inspection-index") {
+              return {
+                ...item,
+                name: item.user?.name,
+                address: item.site
+                  ? item.site?.region?.name +
+                    "-" +
+                    item.site?.city?.name +
+                    "-" +
+                    item.site?.streetNameAr
+                  : "",
+                license: item.site?.licenseNumber,
+                created_at: DateFormat(item.created_at),
+              };
+            }
+          });
+          this.setState({
+            apiData: rowData,
+          });
+          this.setState({ loading: false }, () => {
+            this.clickRef.click();
+          });
+        }
+      }
+    );
+  };
 
   render() {
     const { apiData, loading } = this.state;

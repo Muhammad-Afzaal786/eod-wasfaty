@@ -10,15 +10,16 @@ import SocialLinks from "./steps-with-validation/SocialLinks";
 import PersonalInfo from "./steps-with-validation/PersonalInfo";
 import AccountDetails from "./steps-with-validation/AccountDetails";
 import { fieldSurveyObj } from "../Heloper/Object";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { isUserLoggedIn } from "@utils";
 import { SC } from "../Heloper/Apicall/ServerCall";
 import { inspection_create } from "../Heloper/Apicall/endPoints";
+import toast from "react-hot-toast";
 
 const WizardHorizontal = () => {
   const [data, setData] = useState(fieldSurveyObj);
   const [validation, setValidation] = useState(false);
-
+  let navigate = useNavigate();
   //handle inputs value
   const handleChange = (key, value) => {
     setData({ ...data, [key]: value });
@@ -38,6 +39,7 @@ const WizardHorizontal = () => {
       });
     }
   }, [data.facility_working, data.specified_period]);
+  console.log(data);
   const handleSubmit = (value) => {
     const postData = {
       ...data,
@@ -49,7 +51,10 @@ const WizardHorizontal = () => {
     };
     console.log("postData", postData);
     SC.postCall(inspection_create, postData).then((res) => {
-      console.log(res);
+      if (res.status === 200 && res.data) {
+        toast.success(res.data.data);
+        navigate("/fieldSurvey/list");
+      }
     });
   };
   const [stepper, setStepper] = useState(null);

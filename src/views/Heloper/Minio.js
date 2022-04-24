@@ -1,9 +1,9 @@
 var AWS = require("aws-sdk");
 export const uploadFileS3 = (file, callBackS3, progressCB) => {
-  let files = file?.name?.split(" ").join("");
-  let ext = files?.split(".").pop();
-  let name = files?.split(".")[0];
-  let fileName = name + new Date() + "." + ext;
+  // let files = file?.name?.split(" ").join("");
+  // let ext = files?.split(".").pop();
+  // let name = files?.split(".")[0];
+  // let fileName = name + new Date() + "." + ext;
   if (file) {
     const {
       REACT_APP_AWS_ACCESS_KEY_ID,
@@ -18,16 +18,15 @@ export const uploadFileS3 = (file, callBackS3, progressCB) => {
       endpoint: REACT_APP_AWS_URL,
       s3ForcePathStyle: true,
       signatureVersion: "v4",
-      ContentDisposition: "attachment;filename=" + fileName,
+      ContentDisposition: "attachment;filename=" + file?.name,
     });
 
     var params = {
       Bucket: REACT_APP_AWS_BUCKET,
-      Key: fileName,
+      Key: file?.name,
       Body: file,
       ACL: "public-read",
     };
-    console.log(REACT_APP_AWS_BUCKET, params);
     return s3
       .upload(params, function (err, data) {
         if (data) callBackS3(data);

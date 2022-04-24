@@ -37,7 +37,24 @@ const PersonalInfo = ({
 
   const onSubmit = () => {
     if (data.facility_working) {
-      stepper.next();
+      if (
+        data.building_showing_the_sign?.length === 0 ||
+        data.operator_name === "" ||
+        data.registration_image?.length === 0 ||
+        data.facility_room_number === "" ||
+        data.Tourist_license_copy?.length === 0 ||
+        data.Municipal_license_picture?.length === 0 ||
+        data.the_civil_defense_license_picture?.length === 0
+      ) {
+        setValidation(true);
+      } else if (
+        data.specified_period &&
+        data.Reasons_for_not_notifying === ""
+      ) {
+        setValidation(true);
+      } else {
+        stepper.next();
+      }
     } else {
       if (data.reasonOpt?.length === 0) setValidation(true);
       else if (
@@ -131,6 +148,7 @@ const PersonalInfo = ({
               <FileUploader
                 handleChange={handleChange}
                 name="facility_not_working_file"
+                value={data.facility_not_working_file}
               />
               <Validation
                 type="select"

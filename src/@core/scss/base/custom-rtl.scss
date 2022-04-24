@@ -39,6 +39,31 @@ samp {
   font-size: 18px;
   line-height: 28px;
 }
+.curser-pointer {
+  cursor: pointer;
+}
+.fileView {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-direction: row;
+  padding: 0px 16px;
+  align-items: center;
+  background: #fcfcfd;
+  border: 1px solid #dfdfe6;
+  box-sizing: border-box;
+  border-radius: 12px;
+  margin-top: 1%;
+}
+.fileImageBg {
+  background: #ebeff7;
+  padding: 5px !important;
+  border-radius: 50px;
+}
+.custom_slide {
+  width: 95%;
+  margin-bottom: 5px !important;
+}
 .customWidth {
   width: 5.3rem !important;
   height: 2.7rem !important;

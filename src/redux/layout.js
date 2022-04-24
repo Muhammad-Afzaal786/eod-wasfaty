@@ -51,7 +51,6 @@ export const layoutSlice = createSlice({
       state.layout = action.payload;
     },
     handleDeleteOP: (state, action) => {
-      console.log("-------->", state, action);
       state.deleteAction = action.payload;
     },
     handleFooterType: (state, action) => {
