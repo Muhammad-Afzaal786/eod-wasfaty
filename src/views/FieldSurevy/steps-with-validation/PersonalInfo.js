@@ -48,9 +48,11 @@ const PersonalInfo = ({
       ) {
         setValidation(true);
       } else if (
-        data.specified_period &&
+        !data.specified_period &&
         data.Reasons_for_not_notifying === ""
       ) {
+        setValidation(true);
+      } else if (!data.license_valid && data.not_renewing_the_license === "") {
         setValidation(true);
       } else {
         stepper.next();

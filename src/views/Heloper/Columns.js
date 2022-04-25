@@ -93,7 +93,7 @@ export const regionCol = [
     Cell: ({ row }) => {
       return (
         <div>
-          <span className=" Black">{row.name}</span>
+          <span className=" Black">{row._original?.name}</span>
         </div>
       );
     },
@@ -105,7 +105,7 @@ export const regionCol = [
     Cell: ({ row }) => {
       return (
         <div>
-          <span className=" Black">{row.name}</span>
+          <span className=" Black">{row._original?.name_ar}</span>
         </div>
       );
     },

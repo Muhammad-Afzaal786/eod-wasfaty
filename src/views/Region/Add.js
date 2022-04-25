@@ -46,7 +46,7 @@ const AddRegion = () => {
         let rowData = res.data.data;
         setData({
           name_en: rowData.name,
-          name_ar: rowData.fname || "",
+          name_ar: rowData.name_ar || "",
         });
       }
     });
@@ -61,10 +61,10 @@ const AddRegion = () => {
     e.preventDefault();
     const postData = {
       name: data.name_en,
-      fname: data.name_ar,
+      name_ar: data.name_ar,
     };
 
-    if (postData.name === "" || postData.fname === " ") {
+    if (postData.name === "" || postData.name_ar === "") {
       setValidation(true);
     } else {
       if (params.id) {
@@ -119,7 +119,7 @@ const AddRegion = () => {
                     Name(En) <strong className="text-danger">*</strong>
                   </Label>
                   <Input
-                    placeholder="user name"
+                    placeholder="name(en)"
                     value={data.name_en}
                     onChange={(e) => handleChange("name_en", e.target.value)}
                     invalid={data.name_en === "" && validation ? true : false}
@@ -133,9 +133,11 @@ const AddRegion = () => {
               </Row>
               <Row className="mt-1">
                 <Col lg="12">
-                  <Label>Name(Ar)</Label>
+                  <Label>
+                    Name(Ar) <strong className="text-danger">*</strong>
+                  </Label>
                   <Input
-                    placeholder="father name"
+                    placeholder="name(ar)"
                     value={data.name_ar}
                     onChange={(e) => handleChange("name_ar", e.target.value)}
                     invalid={data.name_ar === "" && validation ? true : false}

@@ -32,14 +32,32 @@ const WizardHorizontal = () => {
       setData({
         ...data,
         reasonOpt: [],
+        operator_name: "",
+        operator_id: "",
+        trade_name: "",
+        registration_no: "",
+        facility_room_number: "",
+        facility_number: "",
+        facility_email: "",
+        Facility_Mobile_number: "",
         facility_not_working_file: [],
-        Reasons_for_not_notifying: !data.specified_period
-          ? data.Reasons_for_not_notifying
-          : "",
+        Reasons_for_not_notifying: "",
       });
     }
-  }, [data.facility_working, data.specified_period]);
-  console.log(data);
+  }, [data.facility_working]);
+  useEffect(() => {
+    if (data.specified_period) {
+      setData({
+        ...data,
+        Reasons_for_not_notifying: "",
+      });
+    } else if (data.license_valid) {
+      setData({
+        ...data,
+        not_renewing_the_license: "",
+      });
+    }
+  }, [data.specified_period, data.license_valid]);
   const handleSubmit = (value) => {
     const postData = {
       ...data,
