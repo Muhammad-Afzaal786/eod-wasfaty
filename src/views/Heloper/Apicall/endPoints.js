@@ -20,3 +20,4 @@ export const site_index = "site-index";
 export const site_show = "site-show";
 export const site_update = "site-update";
 export const site_delete = "site-delete";
+export const site_create = "site-create";

@@ -133,26 +133,38 @@ export const regionCol = [
 
 // Site Columns
 export const SiteCol = [
+  // {
+  //   Header: "License Number ",
+  //   accessor: "licenseNumber ",
+  //   sortable: false,
+  //   Cell: ({ row }) => {
+  //     return (
+  //       <div>
+  //         <span className=" Black">{row.licenseNumber}</span>
+  //       </div>
+  //     );
+  //   },
+  // },
   {
-    Header: "NAME(en)",
-    accessor: "name",
+    Header: "Owner Name",
+    accessor: "ownerName",
     sortable: false,
     Cell: ({ row }) => {
       return (
         <div>
-          <span className=" Black">{row.name}</span>
+          <span className=" Black">{row.ownerName}</span>
         </div>
       );
     },
   },
   {
-    Header: "NAME(Ar)",
-    accessor: "father_name",
+    Header: "Email",
+    accessor: "email",
     sortable: false,
     Cell: ({ row }) => {
       return (
         <div>
-          <span className=" Black">{row.name}</span>
+          <span className=" Black">{row.email}</span>
         </div>
       );
     },
