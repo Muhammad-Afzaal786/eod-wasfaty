@@ -42,6 +42,7 @@ import "./assets/scss/style.scss";
 // ** Service Worker
 import * as serviceWorker from "./serviceWorker";
 import { isUserLoggedIn } from "./utility/Utils";
+import { IntlProviderWrapper } from "./utility/context/Internationalization";
 
 // ** Lazy load app
 const LazyApp = lazy(() => import("./App"));
@@ -51,11 +52,13 @@ ReactDOM.render(
     <Provider store={store}>
       <Suspense fallback={<Spinner />}>
         <ThemeContext>
-          <LazyApp />
-          <Toaster
-            position={themeConfig.layout.toastPosition}
-            toastOptions={{ className: "react-hot-toast" }}
-          />
+          <IntlProviderWrapper>
+            <LazyApp />
+            <Toaster
+              position={themeConfig.layout.toastPosition}
+              toastOptions={{ className: "react-hot-toast" }}
+            />
+          </IntlProviderWrapper>
         </ThemeContext>
       </Suspense>
     </Provider>

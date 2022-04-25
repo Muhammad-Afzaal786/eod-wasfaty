@@ -27,7 +27,7 @@ export const layoutSlice = createSlice({
   initialState: {
     skin: initialSkin(),
     isRTL: initialDirection(),
-    layout: themeConfig.layout.type,
+    layout: themeConfig.layout.isRTL,
     deleteAction: "",
     lastLayout: themeConfig.layout.type,
     menuCollapsed: initialMenuCollapsed(),

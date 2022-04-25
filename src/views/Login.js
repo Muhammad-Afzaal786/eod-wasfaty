@@ -19,9 +19,12 @@ import toast from "react-hot-toast";
 import { SC } from "./Heloper/Apicall/ServerCall";
 import { login, loginUser } from "./Heloper/Apicall/endPoints";
 import { X } from "react-feather";
+import { errorHandle } from "./Heloper/Action/ErrorHandle";
 const Login = () => {
   const navigate = useNavigate();
   const [validation, setValidation] = useState(false);
+  const [error, setError] = useState("");
+
   const [formData, setformData] = useState({
     email: "",
     password: "",
@@ -54,14 +57,18 @@ const Login = () => {
               if (res.status === 200 && res.data) {
                 let userData = res.data.data?.user;
                 localStorage.setItem("loginUser", JSON.stringify(userData));
+                navigate("/");
               }
             });
-            navigate("/");
           }
         },
         (error) => {
-          if (error.toString() === "Error: Request failed with status code 401")
+          if (error.response?.data) {
+            setError(error.response?.data?.error);
             setValidation(true);
+          } else {
+            errorHandle(error);
+          }
         }
       );
     }
@@ -88,15 +95,16 @@ const Login = () => {
                 <div className="auth-wrapper auth-v1 px-2">
                   <div className="auth-inner my-auto">
                     <div className="card-header ">
-                      {/* <Alert color="danger" isOpen={validation}>
-                      <div className="alert-body">
-                        <X size={15} onClick/>{" "}
-                        <span className="ms-1">
-                          the value is <strong>invalid</strong> you can only
-                          enter numbers
-                        </span>
-                      </div>
-                    </Alert> */}
+                      <Alert color="danger" isOpen={validation}>
+                        <div className="alert-body">
+                          <X
+                            size={15}
+                            onClick={() => setValidation(false)}
+                            className="curser-pointer"
+                          />
+                          <span>{error}</span>
+                        </div>
+                      </Alert>
                       <Col className="px-xl-2 mx-auto " sm="8" md="6" lg="12">
                         <div className="card mb-0 bg-blue">
                           <div className="card-header">

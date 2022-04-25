@@ -19,6 +19,7 @@ import ListLoading from "../ListLoading";
 import ExportExcel from "./ExportExcel";
 import { connect, useSelector } from "react-redux";
 import { errorHandle } from "../Action/ErrorHandle";
+import { FormattedMessage } from "react-intl";
 
 // import "../../../@core/scss/base/plugins/tables/rtable.scss";
 
@@ -28,7 +29,7 @@ class Pagination extends Component {
     this.state = {
       sorted: "",
       filtered: "",
-      pageSize: this.props.pageSize || 20,
+      pageSize: 20,
       checked: new Array(this.props.pageSize || 10).fill(false),
       selectAll: false,
       total: 0,
@@ -47,22 +48,19 @@ class Pagination extends Component {
       Notfound: false,
       loading: true,
     };
+    this.myRef = React.createRef(20);
   }
 
-  dataCall = (
-    page = this.state.page,
-
-    pageSize = this.state.pageSize
-  ) => {
+  dataCall = (page = this.state.page, pageSize = this.state.pageSize) => {
     this.setState({
       loading: true,
     });
     var data = {
-      pageSize: this.state.showAll ? this.state.total : pageSize,
+      pageSize: this.state.showAll ? this.state.total : this.myRef.current,
 
       page: this.state.showAll ? 0 : page,
     };
-
+    console.log(this.state.pageSize);
     this.props.getDataCall(data).then(
       (response) => {
         this.setState({
@@ -214,7 +212,9 @@ class Pagination extends Component {
     return (
       <React.Fragment>
         <div className="mb-1 d-flex justify-content-between">
-          <h3 className="stepFromTitle">{title}</h3>
+          <h3 className="stepFromTitle">
+            <FormattedMessage id={title} defaultMessage={title} />
+          </h3>
           <div>
             {downloadData && (
               <React.Fragment>
@@ -268,6 +268,7 @@ class Pagination extends Component {
               loading={loadingOrder}
               defaultSorted={this.props.defaultSorted || []}
               onPageSizeChange={(pageSize) => {
+                this.myRef.current = pageSize;
                 this.setState({
                   pageSize: pageSize,
                 });

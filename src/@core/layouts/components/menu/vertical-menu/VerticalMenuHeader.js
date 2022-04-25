@@ -7,7 +7,7 @@ import { Disc, X, Circle } from "react-feather";
 
 // ** Config
 import themeConfig from "@configs/themeConfig";
-
+import smallLogo from "../../../../../assets/images/logo/MOT-favicon.svg";
 // ** Utils
 import { getUserData, getHomeRouteForLoggedInUser } from "@utils";
 
@@ -51,7 +51,6 @@ const VerticalMenuHeader = (props) => {
       );
     }
   };
-
   return (
     <div className="navbar-header">
       <ul className="nav navbar-nav flex-row">
@@ -61,15 +60,27 @@ const VerticalMenuHeader = (props) => {
             className="navbar-brand"
           >
             {/* <span className="brand-logo"> */}
-            <img
-              src={themeConfig.app.appLogoImage}
-              alt="logo"
-              style={{
-                height: 60,
-                width: 150,
-                marginTop: -20,
-              }}
-            />
+            {menuCollapsed && !menuHover ? (
+              <img
+                src={smallLogo}
+                alt="logo"
+                style={{
+                  height: 55,
+                  width: 50,
+                  marginTop: -20,
+                }}
+              />
+            ) : (
+              <img
+                src={themeConfig.app.appLogoImage}
+                alt="logo"
+                style={{
+                  height: 60,
+                  width: 150,
+                  marginTop: -20,
+                }}
+              />
+            )}
             {/* </span> */}
             {/* <h2 className="brand-text mb-0 text-white">
               {themeConfig.app.appName}
