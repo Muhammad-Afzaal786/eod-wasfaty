@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Flatpickr from "react-flatpickr";
-
-
 import {
   Button,
   Card,
@@ -21,7 +18,8 @@ import Validation from "../Heloper/Components/FieldValidation";
 import { SC } from "../Heloper/Apicall/ServerCall";
 import toast from "react-hot-toast";
 import { siteCreateObj } from "../Heloper/Object";
-
+import Flatpickr from "react-flatpickr";
+// import "../../@core/scss/react/libs/flatpickr/flatpickr.scss";
 import { isUserLoggedIn } from "@utils";
 import {
   site_show,
@@ -241,26 +239,16 @@ const Add = () => {
                   <Label className="d-block">
                     Issue Date <strong className="text-danger ">*</strong>
                   </Label>
+
                   <Flatpickr
-                  
                     placeholder="Year-month-day "
-                    data-enable-time
+                    className="form-control"
                     options={{
-              
                       dateFormat: "Y-m-d",
                     }}
                     value={data.issueDate}
-                    onChange={(date,datestr,instance) => handleChange("issueDate", datestr)}
-                    invalid={data.issueDate === "" && validation ? true : false}
+                    onChange={(e) => handleChange("issueDate", e[0])}
                   />
-                 
-                  <Validation
-                    type="date"
-                    value={data.issueDate}
-                    validation={validation}
-                  />
-       
-
                 </Col>
               </Row>
 
@@ -271,26 +259,15 @@ const Add = () => {
                   </Label>
 
                   <Flatpickr
-                    // style={{
-                    //   width: "100%",
-                    //   padding: "0.571rem 1rem",
-                    //   border: "1px solid #d8d6de",
-                    //   borderRadius: "0.357rem",
-                    //   backgroundClip: "padding-box",
-                    // }}
+                    className="form-control"
                     placeholder="Year-month-day"
                     options={{
-                    
                       dateFormat: "Y-m-d",
                     }}
                     value={data.startDate}
-                    onChange={(date,datestr,instance) => handleChange("startDate", datestr)}
-                    invalid={data.startDate === "" && validation ? true : false}
-                  />
-                  <Validation
-                    type="date"
-                    value={data.startDate}
-                    validation={validation}
+                    onChange={(date, datestr, instance) =>
+                      handleChange("startDate", datestr)
+                    }
                   />
                 </Col>
               </Row>
@@ -301,21 +278,13 @@ const Add = () => {
                     End Date <strong className="text-danger">*</strong>
                   </Label>
                   <Flatpickr
-                    
+                    className="form-control"
                     placeholder="Year-month-day"
                     options={{
-                      
                       dateFormat: "Y-m-d",
                     }}
                     value={data.endDate}
-                    onChange={(date,datestr,instance) => handleChange("endDate", datestr)}
-                    invalid={data.endDate === "" && validation ? true : false}
-                  />
-
-                  <Validation
-                    type="date"
-                    value={data.endDate}
-                    validation={validation}
+                    onChange={(e) => handleChange("endDate", e[0])}
                   />
                 </Col>
               </Row>
@@ -364,7 +333,9 @@ const Add = () => {
 
               <Row className="mt-1">
                 <Col lg="12">
-                  <Label>operator Identity<strong className="text-danger">*</strong></Label>
+                  <Label>
+                    operator Identity<strong className="text-danger">*</strong>
+                  </Label>
                   <Input
                     placeholder="operator Identity"
                     value={data.operatorIdentity}
@@ -384,7 +355,10 @@ const Add = () => {
               </Row>
               <Row className="mt-1">
                 <Col lg="12">
-                  <Label>Operator Name (Ar) <strong className="text-danger">*</strong></Label>
+                  <Label>
+                    Operator Name (Ar){" "}
+                    <strong className="text-danger">*</strong>
+                  </Label>
                   <Input
                     placeholder="operator Name Ar"
                     value={data.operatorNameAr}
@@ -405,7 +379,10 @@ const Add = () => {
 
               <Row className="mt-1">
                 <Col lg="12">
-                  <Label>Operator Name (En) <strong className="text-danger">*</strong></Label>
+                  <Label>
+                    Operator Name (En){" "}
+                    <strong className="text-danger">*</strong>
+                  </Label>
                   <Input
                     placeholder="operator Name En"
                     value={data.operatorNameEn}
@@ -426,7 +403,9 @@ const Add = () => {
 
               <Row className="mt-1">
                 <Col lg="12">
-                  <Label>CR Number <strong className="text-danger">*</strong></Label>
+                  <Label>
+                    CR Number <strong className="text-danger">*</strong>
+                  </Label>
                   <Input
                     type="number"
                     placeholder="CR Number"
@@ -435,7 +414,7 @@ const Add = () => {
                     invalid={data.CRNumber === "" && validation ? true : false}
                   />
                   <Validation
-                    type="number" 
+                    type="number"
                     value={data.CRNumber}
                     validation={validation}
                   />
@@ -444,7 +423,9 @@ const Add = () => {
 
               <Row className="mt-1">
                 <Col lg="12">
-                  <Label>Latitude <strong className="text-danger">*</strong></Label>
+                  <Label>
+                    Latitude <strong className="text-danger">*</strong>
+                  </Label>
                   <Input
                     placeholder="latitude"
                     value={data.latitude}
@@ -461,7 +442,9 @@ const Add = () => {
 
               <Row className="mt-1">
                 <Col lg="12">
-                  <Label>Longitude <strong className="text-danger">*</strong></Label>
+                  <Label>
+                    Longitude <strong className="text-danger">*</strong>
+                  </Label>
                   <Input
                     placeholder="longitude"
                     value={data.longitude}
@@ -478,7 +461,9 @@ const Add = () => {
 
               <Row className="mt-1">
                 <Col lg="12">
-                  <Label>Building Number <strong className="text-danger">*</strong></Label>
+                  <Label>
+                    Building Number <strong className="text-danger">*</strong>
+                  </Label>
                   <Input
                     type="number"
                     placeholder="building Number"
@@ -500,7 +485,9 @@ const Add = () => {
 
               <Row className="mt-1">
                 <Col lg="12">
-                  <Label>Street Name (Ar) <strong className="text-danger">*</strong></Label>
+                  <Label>
+                    Street Name (Ar) <strong className="text-danger">*</strong>
+                  </Label>
                   <Input
                     placeholder="street Name Ar"
                     value={data.streetNameAr}
@@ -521,7 +508,10 @@ const Add = () => {
 
               <Row className="mt-1">
                 <Col lg="12">
-                  <Label>District Area (Ar) <strong className="text-danger">*</strong></Label>
+                  <Label>
+                    District Area (Ar){" "}
+                    <strong className="text-danger">*</strong>
+                  </Label>
                   <Input
                     placeholder="district Area Ar"
                     value={data.districtAreaAr}
@@ -542,7 +532,9 @@ const Add = () => {
 
               <Row className="mt-1">
                 <Col lg="12">
-                  <Label>PO Box <strong className="text-danger">*</strong></Label>
+                  <Label>
+                    PO Box <strong className="text-danger">*</strong>
+                  </Label>
                   <Input
                     type="number"
                     placeholder="PO Box"
@@ -560,7 +552,9 @@ const Add = () => {
 
               <Row className="mt-1">
                 <Col lg="12">
-                  <Label>Mobile <strong className="text-danger">*</strong></Label>
+                  <Label>
+                    Mobile <strong className="text-danger">*</strong>
+                  </Label>
                   <Input
                     type="number"
                     placeholder="mobile"
@@ -578,7 +572,9 @@ const Add = () => {
 
               <Row className="mt-1">
                 <Col lg="12">
-                  <Label>Phone <strong className="text-danger">*</strong></Label>
+                  <Label>
+                    Phone <strong className="text-danger">*</strong>
+                  </Label>
                   <Input
                     type="number"
                     placeholder="phone"
@@ -596,7 +592,9 @@ const Add = () => {
 
               <Row className="mt-1">
                 <Col lg="12">
-                  <Label>Email <strong className="text-danger">*</strong></Label>
+                  <Label>
+                    Email <strong className="text-danger">*</strong>
+                  </Label>
                   <Input
                     type="email"
                     placeholder="email"
@@ -614,7 +612,10 @@ const Add = () => {
 
               <Row className="mt-1">
                 <Col lg="12">
-                  <Label>Facility Type (En) <strong className="text-danger">*</strong></Label>
+                  <Label>
+                    Facility Type (En){" "}
+                    <strong className="text-danger">*</strong>
+                  </Label>
                   <Input
                     placeholder="facility Type En"
                     value={data.facilityTypeEn}
@@ -635,7 +636,10 @@ const Add = () => {
 
               <Row className="mt-1">
                 <Col lg="12">
-                  <Label>Facility Type (Ar) <strong className="text-danger">*</strong></Label>
+                  <Label>
+                    Facility Type (Ar){" "}
+                    <strong className="text-danger">*</strong>
+                  </Label>
                   <Input
                     placeholder="facility Type Ar"
                     value={data.facilityTypeAr}
@@ -656,7 +660,10 @@ const Add = () => {
 
               <Row className="mt-1">
                 <Col lg="12">
-                  <Label>classification (Ar) <strong className="text-danger">*</strong></Label>
+                  <Label>
+                    classification (Ar){" "}
+                    <strong className="text-danger">*</strong>
+                  </Label>
                   <Input
                     placeholder="classification Ar"
                     value={data.classificationAr}
@@ -677,7 +684,10 @@ const Add = () => {
 
               <Row className="mt-1">
                 <Col lg="12">
-                  <Label>classification (En) <strong className="text-danger">*</strong></Label>
+                  <Label>
+                    classification (En){" "}
+                    <strong className="text-danger">*</strong>
+                  </Label>
                   <Input
                     placeholder="classification En"
                     value={data.classificationEn}
@@ -698,7 +708,9 @@ const Add = () => {
 
               <Row className="mt-1">
                 <Col lg="12">
-                  <Label>region Id <strong className="text-danger">*</strong></Label>
+                  <Label>
+                    region Id <strong className="text-danger">*</strong>
+                  </Label>
                   <Input
                     type="number"
                     placeholder="region Id"
@@ -716,7 +728,9 @@ const Add = () => {
 
               <Row className="mt-1">
                 <Col lg="12">
-                  <Label>city Id <strong className="text-danger">*</strong></Label>
+                  <Label>
+                    city Id <strong className="text-danger">*</strong>
+                  </Label>
                   <Input
                     type="number"
                     placeholder="city Id"
