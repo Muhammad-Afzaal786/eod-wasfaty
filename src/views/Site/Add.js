@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import "flatpickr/dist/themes/material_green.css";
 import Flatpickr from "react-flatpickr";
+
+
 import {
   Button,
   Card,
@@ -31,6 +32,7 @@ import {
 const Add = () => {
   const [data, setData] = useState(siteCreateObj);
   const [validation, setValidation] = useState(false);
+  const [emailMsg, setEmailMsg] = useState("");
   const navigate = useNavigate();
   const params = useParams();
   useEffect(() => {
@@ -240,18 +242,12 @@ const Add = () => {
                     Issue Date <strong className="text-danger ">*</strong>
                   </Label>
                   <Flatpickr
-                    style={{
-                      width: "100%",
-                      padding: "0.571rem 1rem",
-                      border: "1px solid #d8d6de",
-                      borderRadius: "0.357rem",
-                      backgroundClip: "padding-box",
-                    }}
+                  
                     placeholder="Year-month-day "
                     data-enable-time
                     options={{
-                      enableTime: true,
-                      dateFormat: "Y-m-d H:i",
+              
+                      dateFormat: "Y-m-d",
                     }}
                     value={data.issueDate}
                     onChange={(date,datestr,instance) => handleChange("issueDate", datestr)}
@@ -263,6 +259,8 @@ const Add = () => {
                     value={data.issueDate}
                     validation={validation}
                   />
+       
+
                 </Col>
               </Row>
 
@@ -273,17 +271,17 @@ const Add = () => {
                   </Label>
 
                   <Flatpickr
-                    style={{
-                      width: "100%",
-                      padding: "0.571rem 1rem",
-                      border: "1px solid #d8d6de",
-                      borderRadius: "0.357rem",
-                      backgroundClip: "padding-box",
-                    }}
+                    // style={{
+                    //   width: "100%",
+                    //   padding: "0.571rem 1rem",
+                    //   border: "1px solid #d8d6de",
+                    //   borderRadius: "0.357rem",
+                    //   backgroundClip: "padding-box",
+                    // }}
                     placeholder="Year-month-day"
                     options={{
-                      enableTime: true,
-                      dateFormat: "Y-m-d H:i",
+                    
+                      dateFormat: "Y-m-d",
                     }}
                     value={data.startDate}
                     onChange={(date,datestr,instance) => handleChange("startDate", datestr)}
@@ -303,17 +301,11 @@ const Add = () => {
                     End Date <strong className="text-danger">*</strong>
                   </Label>
                   <Flatpickr
-                    style={{
-                      width: "100%",
-                      padding: "0.571rem 1rem",
-                      border: "1px solid #d8d6de",
-                      borderRadius: "0.357rem",
-                      backgroundClip: "padding-box",
-                    }}
+                    
                     placeholder="Year-month-day"
                     options={{
-                      enableTime: true,
-                      dateFormat: "Y-m-d H:i",
+                      
+                      dateFormat: "Y-m-d",
                     }}
                     value={data.endDate}
                     onChange={(date,datestr,instance) => handleChange("endDate", datestr)}
@@ -443,7 +435,7 @@ const Add = () => {
                     invalid={data.CRNumber === "" && validation ? true : false}
                   />
                   <Validation
-                    type="number"
+                    type="number" 
                     value={data.CRNumber}
                     validation={validation}
                   />
