@@ -44,9 +44,9 @@ export const fieldSurveyObj = {
 export const siteCreateObj ={
   licenseNumber:"",
   licienceType:"",
-  issueDate:[],
-  startDate:[],
-  endDate:[],
+  issueDate:new Date(),
+  startDate:new Date(),
+  endDate:new Date(),
   ownerIdentity:"",
   ownerName:"",
   operatorIdentity:"",

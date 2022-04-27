@@ -265,8 +265,8 @@ const Add = () => {
                       dateFormat: "Y-m-d",
                     }}
                     value={data.startDate}
-                    onChange={(date, datestr, instance) =>
-                      handleChange("startDate", datestr)
+                    onChange={(e) =>
+                      handleChange("startDate", e[0])
                     }
                   />
                 </Col>
@@ -427,6 +427,7 @@ const Add = () => {
                     Latitude <strong className="text-danger">*</strong>
                   </Label>
                   <Input
+                   type="number"
                     placeholder="latitude"
                     value={data.latitude}
                     onChange={(e) => handleChange("latitude", e.target.value)}
@@ -446,6 +447,7 @@ const Add = () => {
                     Longitude <strong className="text-danger">*</strong>
                   </Label>
                   <Input
+                   type="number"
                     placeholder="longitude"
                     value={data.longitude}
                     onChange={(e) => handleChange("longitude", e.target.value)}
