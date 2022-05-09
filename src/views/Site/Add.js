@@ -120,6 +120,8 @@ const Add = () => {
       postData.startDate === " " ||
       postData.endDate === "" ||
       postData.ownerIdentity === " " ||
+      postData.ownerName === "" ||
+      postData.operatorIdentity === "" ||
       postData.operatorNameAr === "" ||
       postData.operatorNameEn === " " ||
       postData.CRNumber === "" ||
@@ -536,6 +538,7 @@ const Add = () => {
                 <Col lg="12">
                   <Label>
                     PO Box <strong className="text-danger">*</strong>
+                    
                   </Label>
                   <Input
                     type="number"
