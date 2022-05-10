@@ -95,16 +95,6 @@ const Login = () => {
                 <div className="auth-wrapper auth-v1 px-2">
                   <div className="auth-inner my-auto">
                     <div className="card-header ">
-                      <Alert color="danger" isOpen={validation}>
-                        <div className="alert-body">
-                          <X
-                            size={15}
-                            onClick={() => setValidation(false)}
-                            className="curser-pointer"
-                          />
-                          <span>{error}</span>
-                        </div>
-                      </Alert>
                       <Col className="px-xl-2 mx-auto " sm="8" md="6" lg="12">
                         <div className="card mb-0 bg-blue">
                           <div className="card-header">
@@ -117,6 +107,16 @@ const Login = () => {
                             </CardTitle>
                           </div>
                           <div className="card-body">
+                            <Alert color="danger" isOpen={validation}>
+                              <div className="alert-body">
+                                <X
+                                  size={15}
+                                  onClick={() => setValidation(false)}
+                                  className="curser-pointer"
+                                />
+                                <span>{error}</span>
+                              </div>
+                            </Alert>
                             <CardText>
                               <h4 className="card-title mb-1">
                                 Welcome to EOD-MOT 👋

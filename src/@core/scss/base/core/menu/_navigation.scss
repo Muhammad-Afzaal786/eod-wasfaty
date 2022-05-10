@@ -82,7 +82,9 @@
     width: $menu-expanded-width;
     height: $navbar-height;
     position: relative;
-    padding: 0.35rem 1rem 0.3rem 1.64rem;
+    margin: 15px !important;
+    // padding: 0.35rem 1rem 0.3rem 0;
+    padding-right: 1.3rem;
     transition: 300ms ease all, background 0s;
     .navbar-brand {
       display: flex;
@@ -92,16 +94,16 @@
       .brand-logo img {
         max-width: 36px;
       }
-      .brand-text {
-        color: $primary;
-        padding-left: 1rem;
-        margin-bottom: 0;
-        font-weight: 600;
-        letter-spacing: 0.01rem;
-        font-size: 1.45rem;
-        animation: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s normal forwards 1
-          fadein;
-      }
+      // .brand-text {
+      //   color: $primary;
+      //   padding-left: 1rem;
+      //   margin-bottom: 0;
+      //   font-weight: 600;
+      //   letter-spacing: 0.01rem;
+      //   font-size: 1.45rem;
+      //   animation: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s normal forwards 1
+      //     fadein;
+      // }
     }
     .modern-nav-toggle {
       animation: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) 0s normal forwards 1

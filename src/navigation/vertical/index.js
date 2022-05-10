@@ -48,12 +48,7 @@ export default [
         id: "list",
         title: "List",
         navLink: "fieldSurvey/list",
-       
       },
-     
     ],
   },
-  
-    
-  
 ];

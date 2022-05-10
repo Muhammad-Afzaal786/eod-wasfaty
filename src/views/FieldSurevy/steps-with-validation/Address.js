@@ -11,7 +11,7 @@ import { Label, Row, Col, Button, Form, Input, FormFeedback } from "reactstrap";
 import Violation from "../Violation";
 import { Item } from "react-contexify";
 const initField = {
-  value: false,
+  value: true,
   violation_item: "",
   violation_Picture: [],
   violation_number: "",

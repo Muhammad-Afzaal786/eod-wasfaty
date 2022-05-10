@@ -1,6 +1,8 @@
+import { FormattedMessage } from "react-intl";
 import Action from "./Action/EditDelete";
 import { delete_user } from "./Apicall/endPoints";
 import { DateFormat } from "./DateFormat";
+import PDFModal from "./PDFView/PDFModal";
 
 export const userCol = [
   {
@@ -207,5 +209,22 @@ export const fieldSurveyCol = [
         </div>
       );
     },
+  },
+  {
+    Header: (
+      <FormattedMessage id={"Export as Pdf"} defaultMessage="Export as Pdf" />
+    ),
+    accessor: "_id",
+    Cell: ({ row }) => {
+      return (
+        <div className="d-flex  align-items-center justify-content-center flex-row">
+          <div className="d-flex">
+            <PDFModal id={row._original._id} />
+          </div>
+        </div>
+      );
+    },
+    sortable: false,
+    excExp: true,
   },
 ];

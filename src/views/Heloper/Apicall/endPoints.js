@@ -16,4 +16,5 @@ export const get_form_region = "get-form-region";
 export const get_form_city = "get-form-city";
 export const get_form_siteData = "get-form-siteData";
 export const inspection_create = "inspection-create";
+export const inspection_show = "inspection-show";
 export const loginUser = "token";
