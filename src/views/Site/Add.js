@@ -42,7 +42,8 @@ const Add = () => {
   const getData = (id) => {
     SC.getCall(site_show + "/" + id).then((res) => {
       if (res.status === 200 && res.data) {
-        let rowData = res.data.data;
+        let rowData = res.data?.data[0];
+        console.log(rowData)
         setData({
           licenseNumber: rowData.licenseNumber,
           licienceType: rowData.licienceType,
