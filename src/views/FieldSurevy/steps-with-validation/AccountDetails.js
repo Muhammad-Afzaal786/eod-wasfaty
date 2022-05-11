@@ -25,10 +25,6 @@ import {
 import { errorHandle } from "../../Heloper/Action/ErrorHandle";
 import { useNavigate } from "react-router-dom";
 
-const defaultValues = {
-  email: "",
-};
-
 const AccountDetails = ({
   stepper,
   handleChange,
@@ -45,24 +41,15 @@ const AccountDetails = ({
   const [site, setSite] = useState([]);
 
   useEffect(() => {
-    if (region?.length === 0 && city.length === 0) {
-      getRegion();
-      getCity();
-    } else if (data.region?._id && data.city?._id) {
-      getSite(data.region._id, data.city._id);
-      setData({
-        ...data,
-        tourism_License_number: [],
-      });
-    }
-  }, [data.region, data.city]);
+    getSite();
+  }, []);
   const { handleSubmit } = useForm();
   const onSubmit = () => {
     if (
-      data.region?.length === 0 ||
+      // data.region?.length === 0 ||
       data.location.latitude === "" ||
       data.tourism_License_number?.length === 0 ||
-      data.city?.length === 0 ||
+      // data.city?.length === 0 ||
       data.location.longitude === "" ||
       data.remarks === ""
     ) {
@@ -103,12 +90,8 @@ const AccountDetails = ({
     );
   };
   //get city from api
-  const getSite = (regId, cityId) => {
-    const data = {
-      regionId: regId,
-      cityId: cityId,
-    };
-    SC.postCall(get_form_siteData, data).then(
+  const getSite = () => {
+    SC.getCall(get_form_siteData).then(
       (res) => {
         if (res.status === 200 && res.data) {
           let rowData = res.data.data;
@@ -136,7 +119,7 @@ const AccountDetails = ({
     <Fragment>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Row>
-          <Col lg="4">
+          {/* <Col lg="4">
             <Label>
               Region <strong className="text-danger">*</strong>
             </Label>
@@ -173,8 +156,8 @@ const AccountDetails = ({
               type="select"
               value={data.city}
             />
-          </Col>
-          <Col lg="4">
+          </Col> */}
+          <Col lg="12">
             <Label>
               Tourism License number <strong className="text-danger">*</strong>
             </Label>

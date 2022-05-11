@@ -4,25 +4,11 @@ import "react-table/react-table.css";
 import "../../../@core/scss/base/plugins/tables/rtable.scss";
 
 import { Card, CardBody, Spinner } from "reactstrap";
-
-import {
-  Link2,
-  MoreHorizontal,
-  Search,
-  BookOpen,
-  Check,
-  X,
-  CheckCircle,
-  MoreVertical,
-} from "react-feather";
 import ListLoading from "../ListLoading";
 import ExportExcel from "./ExportExcel";
 import { connect, useSelector } from "react-redux";
 import { errorHandle } from "../Action/ErrorHandle";
 import { FormattedMessage } from "react-intl";
-
-// import "../../../@core/scss/base/plugins/tables/rtable.scss";
-
 class Pagination extends Component {
   constructor(props) {
     super(props);
@@ -60,7 +46,6 @@ class Pagination extends Component {
 
       page: this.state.showAll ? 0 : page,
     };
-    console.log(this.state.pageSize);
     this.props.getDataCall(data).then(
       (response) => {
         this.setState({

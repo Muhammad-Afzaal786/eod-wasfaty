@@ -1,4 +1,4 @@
-import { Mail, Home, Users, Circle } from "react-feather";
+import { Mail, Home, Users, Circle, Clipboard } from "react-feather";
 export default [
   {
     id: "user",
@@ -37,7 +37,7 @@ export default [
   {
     id: "Field Survey",
     title: "Field Survey",
-    icon: <Circle size={20} />,
+    icon: <Clipboard size={20} />,
     children: [
       {
         id: "add",

@@ -61,13 +61,10 @@ const WizardHorizontal = () => {
   const handleSubmit = (value) => {
     const postData = {
       ...data,
-      region: data.region?._id,
-      city: data.city?._id,
       tourism_License_number: data.tourism_License_number?._id,
       reasonOpt: data.reasonOpt?.value || "",
       violation_item: value,
     };
-    console.log("postData", postData);
     SC.postCall(inspection_create, postData).then((res) => {
       if (res.status === 200 && res.data) {
         toast.success(res.data.data);
@@ -80,6 +77,7 @@ const WizardHorizontal = () => {
     {
       id: "account-details",
       title: "Step-1",
+      key: 0,
       subtitle: "Facility Information",
       content: (
         <AccountDetails
@@ -97,6 +95,8 @@ const WizardHorizontal = () => {
       id: "personal-info",
       title: "Step-2",
       subtitle: "Is Facility Working",
+      key: 0,
+
       content: (
         <PersonalInfo
           stepper={stepper}
@@ -113,6 +113,7 @@ const WizardHorizontal = () => {
       id: "step-address",
       title: "Step-3",
       subtitle: "Violation",
+      key: 2,
       content: (
         <Address
           stepper={stepper}

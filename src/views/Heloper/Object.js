@@ -11,8 +11,6 @@ export const regionCreateObj = {
   name_ar: "",
 };
 export const fieldSurveyObj = {
-  region: [],
-  city: [],
   tourism_License_number: [],
   location: { longitude: "", latitude: "" },
   remarks: "",
