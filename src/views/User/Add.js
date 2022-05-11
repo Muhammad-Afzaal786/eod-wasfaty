@@ -96,7 +96,7 @@ const Add = () => {
             if (error.response?.status === 422 && error.response?.data) {
               setEmailMsg(error.response.data?.errors?.email);
               setValidation(true);
-              toast.error(error.response.data?.message);
+              // toast.error(error.response.data?.message);
             }
           }
         );
@@ -112,7 +112,7 @@ const Add = () => {
             if (error.response?.status === 422 && error.response?.data) {
               setEmailMsg(error.response.data?.errors?.email);
               setValidation(true);
-              toast.error(error.response.data?.message);
+              // toast.error(error.response.data?.message);
             }
           }
         );

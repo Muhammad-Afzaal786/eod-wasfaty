@@ -1,6 +1,6 @@
 import { FormattedMessage } from "react-intl";
 import Action from "./Action/EditDelete";
-import { delete_user } from "./Apicall/endPoints";
+import { delete_user, region_delete, site_delete } from "./Apicall/endPoints";
 import { DateFormat } from "./DateFormat";
 import PDFModal from "./PDFView/PDFModal";
 
@@ -55,7 +55,7 @@ export const userCol = [
     },
   },
   {
-    Header: "Type",
+    Header: "TYPE",
     accessor: "type",
     sortable: false,
     Cell: ({ row }) => {
@@ -122,7 +122,7 @@ export const regionCol = [
           <Action
             editOp={true}
             deleteOp={true}
-            endPoint={delete_user}
+            endPoint={region_delete}
             name="region"
             path="/region/update/"
             _id={row._id}
@@ -135,18 +135,6 @@ export const regionCol = [
 
 // Site Columns
 export const SiteCol = [
-  // {
-  //   Header: "License Number ",
-  //   accessor: "licenseNumber ",
-  //   sortable: false,
-  //   Cell: ({ row }) => {
-  //     return (
-  //       <div>
-  //         <span className=" Black">{row.licenseNumber}</span>
-  //       </div>
-  //     );
-  //   },
-  // },
   {
     Header: "Owner Name",
     accessor: "ownerName",
@@ -181,7 +169,7 @@ export const SiteCol = [
           <Action
             editOp={true}
             deleteOp={true}
-            endPoint={delete_user}
+            endPoint={site_delete}
             name="site"
             path="/site/update/"
             _id={row._id}

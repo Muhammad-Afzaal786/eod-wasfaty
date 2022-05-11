@@ -43,7 +43,7 @@ const Add = () => {
     SC.getCall(site_show + "/" + id).then((res) => {
       if (res.status === 200 && res.data) {
         let rowData = res.data?.data[0];
-        console.log(rowData)
+        console.log(rowData);
         setData({
           licenseNumber: rowData.licenseNumber,
           licienceType: rowData.licienceType,
@@ -268,9 +268,7 @@ const Add = () => {
                       dateFormat: "Y-m-d",
                     }}
                     value={data.startDate}
-                    onChange={(e) =>
-                      handleChange("startDate", e[0])
-                    }
+                    onChange={(e) => handleChange("startDate", e[0])}
                   />
                 </Col>
               </Row>
@@ -430,7 +428,7 @@ const Add = () => {
                     Latitude <strong className="text-danger">*</strong>
                   </Label>
                   <Input
-                   type="number"
+                    type="number"
                     placeholder="latitude"
                     value={data.latitude}
                     onChange={(e) => handleChange("latitude", e.target.value)}
@@ -450,7 +448,7 @@ const Add = () => {
                     Longitude <strong className="text-danger">*</strong>
                   </Label>
                   <Input
-                   type="number"
+                    type="number"
                     placeholder="longitude"
                     value={data.longitude}
                     onChange={(e) => handleChange("longitude", e.target.value)}
@@ -539,7 +537,6 @@ const Add = () => {
                 <Col lg="12">
                   <Label>
                     PO Box <strong className="text-danger">*</strong>
-                    
                   </Label>
                   <Input
                     type="number"

@@ -153,7 +153,7 @@ const Login = () => {
                                     >
                                       Password
                                     </Label>
-                                    <Link to="/forgot-password">
+                                    <Link to="#">
                                       <small>Forgot Password?</small>
                                     </Link>
                                   </div>

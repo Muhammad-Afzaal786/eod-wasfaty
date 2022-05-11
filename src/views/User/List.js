@@ -11,7 +11,6 @@ import { userHeader } from "../Heloper/Header";
 const List = () => {
   const pagination = useRef();
   const deleteOpt = useSelector((state) => state.layout.deleteAction);
-  console.log(deleteOpt);
   let navigate = useNavigate();
   const paginationCall = (data) => {
     return SC.getCall(

@@ -1,4 +1,5 @@
 import React, { Fragment, useRef } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Card, CardBody } from "reactstrap";
 import { site_index } from "../Heloper/Apicall/endPoints";
@@ -8,6 +9,8 @@ import Pagination from "../Heloper/Components/Pagination";
 
 const SiteList = () => {
   const pagination = useRef();
+  const deleteOpt = useSelector((state) => state.layout.deleteAction);
+
   const navigate = useNavigate();
   const paginationCall = (data) => {
     return SC.getCall(
@@ -24,7 +27,8 @@ const SiteList = () => {
         navigate={navigate}
         showAllToggle={true}
         downloadData={false}
-        downloadFileName={"userRequest"}
+        deleteActive={deleteOpt}
+        downloadFileName={"siteList"}
         minRows={5}
         history={history}
         // headers={userRequestHeader}
