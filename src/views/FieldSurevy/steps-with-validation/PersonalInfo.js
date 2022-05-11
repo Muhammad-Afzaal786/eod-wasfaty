@@ -70,7 +70,8 @@ const PersonalInfo = ({
         if (data.facility_not_working_file?.length === 0) setValidation(true);
         else dataSubmit([]);
       } else {
-        stepper.next();
+        dataSubmit([]);
+
         setValidation(false);
       }
     }

@@ -66,7 +66,13 @@ const Table = ({ rowData }) => {
             <Text>Is the facility working ?</Text>
           </View>
           <View style={styles.right}>
-            <Text>{rowData.facility_working ? "Yes" : "No"}</Text>
+            <Text>
+              {rowData.facility_working
+                ? "Yes"
+                : rowData.facility_working === false
+                ? "No"
+                : "-----"}
+            </Text>
           </View>
         </View>
         <View style={styles.Row2}>
@@ -510,7 +516,6 @@ const styles = StyleSheet.create({
     borderRightWidth: 1,
     borderRightColor: "#009394",
     // marginLeft: 15,
-    backgroundColor: "red",
     paddingRight: 5,
     paddingLeft: 5,
     height: "100%",
