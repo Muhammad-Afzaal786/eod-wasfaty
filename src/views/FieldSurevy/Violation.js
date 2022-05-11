@@ -10,7 +10,7 @@ const Violation = (props) => {
   const addField = () => {
     props.setField([
       ...props.field,
-      { value: false, violation_item: [], violation_Picture: "" },
+      { value: true, violation_item: [], violation_Picture: "" },
     ]);
   };
 

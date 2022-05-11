@@ -37,7 +37,7 @@ const Address = ({
         index === 0
           ? initField
           : {
-              value: false,
+              value: fValue,
               violation_item: "",
               violation_Picture: "",
             };

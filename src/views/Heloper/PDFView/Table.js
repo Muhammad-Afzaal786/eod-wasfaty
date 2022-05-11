@@ -131,7 +131,7 @@ const Table = ({ rowData }) => {
             </Text>
           </View>
           <View style={styles.right}>
-            <Text>{"yes/no"}</Text>
+            <Text>{rowData.calender_registration ? "Yes" : "No"}</Text>
           </View>
         </View>
         <View style={styles.Row2}>
