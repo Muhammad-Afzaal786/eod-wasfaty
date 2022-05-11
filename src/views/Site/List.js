@@ -1,7 +1,7 @@
 import React, { Fragment, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, CardBody } from "reactstrap";
-import {site_index } from "../Heloper/Apicall/endPoints";
+import { site_index } from "../Heloper/Apicall/endPoints";
 import { SC } from "../Heloper/Apicall/ServerCall";
 import { SiteCol, userCol } from "../Heloper/Columns";
 import Pagination from "../Heloper/Components/Pagination";
@@ -23,7 +23,7 @@ const SiteList = () => {
         filterView={false}
         navigate={navigate}
         showAllToggle={true}
-        downloadData={true}
+        downloadData={false}
         downloadFileName={"userRequest"}
         minRows={5}
         history={history}

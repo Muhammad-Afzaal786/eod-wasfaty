@@ -1,4 +1,4 @@
-import { Mail, Home, Users, Circle } from "react-feather";
+import { Mail, Home, Users, Circle, PlusCircle } from "react-feather";
 export default [
   {
     id: "user",
@@ -37,7 +37,7 @@ export default [
   {
     id: "site",
     title: "Site",
-    icon: <Circle size={20} />,
+    icon: <PlusCircle size={20} />,
     children: [
       {
         id: "add",
@@ -65,12 +65,7 @@ export default [
         id: "list",
         title: "List",
         navLink: "fieldSurvey/list",
-       
       },
-     
     ],
   },
-  
-    
-  
 ];
