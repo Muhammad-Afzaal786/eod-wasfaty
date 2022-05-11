@@ -3,7 +3,7 @@ import { Fragment, useState, useRef } from "react";
 // ** Third Party Components
 import classnames from "classnames";
 import PerfectScrollbar from "react-perfect-scrollbar";
-import sideImage from "./BottomPic.svg";
+import SideImage from "./BottomPic.svg";
 import SideBarImg from "./sideBar-Image.jpg";
 // ** Vertical Menu Components
 import VerticalMenuHeader from "./VerticalMenuHeader";
@@ -79,7 +79,7 @@ const Sidebar = (props) => {
               //   backgroundPosition: 'center',
               //   backgroundSize: 'cover',
               //   backgroundRepeat: 'no-repeat',
-             
+
               //  }}
               className="main-menu-content "
               options={{ wheelPropagation: false }}
@@ -105,19 +105,18 @@ const Sidebar = (props) => {
                 <div
                   className="SideBottom h-50  w-100 "
                   style={{
-                    backgroundImage:`url(${sideImage})`,
-                    backgroundSize: 'cover',
+                    backgroundImage: `url(${sideImage})`,
+                    backgroundSize: "cover",
                     // backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat',
-                    mixBlendMode: "luminosity"} }
+                    backgroundRepeat: "no-repeat",
+                    mixBlendMode: "luminosity",
+                  }}
                 >
                   {/* <img
                     src={sideImage}
                     alt="bottomImage"
                     className=" h-100 w-100 img-fluid "
                   /> */}
-
-
                 </div>
               </ul>
             </PerfectScrollbar>

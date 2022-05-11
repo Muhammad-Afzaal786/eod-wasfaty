@@ -2,6 +2,7 @@
 import ReactDOM from "react-dom";
 import { Suspense, lazy } from "react";
 import { BrowserRouter, Navigate } from "react-router-dom";
+import "./@core/scss/react/libs/flatpickr/flatpickr.scss";
 
 // ** Redux Imports
 import { store } from "./redux/store";

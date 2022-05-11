@@ -39,3 +39,35 @@ export const fieldSurveyObj = {
   the_civil_defense_license_picture: [],
   violation_item: [],
 };
+export const siteCreateObj ={
+  licenseNumber:"",
+  licienceType:"",
+  issueDate:new Date(),
+  startDate:new Date(),
+  endDate:new Date(),
+  ownerIdentity:"",
+  ownerName:"",
+  operatorIdentity:"",
+  operatorNameAr:"",
+  operatorNameEn:"",
+  CRNumber:"",
+  latitude:"",
+  longitude:"",
+  buildingNumber:"",
+  streetNameAr:"",
+  districtAreaAr:"",
+  POBox:"",
+  mobile:"",
+  phone:"",
+  email:"",
+  facilityTypeEn:"",
+  facilityTypeAr:"",
+  classificationAr:"",
+  classificationEn:"",
+  regionId:"",
+  cityId:"",
+  
+  
+
+
+}

@@ -132,6 +132,65 @@ export const regionCol = [
     },
   },
 ];
+
+// Site Columns
+export const SiteCol = [
+  // {
+  //   Header: "License Number ",
+  //   accessor: "licenseNumber ",
+  //   sortable: false,
+  //   Cell: ({ row }) => {
+  //     return (
+  //       <div>
+  //         <span className=" Black">{row.licenseNumber}</span>
+  //       </div>
+  //     );
+  //   },
+  // },
+  {
+    Header: "Owner Name",
+    accessor: "ownerName",
+    sortable: false,
+    Cell: ({ row }) => {
+      return (
+        <div>
+          <span className=" Black">{row.ownerName}</span>
+        </div>
+      );
+    },
+  },
+  {
+    Header: "Email",
+    accessor: "email",
+    sortable: false,
+    Cell: ({ row }) => {
+      return (
+        <div>
+          <span className=" Black">{row.email}</span>
+        </div>
+      );
+    },
+  },
+  {
+    Header: "ACTION",
+    accessor: "_id",
+    sortable: false,
+    Cell: ({ row }) => {
+      return (
+        <div>
+          <Action
+            editOp={true}
+            deleteOp={true}
+            endPoint={delete_user}
+            name="site"
+            path="/site/update/"
+            _id={row._id}
+          />
+        </div>
+      );
+    },
+  },
+];
 //field survey columns
 export const fieldSurveyCol = [
   {

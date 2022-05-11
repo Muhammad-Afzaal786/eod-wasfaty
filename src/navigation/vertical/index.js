@@ -1,4 +1,11 @@
-import { Mail, Home, Users, Circle, Clipboard } from "react-feather";
+import {
+  Mail,
+  Home,
+  Users,
+  Circle,
+  Clipboard,
+  PlusCircle,
+} from "react-feather";
 export default [
   {
     id: "user",
@@ -31,6 +38,23 @@ export default [
         id: "list",
         title: "List",
         navLink: "region/list",
+      },
+    ],
+  },
+  {
+    id: "site",
+    title: "Site",
+    icon: <PlusCircle size={20} />,
+    children: [
+      {
+        id: "add",
+        title: "Add",
+        navLink: "site/add",
+      },
+      {
+        id: "list",
+        title: "List",
+        navLink: "site/list",
       },
     ],
   },
