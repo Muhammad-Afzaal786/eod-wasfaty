@@ -56,6 +56,7 @@ const PersonalInfo = ({
         setValidation(true);
       } else {
         stepper.next();
+        setValidation(false);
       }
     } else {
       if (data.reasonOpt?.length === 0) setValidation(true);

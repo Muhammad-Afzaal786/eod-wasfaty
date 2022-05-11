@@ -35,7 +35,7 @@ const Address = ({
     if (key === "value" && !fValue) {
       fieldTmp[index] =
         index === 0
-          ? initField
+          ? { ...initField, value: false }
           : {
               value: fValue,
               violation_item: "",

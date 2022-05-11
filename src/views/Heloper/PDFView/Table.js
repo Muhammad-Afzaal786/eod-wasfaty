@@ -510,6 +510,7 @@ const styles = StyleSheet.create({
     borderRightWidth: 1,
     borderRightColor: "#009394",
     // marginLeft: 15,
+    backgroundColor: "red",
     paddingRight: 5,
     paddingLeft: 5,
     height: "100%",
