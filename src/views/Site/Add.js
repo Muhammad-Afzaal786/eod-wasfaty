@@ -43,7 +43,6 @@ const Add = () => {
     SC.getCall(site_show + "/" + id).then((res) => {
       if (res.status === 200 && res.data) {
         let rowData = res.data?.data[0];
-        console.log(rowData);
         setData({
           licenseNumber: rowData.licenseNumber,
           licienceType: rowData.licienceType,
@@ -78,7 +77,6 @@ const Add = () => {
 
   // HandleInputValue
   const handleChange = (key, value) => {
-    // console.log(key,value)
     setData({ ...data, [key]: value });
   };
 
@@ -161,10 +159,8 @@ const Add = () => {
           }
         );
       } else {
-        console.log("dataReceived" ,postData)
         SC.postCall(site_create, postData).then(
           (res) => {
-            console.log("dataReceived1" ,res)
             if (res.status === 200 && res.data) {
               toast.success(res.data?.data);
               navigate("/site/list");
