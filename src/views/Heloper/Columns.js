@@ -1,5 +1,5 @@
 import Action from "./Action/EditDelete";
-import { delete_user } from "./Apicall/endPoints";
+import { delete_user ,site_delete } from "./Apicall/endPoints";
 import { DateFormat } from "./DateFormat";
 
 export const userCol = [
@@ -179,7 +179,7 @@ export const SiteCol = [
           <Action
             editOp={true}
             deleteOp={true}
-            endPoint={delete_user}
+            endPoint={site_delete}
             name="site"
             path="/site/update/"
             _id={row._id}
