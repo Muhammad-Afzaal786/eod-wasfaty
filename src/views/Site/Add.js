@@ -26,7 +26,7 @@ import {
   site_update,
   site_create,
 } from "../Heloper/Apicall/endPoints";
-
+import { DateFormat } from "../Heloper/DateFormat";
 const Add = () => {
   const [data, setData] = useState(siteCreateObj);
   const [validation, setValidation] = useState(false);
@@ -43,7 +43,6 @@ const Add = () => {
     SC.getCall(site_show + "/" + id).then((res) => {
       if (res.status === 200 && res.data) {
         let rowData = res.data?.data[0];
-        console.log(rowData);
         setData({
           licenseNumber: rowData.licenseNumber,
           licienceType: rowData.licienceType,
@@ -78,7 +77,6 @@ const Add = () => {
 
   // HandleInputValue
   const handleChange = (key, value) => {
-    // console.log(key,value)
     setData({ ...data, [key]: value });
   };
 
@@ -88,9 +86,9 @@ const Add = () => {
     const postData = {
       licenseNumber: data.licenseNumber,
       licienceType: data.licienceType,
-      issueDate: data.issueDate,
-      startDate: data.startDate,
-      endDate: data.endDate,
+      issueDate: DateFormat(data.issueDate),
+      startDate: DateFormat(data.startDate),
+      endDate: DateFormat(data.endDate),
       ownerIdentity: data.ownerIdentity,
       ownerName: data.ownerName,
       operatorIdentity: data.operatorIdentity,
@@ -116,31 +114,31 @@ const Add = () => {
 
     if (
       postData.licenseNumber === "" ||
-      postData.licienceType === " " ||
+      postData.licienceType === "" ||
       postData.issueDate === "" ||
-      postData.startDate === " " ||
+      postData.startDate === "" ||
       postData.endDate === "" ||
-      postData.ownerIdentity === " " ||
+      postData.ownerIdentity === "" ||
       postData.ownerName === "" ||
       postData.operatorIdentity === "" ||
       postData.operatorNameAr === "" ||
-      postData.operatorNameEn === " " ||
+      postData.operatorNameEn === "" ||
       postData.CRNumber === "" ||
-      postData.latitude === " " ||
+      postData.latitude === "" ||
       postData.longitude === "" ||
-      postData.buildingNumber === " " ||
+      postData.buildingNumber === "" ||
       postData.streetNameAr === "" ||
-      postData.districtAreaAr === " " ||
+      postData.districtAreaAr === "" ||
       postData.POBox === "" ||
-      postData.mobile === " " ||
+      postData.mobile === "" ||
       postData.phone === "" ||
-      postData.email === " " ||
+      postData.email === "" ||
       postData.facilityTypeEn === "" ||
-      postData.facilityTypeAr === " " ||
+      postData.facilityTypeAr === "" ||
       postData.classificationAr === "" ||
-      postData.classificationEn === " " ||
+      postData.classificationEn === "" ||
       postData.regionId === "" ||
-      postData.cityId === " "
+      postData.cityId === ""
     ) {
       setValidation(true);
     } else {
@@ -664,7 +662,7 @@ const Add = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                    classification (Ar){" "}
+                    Classification (Ar){" "}
                     <strong className="text-danger">*</strong>
                   </Label>
                   <Input
@@ -688,7 +686,7 @@ const Add = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                    classification (En){" "}
+                    Classification (En){" "}
                     <strong className="text-danger">*</strong>
                   </Label>
                   <Input
@@ -712,11 +710,11 @@ const Add = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                    region Id <strong className="text-danger">*</strong>
+                    Region <strong className="text-danger">*</strong>
                   </Label>
                   <Input
                     type="number"
-                    placeholder="region Id"
+                    placeholder="region"
                     value={data.regionId}
                     onChange={(e) => handleChange("regionId", e.target.value)}
                     invalid={data.regionId === "" && validation ? true : false}
@@ -732,11 +730,11 @@ const Add = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                    city Id <strong className="text-danger">*</strong>
+                    City<strong className="text-danger">*</strong>
                   </Label>
                   <Input
                     type="number"
-                    placeholder="city Id"
+                    placeholder="city"
                     value={data.cityId}
                     onChange={(e) => handleChange("cityId", e.target.value)}
                     invalid={data.cityId === "" && validation ? true : false}
