@@ -19,7 +19,7 @@ import {
 import logoPic from "../assets/images/pages/MOT.png";
 // ** Styles
 import "@styles/react/pages/page-authentication.scss";
-
+import PowerBy from "./Heloper/PowerBy";
 const Register = () => {
   // useStateHooks
   const [records, setRecords] = useState([]);
@@ -161,6 +161,7 @@ const Register = () => {
                                     Register
                                   </Button>
                                 </Form>
+                                <PowerBy />
                               </div>
                             </div>
                           </div>

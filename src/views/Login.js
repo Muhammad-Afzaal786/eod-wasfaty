@@ -20,6 +20,8 @@ import { SC } from "./Heloper/Apicall/ServerCall";
 import { login, loginUser } from "./Heloper/Apicall/endPoints";
 import { X } from "react-feather";
 import { errorHandle } from "./Heloper/Action/ErrorHandle";
+import PowerBy from "./Heloper/PowerBy";
+
 const Login = () => {
   const navigate = useNavigate();
   const [validation, setValidation] = useState(false);
@@ -92,7 +94,6 @@ const Login = () => {
           <Col className="mx-auto " lg="4" sm="12">
             <div className="content-header row ">
               <div className="content-body">
-                <div className="auth-wrapper auth-v1 px-2">
                   <div className="auth-inner my-auto">
                     <div className="card-header ">
                       <Col className="px-xl-2 mx-auto " sm="8" md="6" lg="12">
@@ -194,10 +195,14 @@ const Login = () => {
                       </Col>
                     </div>
                   </div>
-                </div>
+                
               </div>
             </div>
           </Col>
+        <div className="d-flex justify-content-center w-100 ">
+        <PowerBy textClass={"customPowerTitle"}/>
+        </div>
+
         </Row>
       </div>
     </div>
