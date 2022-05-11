@@ -36,7 +36,7 @@ const Action = (props) => {
             size={20}
             id="edit"
             onClick={() => navigate(`${path}${_id}`)}
-            className="cursor-pointer font-weight-bolder Black"
+            className="cursor-pointer font-weight-bolder Black "
           />
         </>
       )}
@@ -47,7 +47,7 @@ const Action = (props) => {
             Delete
           </UncontrolledTooltip>
           <Trash2
-            className="ml-1 cursor-pointer font-weight-bolder Black"
+            className="ms-50 cursor-pointer font-weight-bolder Black"
             id="delete"
             onClick={() =>
               handleConfirmCancel(
