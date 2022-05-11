@@ -114,27 +114,17 @@ const Sidebar = (props) => {
                     height: "40%",
                   }}
                 >
-                  {/* <img
-                    src={SideImage}
-                    alt="bottomImage"
-                    className="h-100 w-100 img-fluid "
-                  /> */}<PowerBy/>
+                  <div className="sidePowerBy">
+                    <PowerBy />
+                  </div>
                 </div>
-                
               </ul>
-              
             </PerfectScrollbar>
-            
           </Fragment>
-           
         )}
-         
       </div>
-      
     </Fragment>
-    
   );
-  
 };
 
 export default Sidebar;
