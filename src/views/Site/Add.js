@@ -150,8 +150,8 @@ const getCity = () => {
       facilityTypeAr: data.facilityTypeAr,
       classificationAr: data.classificationAr,
       classificationEn: data.classificationEn,
-      regionId: data.regionId,
-      cityId: data.cityId,
+      regionId: data.regionId._id,
+      cityId: data.cityId._id,
     };
 
     if (
@@ -812,11 +812,13 @@ const getCity = () => {
                 <Col lg="12">
                   <Label>
                     <FormattedMessage id={"Region"} defaultMessage="Region" />
+                    <strong className="text-danger">*</strong>
                   </Label>
                   <Select
                     name="regionId"
                     options={region}
                     className="react-select"
+                    menuPlacement="top"
                     classNamePrefix="select"
                     getOptionLabel={(Opt) => Opt.name}
                     getOptionValue={(Opt) => Opt._id}
@@ -840,6 +842,7 @@ const getCity = () => {
                     name="cityId"
                     options={city}
                     className="react-select"
+                    menuPlacement="top"
                     classNamePrefix="select"
                     getOptionLabel={(Opt) => Opt.name}
                     getOptionValue={(Opt) => Opt._id}
