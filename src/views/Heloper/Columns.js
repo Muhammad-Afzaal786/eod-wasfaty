@@ -259,7 +259,7 @@ export const fieldSurveyCol = [
   },
   {
     Header: (
-      <FormattedMessage id={"Export as Pdf"} defaultMessage="Export as Pdf" />
+      <FormattedMessage id={"Export AS PDF"} defaultMessage="Export as Pdf" />
     ),
     accessor: "_id",
     Cell: ({ row }) => {

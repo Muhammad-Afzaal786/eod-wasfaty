@@ -17,6 +17,7 @@ import "@styles/react/libs/react-select/_react-select.scss";
 import SwitchIcons from "../../Heloper/Components/Switcher";
 import FileUploader from "../../Heloper/Components/FileUploader";
 import Validation from "../../Heloper/Components/FieldValidation";
+import Selector from "../../Heloper/Components/Selector";
 
 const defaultValues = {
   lastName: "",
@@ -36,11 +37,14 @@ const PersonalInfo = ({
   const { handleSubmit } = useForm();
 
   const onSubmit = () => {
-    if (data.facility_working) {
+    if (data.facility_working?.value === "yes") {
       if (
         data.building_showing_the_sign?.length === 0 ||
         data.operator_name === "" ||
         data.registration_image?.length === 0 ||
+        data.specified_period?.length === 0 ||
+        data.update_method?.length === 0 ||
+        data.license_valid?.length === 0 ||
         data.facility_room_number === "" ||
         data.Tourist_license_copy?.length === 0 ||
         data.Municipal_license_picture?.length === 0 ||
@@ -48,17 +52,21 @@ const PersonalInfo = ({
       ) {
         setValidation(true);
       } else if (
-        !data.specified_period &&
+        data.specified_period?.value === "no" &&
         data.Reasons_for_not_notifying === ""
       ) {
         setValidation(true);
-      } else if (!data.license_valid && data.not_renewing_the_license === "") {
+      } else if (
+        data.license_valid?.value === "no" &&
+        data.not_renewing_the_license === ""
+      ) {
         setValidation(true);
       } else {
         stepper.next();
         setValidation(false);
       }
-    } else {
+    } else if (data.facility_working?.length === 0) setValidation(true);
+    else {
       if (data.reasonOpt?.length === 0) setValidation(true);
       else if (
         data?.reasonOpt?.value ===
@@ -98,23 +106,26 @@ const PersonalInfo = ({
   return (
     <Fragment>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        {!data.inspectorRelation && (
+        {data.inspectorRelation.value === "no" && (
           <Row className="mt-1">
             <div className="d-flex justify-content-between">
               <Label className="switchLabel">
                 Is the facility working
-                <strong className="text-danger"> *</strong>
+                <strong className="text-danger">*</strong>
               </Label>
 
-              <SwitchIcons
-                name="facility_working"
-                handleChange={handleChange}
-                value={data.facility_working}
-              />
+              <div className="w-50">
+                <Selector
+                  name="facility_working"
+                  handleChange={handleChange}
+                  value={data.facility_working}
+                  validation={validation}
+                />
+              </div>
             </div>
           </Row>
         )}
-        {!data?.facility_working && (
+        {data?.facility_working?.value === "no" && (
           <Row className="mt-1">
             <Col lg="12">
               <Label>
@@ -162,7 +173,7 @@ const PersonalInfo = ({
             </Col>
           </Row>
         )}
-        {data.facility_working && (
+        {data.facility_working?.value === "yes" && (
           <Row className="mt-1">
             <Col lg="12" className="mb-1">
               <Label className="mb-50">
@@ -186,13 +197,16 @@ const PersonalInfo = ({
                 licensing platform within the specified period of 4 days?{" "}
                 <strong className="text-danger"> *</strong>
               </Label>
-              <SwitchIcons
-                value={data?.specified_period}
-                name="specified_period"
-                handleChange={handleChange}
-              />
+              <div className="w-50">
+                <Selector
+                  value={data?.specified_period}
+                  name="specified_period"
+                  handleChange={handleChange}
+                  validation={validation}
+                />
+              </div>
             </div>
-            {!data?.specified_period && (
+            {data?.specified_period?.value === "no" && (
               <Col lg="12" className="mb-1">
                 <Label>
                   Reasons for not notifying the facility of registration in the
@@ -222,11 +236,14 @@ const PersonalInfo = ({
                 Was the facility provided with the registration link and update
                 method? <strong className="text-danger"> *</strong>
               </Label>
-              <SwitchIcons
-                value={data?.update_method}
-                name="update_method"
-                handleChange={handleChange}
-              />
+              <div className="w-50">
+                <Selector
+                  value={data?.update_method}
+                  name="update_method"
+                  handleChange={handleChange}
+                  validation={validation}
+                />
+              </div>
             </div>
 
             <div className="d-flex justify-content-between">
@@ -234,13 +251,16 @@ const PersonalInfo = ({
                 Is the tourist license valid?{" "}
                 <strong className="text-danger"> *</strong>
               </Label>
-              <SwitchIcons
-                value={data?.license_valid}
-                name="license_valid"
-                handleChange={handleChange}
-              />
+              <div className="w-50">
+                <Selector
+                  value={data?.license_valid}
+                  name="license_valid"
+                  handleChange={handleChange}
+                  validation={validation}
+                />
+              </div>
             </div>
-            {!data?.license_valid && (
+            {data?.license_valid?.value === "no" && (
               <Col lg="12" className="mb-1">
                 <Label>
                   Reasons for not renewing the license?
@@ -443,7 +463,9 @@ const PersonalInfo = ({
           </Button>
           <Button type="submit" color="primary" className="btn-next">
             <span className="align-middle d-sm-inline-block d-none">
-              {data.facility_working ? "Save & Continue" : "Submit"}
+              {data.facility_working?.value === "yes"
+                ? "Save & Continue"
+                : "Submit"}
             </span>
             {/* <ArrowRight
               size={14}

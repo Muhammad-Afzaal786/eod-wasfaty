@@ -13,7 +13,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Form, Label, Input, Row, Col, Button, FormFeedback } from "reactstrap";
 import Select, { components } from "react-select";
 import { fieldSurveyObj } from "../../Heloper/Object";
-import SwitchIcons from "../../Heloper/Components/Switcher";
 import Validation from "../../Heloper/Components/FieldValidation";
 import { SC } from "../../Heloper/Apicall/ServerCall";
 import {
@@ -24,6 +23,7 @@ import {
 } from "../../Heloper/Apicall/endPoints";
 import { errorHandle } from "../../Heloper/Action/ErrorHandle";
 import { useNavigate } from "react-router-dom";
+import Selector from "../../Heloper/Components/Selector";
 
 const AccountDetails = ({
   stepper,
@@ -33,6 +33,8 @@ const AccountDetails = ({
   setData,
   setValidation,
   dataSubmit,
+  setLoading,
+  loading,
 }) => {
   // ** Hooks
   const navigate = useNavigate();
@@ -49,13 +51,14 @@ const AccountDetails = ({
       // data.region?.length === 0 ||
       data.location.latitude === "" ||
       data.tourism_License_number?.length === 0 ||
-      // data.city?.length === 0 ||
+      data.inspectorRelation?.length === 0 ||
       data.location.longitude === "" ||
       data.remarks === ""
     ) {
-      setValidation(true);
+      setValidation(false);
+      stepper.next();
     } else {
-      if (!data.inspectorRelation) {
+      if (data.inspectorRelation.value === "no") {
         stepper.next();
         setValidation(false);
       } else dataSubmit([]);
@@ -96,6 +99,7 @@ const AccountDetails = ({
         if (res.status === 200 && res.data) {
           let rowData = res.data.data;
           setSite(rowData);
+          setLoading(false);
         }
       },
       (error) => {
@@ -181,13 +185,17 @@ const AccountDetails = ({
         <Row className="mt-1">
           <div className="d-flex justify-content-between">
             <span className="switchLabel">
-              Is the inspector have a relationship the owner of the facility? *
+              Is the inspector have a relationship with the owner of the
+              facility? <strong className="text-danger">*</strong>
             </span>
-            <SwitchIcons
-              handleChange={handleChange}
-              name="inspectorRelation"
-              value={data.inspectorRelation}
-            />
+            <div className="w-50">
+              <Selector
+                handleChange={handleChange}
+                name="inspectorRelation"
+                value={data.inspectorRelation}
+                validation={validation}
+              />
+            </div>
           </div>
         </Row>
 
@@ -265,7 +273,9 @@ const AccountDetails = ({
         <div className="d-flex justify-content-end mt-1">
           <Button type="submit" color="primary" className="btn-next">
             <span className="align-middle d-sm-inline-block d-none">
-              {!data.inspectorRelation ? "Save & Continue" : "Submit"}
+              {data.inspectorRelation.value === "no"
+                ? "Save & Continue"
+                : "Submit"}
             </span>
             {/* <ArrowRight
               size={14}

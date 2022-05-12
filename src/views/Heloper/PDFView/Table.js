@@ -54,7 +54,11 @@ const Table = ({ rowData }) => {
             </Text>
           </View>
           <View style={styles.right}>
-            <Text>{rowData.inspector_relationship ? "Yes" : "No"}</Text>
+            <Text>
+              {rowData.inspector_relationship
+                ? rowData.inspector_relationship
+                : "-----"}
+            </Text>
           </View>
         </View>
         <View style={styles.Row1}>
@@ -67,11 +71,7 @@ const Table = ({ rowData }) => {
           </View>
           <View style={styles.right}>
             <Text>
-              {rowData.facility_working
-                ? "Yes"
-                : rowData.facility_working === false
-                ? "No"
-                : "-----"}
+              {rowData.facility_working ? rowData.facility_working : "-----"}
             </Text>
           </View>
         </View>
@@ -137,7 +137,11 @@ const Table = ({ rowData }) => {
             </Text>
           </View>
           <View style={styles.right}>
-            <Text>{rowData.calender_registration ? "Yes" : "No"}</Text>
+            <Text>
+              {rowData.calender_registration
+                ? rowData.calender_registration
+                : "-----"}
+            </Text>
           </View>
         </View>
         <View style={styles.Row2}>
@@ -152,7 +156,13 @@ const Table = ({ rowData }) => {
             </Text>
           </View>
           <View style={styles.right}>
-            <Text>{rowData.registration_link ? "Yes" : "No"}</Text>
+            <Text>
+              {rowData.registration_link
+                ? "Yes"
+                : rowData.registration_link === false
+                ? "No"
+                : "-----"}
+            </Text>
           </View>
         </View>
 
@@ -165,7 +175,9 @@ const Table = ({ rowData }) => {
             <Text>Is the tourist license valid?</Text>
           </View>
           <View style={styles.right}>
-            <Text>{rowData.tourist_license ? "Yes" : "No"}</Text>
+            <Text>
+              {rowData.tourist_license ? rowData.tourist_license : "-----"}
+            </Text>
           </View>
         </View>
         <View style={styles.Row2}>
@@ -467,7 +479,7 @@ const Table = ({ rowData }) => {
 };
 const styles = StyleSheet.create({
   container: {
-    height: "100%",
+    // height: "100%",
     marginTop: 10,
     borderWidth: 1,
     borderColor: "#009394",
@@ -511,24 +523,22 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRightWidth: 1,
     borderRightColor: "#009394",
-    height: "100%",
-    padding: 10,
+    padding: 20,
   },
   center: {
     width: "58%",
     borderRightWidth: 1,
     borderRightColor: "#009394",
     // marginLeft: 15,
-    padding: 10,
-    height: "100%",
+    padding: 20,
   },
   right: {
     width: "30%",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    alignItems: "center",
-    padding: 10,
+
+    padding: 20,
   },
 });
 export default Table;

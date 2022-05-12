@@ -14,24 +14,24 @@ const Violation = (props) => {
     ]);
   };
 
-  const CustomLabel = ({ htmlFor, handleChange, index }) => {
-    return (
-      <Label className="form-check-label" htmlFor={htmlFor}>
-        <span
-          className="switch-icon-left"
-          onClick={() => handleChange(index, "value", false)}
-        >
-          Yes
-        </span>
-        <span
-          className="switch-icon-right text-white"
-          onClick={() => handleChange(index, "value", true)}
-        >
-          No
-        </span>
-      </Label>
-    );
-  };
+  // const CustomLabel = ({ htmlFor, handleChange, index }) => {
+  //   return (
+  //     <Label className="form-check-label" htmlFor={htmlFor}>
+  //       <span
+  //         className="switch-icon-left"
+  //         onClick={() => handleChange(index, "value", false)}
+  //       >
+  //         Yes
+  //       </span>
+  //       <span
+  //         className="switch-icon-right text-white"
+  //         onClick={() => handleChange(index, "value", true)}
+  //       >
+  //         No
+  //       </span>
+  //     </Label>
+  //   );
+  // };
   const itemOpt = [
     {
       label: "Practicing the activity before obtaining the license",
@@ -67,6 +67,10 @@ const Violation = (props) => {
 
     { label: "Other", value: "other" },
   ];
+  const Opt = [
+    { label: "YES", value: "yes" },
+    { label: "NO", value: "no" },
+  ];
   return (
     <React.Fragment>
       {/* for yes case If there is violation */}
@@ -77,8 +81,21 @@ const Violation = (props) => {
               Is there a violation<strong className="text-danger">*</strong>
             </Label>
 
-            <div className="form-switch form-check-success">
-              <Input
+            <div className="w-50">
+              <Select
+                options={Opt}
+                className="react-select"
+                classNamePrefix="select"
+                value={item.value}
+                // menuPlacement="top"
+                onChange={(e) => props.handleChange(index, "value", e)}
+              />
+              <Validation
+                type="select"
+                value={item.value}
+                validation={props.validation}
+              />
+              {/* <Input
                 type="switch"
                 id="violation"
                 checked={item.value}
@@ -92,10 +109,10 @@ const Violation = (props) => {
                 htmlFor="icon-primary"
                 handleChange={props.handleChange}
                 index={index}
-              />
+              /> */}
             </div>
           </div>
-          {item.value && (
+          {item.value.value === "yes" && (
             <React.Fragment key={index}>
               <Col lg="12 mb-1">
                 <Label>
@@ -177,7 +194,7 @@ const Violation = (props) => {
           </Button>
         </div>
       </Col>
-      {props.field.length > 0 && props.field[0].value && (
+      {props.field.length > 0 && props.field[0].value.value === "yes" && (
         <>
           <Col lg="12 mb-2">
             <Label>

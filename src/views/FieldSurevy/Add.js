@@ -11,6 +11,7 @@ import {
   Input,
   Label,
   Row,
+  Spinner,
 } from "reactstrap";
 import Select, { components } from "react-select";
 import {
@@ -23,14 +24,19 @@ import Violation from "./Violation";
 import WizardHorizontal from "./Wizard";
 
 const AddSurvey = () => {
+  const [loading, setLoading] = useState(true);
+
   return (
     <React.Fragment>
       <Row>
-        <h2 className="stepFromTitle">EOD Operation Form</h2>
+        <div className="d-flex flex-row">
+          <h2 className="stepFromTitle">EOD Operation Form </h2>
+          {loading && <Spinner color="primary" className="ms-25" />}
+        </div>
       </Row>
       <Row>
         <Col lg="12">
-          <WizardHorizontal />
+          <WizardHorizontal setLoading={setLoading} loading={loading} />
         </Col>
       </Row>
     </React.Fragment>

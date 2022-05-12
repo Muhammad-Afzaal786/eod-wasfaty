@@ -16,9 +16,10 @@ import { SC } from "../Heloper/Apicall/ServerCall";
 import { inspection_create } from "../Heloper/Apicall/endPoints";
 import toast from "react-hot-toast";
 
-const WizardHorizontal = () => {
+const WizardHorizontal = ({ loading, setLoading }) => {
   const [data, setData] = useState(fieldSurveyObj);
   const [validation, setValidation] = useState(false);
+
   let navigate = useNavigate();
   //handle inputs value
   const handleChange = (key, value) => {
@@ -61,6 +62,12 @@ const WizardHorizontal = () => {
   const handleSubmit = (value) => {
     const postData = {
       ...data,
+      inspectorRelation: data.inspectorRelation.value || "",
+      facility_working: data.facility_working.value || "",
+      specified_period: data.specified_period.value || "",
+      license_valid: data.license_valid.value || "",
+      update_method: data.update_method.value || "",
+
       tourism_License_number: data.tourism_License_number?._id,
       reasonOpt: data.reasonOpt?.value || "",
       violation_item: value,
@@ -72,6 +79,7 @@ const WizardHorizontal = () => {
       }
     });
   };
+  console.log(data);
   const [stepper, setStepper] = useState(null);
   const steps = [
     {
@@ -84,6 +92,8 @@ const WizardHorizontal = () => {
           stepper={stepper}
           handleChange={handleChange}
           data={data}
+          setLoading={setLoading}
+          loading={loading}
           validation={validation}
           setValidation={setValidation}
           setData={setData}
