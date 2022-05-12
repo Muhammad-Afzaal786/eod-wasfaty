@@ -72,11 +72,9 @@ const Address = ({
       const postData = field?.map((item) => {
         return { ...item, value: item.value?.value || "" };
       });
-      console.log("postData", postData);
       dataSubmit(postData);
     }
   };
-  console.log("field", field);
   return (
     <Fragment>
       <Form>

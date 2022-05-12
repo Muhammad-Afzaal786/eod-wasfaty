@@ -79,7 +79,6 @@ const WizardHorizontal = ({ loading, setLoading }) => {
       }
     });
   };
-  console.log(data);
   const [stepper, setStepper] = useState(null);
   const steps = [
     {
