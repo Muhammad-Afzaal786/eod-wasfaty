@@ -1,5 +1,7 @@
 import React from "react";
 import AscendIcon from "../../assets/images/icons/AscendIcon.svg";
+import AscendBlack from "../../assets/images/icons/AscendLogo.svg";
+
 const PowerBy = ({ icons, textClass }) => {
   return (
     <a
@@ -8,7 +10,7 @@ const PowerBy = ({ icons, textClass }) => {
       target={"_blank"}
     >
       <div className=" d-flex flex-row mx-auto">
-        <img src={AscendIcon} alt="image" />
+        <img src={textClass ? AscendIcon: AscendBlack} alt="image" />
         <span className="ms-1">POWERED BY ASCEND</span>
       </div>
     </a>
