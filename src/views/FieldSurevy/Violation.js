@@ -1,5 +1,5 @@
-import React, { useContext,useState } from "react";
-import { Button, Col, Input, Label } from "reactstrap";
+import React, { useContext, useState } from "react";
+import { Button, Col, Input, Label, Row } from "reactstrap";
 import Select, { components } from "react-select";
 import cloneDeep from "clone-deep";
 import SwitchIcons from "../Heloper/Components/Switcher";
@@ -79,12 +79,14 @@ const Violation = (props) => {
       {/* for yes case If there is violation */}
       {props.field?.map((item, index) => (
         <React.Fragment key={index}>
-          <div className="d-flex justify-content-between mt-1">
-            <Label>
-              Is there a violation<strong className="text-danger">*</strong>
-            </Label>
+          <Row>
+            <Col lg="12">
+              <Label>
+                Is there a violation<strong className="text-danger">*</strong>
+              </Label>
+            </Col>
 
-            <div className="w-50">
+            <Col lg="12" className="mb-1">
               <Select
                 options={Opt}
                 className="react-select"
@@ -98,23 +100,8 @@ const Violation = (props) => {
                 value={item.value}
                 validation={props.validation}
               />
-              {/* <Input
-                type="switch"
-                id="violation"
-                checked={item.value}
-                className="customWidth"
-                name={"violation"}
-                onChange={(e) =>
-                  props.handleChange(index, "value", e.target.checked)
-                }
-              />
-              <CustomLabel
-                htmlFor="icon-primary"
-                handleChange={props.handleChange}
-                index={index}
-              /> */}
-            </div>
-          </div>
+            </Col>
+          </Row>
           {item.value.value === "yes" && (
             <React.Fragment key={index}>
               <Col lg="12 mb-1">

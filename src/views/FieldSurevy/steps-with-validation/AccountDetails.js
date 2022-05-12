@@ -55,8 +55,7 @@ const AccountDetails = ({
       data.location.longitude === "" ||
       data.remarks === ""
     ) {
-      setValidation(false);
-      stepper.next();
+      setValidation(true);
     } else {
       if (data.inspectorRelation.value === "no") {
         stepper.next();
@@ -119,6 +118,13 @@ const AccountDetails = ({
       });
     });
   };
+  const NoOptionsMessage = (props) => {
+    return (
+      <components.NoOptionsMessage {...props}>
+        <span className="custom-css-class">loading...</span>
+      </components.NoOptionsMessage>
+    );
+  };
   return (
     <Fragment>
       <Form onSubmit={handleSubmit(onSubmit)}>
@@ -169,6 +175,7 @@ const AccountDetails = ({
               options={site}
               className="react-select"
               classNamePrefix="select"
+              components={{ NoOptionsMessage }}
               getOptionLabel={(Opt) => Opt.licenseNumber}
               getOptionValue={(Opt) => Opt._id}
               value={data.tourism_License_number}
@@ -183,20 +190,21 @@ const AccountDetails = ({
         </Row>
 
         <Row className="mt-1">
-          <div className="d-flex justify-content-between">
+          <Col lg="12">
             <span className="switchLabel">
               Is the inspector have a relationship with the owner of the
               facility? <strong className="text-danger">*</strong>
             </span>
-            <div className="w-50">
-              <Selector
-                handleChange={handleChange}
-                name="inspectorRelation"
-                value={data.inspectorRelation}
-                validation={validation}
-              />
-            </div>
-          </div>
+          </Col>
+
+          <Col lg="12">
+            <Selector
+              handleChange={handleChange}
+              name="inspectorRelation"
+              value={data.inspectorRelation}
+              validation={validation}
+            />
+          </Col>
         </Row>
 
         <Row className="mt-1">

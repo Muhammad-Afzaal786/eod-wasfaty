@@ -108,21 +108,21 @@ const PersonalInfo = ({
       <Form onSubmit={handleSubmit(onSubmit)}>
         {data.inspectorRelation.value === "no" && (
           <Row className="mt-1">
-            <div className="d-flex justify-content-between">
+            <Col lg="12">
               <Label className="switchLabel">
                 Is the facility working
                 <strong className="text-danger">*</strong>
               </Label>
+            </Col>
 
-              <div className="w-50">
-                <Selector
-                  name="facility_working"
-                  handleChange={handleChange}
-                  value={data.facility_working}
-                  validation={validation}
-                />
-              </div>
-            </div>
+            <Col lg="12">
+              <Selector
+                name="facility_working"
+                handleChange={handleChange}
+                value={data.facility_working}
+                validation={validation}
+              />
+            </Col>
           </Row>
         )}
         {data?.facility_working?.value === "no" && (
@@ -191,21 +191,21 @@ const PersonalInfo = ({
                 type="select"
               />
             </Col>
-            <div className="d-flex justify-content-between mb-1">
+            <Col lg="12">
               <Label className="switchLabel">
                 Have you been notified of registration in the calendar tourism
                 licensing platform within the specified period of 4 days?{" "}
                 <strong className="text-danger"> *</strong>
               </Label>
-              <div className="w-50">
-                <Selector
-                  value={data?.specified_period}
-                  name="specified_period"
-                  handleChange={handleChange}
-                  validation={validation}
-                />
-              </div>
-            </div>
+            </Col>
+            <Col lg="12">
+              <Selector
+                value={data?.specified_period}
+                name="specified_period"
+                handleChange={handleChange}
+                validation={validation}
+              />
+            </Col>
             {data?.specified_period?.value === "no" && (
               <Col lg="12" className="mb-1">
                 <Label>
@@ -231,35 +231,35 @@ const PersonalInfo = ({
                 />
               </Col>
             )}
-            <div className="d-flex justify-content-between mb-1">
+            <Col lg="12">
               <Label className="switchLabel">
                 Was the facility provided with the registration link and update
                 method? <strong className="text-danger"> *</strong>
               </Label>
-              <div className="w-50">
-                <Selector
-                  value={data?.update_method}
-                  name="update_method"
-                  handleChange={handleChange}
-                  validation={validation}
-                />
-              </div>
-            </div>
+            </Col>
+            <Col lg="12">
+              <Selector
+                value={data?.update_method}
+                name="update_method"
+                handleChange={handleChange}
+                validation={validation}
+              />
+            </Col>
 
-            <div className="d-flex justify-content-between">
+            <Col lg="12">
               <Label className="switchLabel">
                 Is the tourist license valid?{" "}
                 <strong className="text-danger"> *</strong>
               </Label>
-              <div className="w-50">
-                <Selector
-                  value={data?.license_valid}
-                  name="license_valid"
-                  handleChange={handleChange}
-                  validation={validation}
-                />
-              </div>
-            </div>
+            </Col>
+            <Col lg="12">
+              <Selector
+                value={data?.license_valid}
+                name="license_valid"
+                handleChange={handleChange}
+                validation={validation}
+              />
+            </Col>
             {data?.license_valid?.value === "no" && (
               <Col lg="12" className="mb-1">
                 <Label>
