@@ -26,7 +26,7 @@ export const layoutSlice = createSlice({
   name: "layout",
   initialState: {
     skin: initialSkin(),
-    isRTL: initialDirection(),
+    isRTL: false,
     layout: themeConfig.layout.isRTL,
     deleteAction: "",
     lastLayout: themeConfig.layout.type,

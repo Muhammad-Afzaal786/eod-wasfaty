@@ -487,7 +487,9 @@ const styles = StyleSheet.create({
   Row1: {
     flexDirection: "row",
     width: "100%",
-    height: "100%",
+    // height: "100%",
+    padding: 10,
+    backgroundColor: "red",
     flexDirection: "row",
     color: "#000",
     fontSize: 14,
@@ -495,7 +497,7 @@ const styles = StyleSheet.create({
   Row2: {
     flexDirection: "row",
     width: "100%",
-    height: "100%",
+    // height: "100%",
     flexDirection: "row",
     color: "#000",
     fontSize: 14,

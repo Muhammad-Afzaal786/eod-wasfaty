@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Button,
   Card,
@@ -26,11 +26,14 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 import { useParams, Navigate } from "react-router-dom";
 import { isUserLoggedIn } from "@utils";
+import { FormattedMessage } from "react-intl";
+import { IntlContext } from "../../utility/context/Internationalization";
 
 const Add = () => {
   const [data, setData] = useState(userCreateObj);
   const [validation, setValidation] = useState(false);
   const [emailMsg, setEmailMsg] = useState("");
+  let context = useContext(IntlContext);
   let navigate = useNavigate();
   const params = useParams();
   const ruleOpt = [
@@ -119,13 +122,24 @@ const Add = () => {
       }
     }
   };
+  console.log(context.locale);
   if (isUserLoggedIn()) {
     return (
       <React.Fragment>
         <Card>
           <CardHeader className="bg-primary">
             <CardTitle className="text-white">
-              {params.id ? "Update user" : "Create user"}
+              {params.id ? (
+                <FormattedMessage
+                  id={"Update user"}
+                  defaultMessage="Update user"
+                />
+              ) : (
+                <FormattedMessage
+                  id={"Create user"}
+                  defaultMessage="Create user"
+                />
+              )}
             </CardTitle>
           </CardHeader>
           <CardBody>
@@ -133,10 +147,13 @@ const Add = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                    Name <strong className="text-danger">*</strong>
+                    <FormattedMessage id={"Name"} defaultMessage="Name" />
+                    <strong className="text-danger">*</strong>
                   </Label>
                   <Input
-                    placeholder="user name"
+                    placeholder={
+                      context.locale === "sa" ? "اسم االمستخدم" : "user name"
+                    }
                     value={data.name}
                     onChange={(e) => handleChange("name", e.target.value)}
                     invalid={data.name === "" && validation ? true : false}
