@@ -20,6 +20,8 @@ import toast from "react-hot-toast";
 import { siteCreateObj } from "../Heloper/Object";
 import Flatpickr from "react-flatpickr";
 // import "../../@core/scss/react/libs/flatpickr/flatpickr.scss";
+import Select, { components } from "react-select";
+
 import { isUserLoggedIn } from "@utils";
 import {
   site_show,
@@ -29,17 +31,27 @@ import {
 import { DateFormat } from "../Heloper/DateFormat";
 import { FormattedMessage } from "react-intl";
 import { IntlContext } from "../../utility/context/Internationalization";
+import {
+  get_form_city,
+  get_form_region,
+  get_form_siteData,
+  region_index,
+} from "../Heloper/Apicall/endPoints";
 const Add = () => {
   const [data, setData] = useState(siteCreateObj);
   const [validation, setValidation] = useState(false);
   const [emailMsg, setEmailMsg] = useState("");
+  const [region, setRegion] = useState([]);
+  const [city, setCity] = useState([]);
   const navigate = useNavigate();
   let context = useContext(IntlContext);
   const params = useParams();
   useEffect(() => {
     if (params.id) {
-      getData(params.id);
-    }
+      getData(params.id);}
+      getRegion();
+      getCity();
+    
   }, []);
   //get data for update site
   const getData = (id) => {
@@ -82,7 +94,34 @@ const Add = () => {
   const handleChange = (key, value) => {
     setData({ ...data, [key]: value });
   };
-
+//get region from api
+const getRegion = () => {
+  SC.getCall(get_form_region).then(
+    (res) => {
+      if (res.status === 200 && res.data) {
+        let rowData = res.data.data;
+        setRegion(rowData);
+      }
+    },
+    (error) => {
+      errorHandle(error, navigate);
+    }
+  );
+};
+//get city from api
+const getCity = () => {
+  SC.getCall(get_form_city).then(
+    (res) => {
+      if (res.status === 200 && res.data) {
+        let rowData = res.data.data;
+        setCity(rowData);
+      }
+    },
+    (error) => {
+      errorHandle(error, navigate);
+    }
+  );
+};
   // Form Submit Change
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -769,50 +808,48 @@ const Add = () => {
                   />
                 </Col>
               </Row>
-
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"Region"} defaultMessage="Region" />
-
-                    <strong className="text-danger">*</strong>
+                    <FormattedMessage id={"Region"} defaultMessage="Region" />
                   </Label>
-                  <Input
-                    type="number"
-                    placeholder={
-                      context.locale === "sa" ? "منطقة" : "Region"
-                    }
+                  <Select
+                    name="regionId"
+                    options={region}
+                    className="react-select"
+                    classNamePrefix="select"
+                    getOptionLabel={(Opt) => Opt.name}
+                    getOptionValue={(Opt) => Opt._id}
                     value={data.regionId}
-                    onChange={(e) => handleChange("regionId", e.target.value)}
-                    invalid={data.regionId === "" && validation ? true : false}
+                    onChange={(e) => handleChange("regionId", e)}
                   />
                   <Validation
-                    type="number"
-                    value={data.regionId}
                     validation={validation}
+                    type="select"
+                    value={data.regionId}
                   />
                 </Col>
               </Row>
-
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"City"} defaultMessage="City" />
-                   <strong className="text-danger">*</strong>
+                    <FormattedMessage id={"City"} defaultMessage="City" />
+                    <strong className="text-danger">*</strong>
                   </Label>
-                  <Input
-                    type="number"
-                    placeholder={
-                      context.locale === "sa" ? "مدينة" : "City"
-                    }
+                  <Select
+                    name="cityId"
+                    options={city}
+                    className="react-select"
+                    classNamePrefix="select"
+                    getOptionLabel={(Opt) => Opt.name}
+                    getOptionValue={(Opt) => Opt._id}
                     value={data.cityId}
-                    onChange={(e) => handleChange("cityId", e.target.value)}
-                    invalid={data.cityId === "" && validation ? true : false}
+                    onChange={(e) => handleChange("cityId", e)}
                   />
                   <Validation
-                    type="number"
-                    value={data.cityId}
                     validation={validation}
+                    type="select"
+                    value={data.cityId}
                   />
                 </Col>
               </Row>
