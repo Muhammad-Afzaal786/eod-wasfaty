@@ -53,7 +53,21 @@
   "Reasons for not notifying the facility of registration in the tourism licensing platform":"أسباب عدم إخطار المنشأة بالتسجيل في منصة التراخيص السياحية",
   "Was the facility provided with the registration link and update method?":"هل تم تزويد المنشأة برابط التسجيل وطريقة التحديث؟",
   "Is the tourist license valid?":"هل الرخصة السياحية سارية المفعول؟",
+  "Reasons for not renewing the license?":"اسباب عدم تجديد الرخصة؟",
+  "operator ID":"معرف المشغل",
+  "The trade name according to license":"الاسم التجاري حسب الرخصة",
+  "Commercial Registration No":"رقم السجل التجاري",
+  "Commercial Registration Image":"صورة السجل التجاري",
+  "Facility Mobile number":"رقم موبايل المنشأة",
+  "Facility number":"رقم المنشأة",
+    "facility email":"البريد الإلكتروني للمنشأة",
+  "Facility Room Number":"رقم غرفة المرافق",
+  "Tourist license copy?":"صورة الرخصة السياحية؟",
+  "Municipal license picture":"صورة رخصة البلدية",
+  "the civil defense license picture":"صورة رخصة الدفاع المدني",
+  "":"",
   "":""
+
 
   
 }

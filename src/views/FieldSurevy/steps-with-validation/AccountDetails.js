@@ -21,7 +21,6 @@ import {
   get_form_city,
   get_form_region,
   get_form_siteData,
-  region_index,
 } from "../../Heloper/Apicall/endPoints";
 import { errorHandle } from "../../Heloper/Action/ErrorHandle";
 import { useNavigate } from "react-router-dom";

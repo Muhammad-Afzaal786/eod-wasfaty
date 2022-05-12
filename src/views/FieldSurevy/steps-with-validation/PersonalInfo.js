@@ -120,7 +120,8 @@ const PersonalInfo = ({
           <Row className="mt-1">
             <Col lg="12">
               <Label>
-                Reasons for not working
+              <FormattedMessage id={"Reasons for not working"} defaultMessage="Reasons for not working" />
+
                 <strong className="text-danger"> *</strong>
               </Label>
               <Select
@@ -168,8 +169,10 @@ const PersonalInfo = ({
           <Row className="mt-1">
             <Col lg="12" className="mb-1">
               <Label className="mb-50">
-                A picture of the building showing the sign, the commercial name
-                and the main entrance
+              <FormattedMessage 
+              id={
+                "A picture of the building showing the sign, the commercial name and the main entrance"} defaultMessage="A picture of the building showing the sign, the commercial name
+                and the main entrance" />
                 <strong className="text-danger"> * </strong>
               </Label>
               <FileUploader
@@ -184,8 +187,11 @@ const PersonalInfo = ({
             </Col>
             <div className="d-flex justify-content-between mb-1">
               <Label className="switchLabel">
-                Have you been notified of registration in the calendar tourism
-                licensing platform within the specified period of 4 days?{" "}
+              <FormattedMessage id={
+                "Have you been notified of registration in the calendar tourism licensing platform within the specified period of 4 days?"
+                } defaultMessage="Have you been notified of registration in the calendar tourism
+                licensing platform within the specified period of 4 days?" />
+
                 <strong className="text-danger"> *</strong>
               </Label>
               <SwitchIcons
@@ -197,8 +203,11 @@ const PersonalInfo = ({
             {!data?.specified_period && (
               <Col lg="12" className="mb-1">
                 <Label>
-                  Reasons for not notifying the facility of registration in the
-                  tourism licensing platform
+                <FormattedMessage id={
+                "Reasons for not notifying the facility of registration in the tourism licensing platform"
+                } defaultMessage="Reasons for not notifying the facility of registration in the
+                tourism licensing platform" />
+               
                   <strong className="text-danger">*</strong>
                 </Label>
                 <Input
@@ -221,8 +230,11 @@ const PersonalInfo = ({
             )}
             <div className="d-flex justify-content-between mb-1">
               <Label className="switchLabel">
-                Was the facility provided with the registration link and update
-                method? <strong className="text-danger"> *</strong>
+              <FormattedMessage id={
+                "Was the facility provided with the registration link and update method? "
+                } defaultMessage="Was the facility provided with the registration link and update
+                method?" />
+                <strong className="text-danger"> *</strong>
               </Label>
               <SwitchIcons
                 value={data?.update_method}
@@ -440,7 +452,8 @@ const PersonalInfo = ({
               className="align-middle me-sm-25 me-0"
             ></ArrowLeft>
             <span className="align-middle d-sm-inline-block d-none">
-              Previous
+            {context.locale === "sa" ? "سابق" : "Previous" }
+             
             </span>
           </Button>
           <Button type="submit" color="primary" className="btn-next">
