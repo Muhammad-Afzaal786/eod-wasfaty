@@ -257,7 +257,9 @@ const PersonalInfo = ({
             {!data?.license_valid && (
               <Col lg="12" className="mb-1">
                 <Label>
-                  Reasons for not renewing the license?
+                <FormattedMessage id={
+                "Reasons for not renewing the license?"
+                } defaultMessage="Reasons for not renewing the license?" />
                   <strong className="text-danger">*</strong>
                 </Label>
                 <Input
@@ -280,7 +282,10 @@ const PersonalInfo = ({
             )}
             <Col lg="12 mb-2">
               <Label>
-                operator name
+              <FormattedMessage id={
+                "operator name"
+                } defaultMessage="operator name" />
+             
                 <strong className="text-danger"> *</strong>
               </Label>
               <Input
@@ -295,7 +300,12 @@ const PersonalInfo = ({
               />
             </Col>
             <Col lg="12 mb-2">
-              <Label>operator ID</Label>
+              <Label>
+
+              <FormattedMessage id={
+                "operator ID"
+                } defaultMessage="operator ID" />
+              </Label>
               <Input
                 type="number"
                 value={data.operator_id}
@@ -304,7 +314,11 @@ const PersonalInfo = ({
             </Col>
 
             <Col lg="12 mb-2">
-              <Label>The trade name according to license</Label>
+              <Label>
+              <FormattedMessage id={
+                "The trade name according to license"
+                } defaultMessage="The trade name according to license" />
+                </Label>
               <Input
                 type="text"
                 value={data.trade_name}
@@ -312,7 +326,12 @@ const PersonalInfo = ({
               />
             </Col>
             <Col lg="12 mb-2">
-              <Label>Commercial Registration No.</Label>
+              <Label>
+                
+              <FormattedMessage id={
+                "Commercial Registration No."
+                } defaultMessage="Commercial Registration No." />
+                Commercial Registration No.</Label>
               <Input
                 type="number"
                 value={data.registration_no}
