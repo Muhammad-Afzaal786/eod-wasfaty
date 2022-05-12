@@ -106,7 +106,7 @@ const Table = ({ rowData }) => {
             {rowData.commercial_registration_Image?.length > 0 ? (
               <Image source={rowData.commercial_registration_Image[0]} />
             ) : (
-              <Text>....</Text>
+              <Text>-----</Text>
             )}
           </View>
         </View>
@@ -488,8 +488,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     // height: "100%",
-    padding: 10,
-    backgroundColor: "red",
+    // padding: 10,
     flexDirection: "row",
     color: "#000",
     fontSize: 14,
@@ -498,6 +497,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     // height: "100%",
+    // padding: 10,
+
     flexDirection: "row",
     color: "#000",
     fontSize: 14,
@@ -511,19 +512,15 @@ const styles = StyleSheet.create({
     borderRightWidth: 1,
     borderRightColor: "#009394",
     height: "100%",
+    padding: 10,
   },
   center: {
     width: "58%",
-    alignItems: "center",
     borderRightWidth: 1,
     borderRightColor: "#009394",
     // marginLeft: 15,
-    paddingRight: 5,
-    paddingLeft: 5,
+    padding: 10,
     height: "100%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
   },
   right: {
     width: "30%",
@@ -531,6 +528,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     alignItems: "center",
+    padding: 10,
   },
 });
 export default Table;
