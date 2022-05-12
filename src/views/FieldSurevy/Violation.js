@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext,useState } from "react";
 import { Button, Col, Input, Label } from "reactstrap";
 import Select, { components } from "react-select";
 import cloneDeep from "clone-deep";
 import SwitchIcons from "../Heloper/Components/Switcher";
 import FileUploader from "../Heloper/Components/FileUploader";
 import Validation from "../Heloper/Components/FieldValidation";
-
+import { FormattedMessage } from "react-intl";
+import { IntlContext } from "../../utility/context/Internationalization";
 const Violation = (props) => {
+  let context = useContext(IntlContext);
+
   const addField = () => {
     props.setField([
       ...props.field,

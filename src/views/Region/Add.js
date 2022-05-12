@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext,useState, useEffect } from "react";
 import {
   Button,
   Card,
@@ -26,12 +26,16 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 import { useParams } from "react-router-dom";
 import { isUserLoggedIn } from "@utils";
+import { FormattedMessage } from "react-intl";
+import { IntlContext } from "../../utility/context/Internationalization";
 
 const AddRegion = () => {
   const [data, setData] = useState(regionCreateObj);
   const [validation, setValidation] = useState(false);
   const navigate = useNavigate();
   const params = useParams();
+  let context = useContext(IntlContext);
+
 
   useEffect(() => {
     if (params.id) {
@@ -108,7 +112,17 @@ const AddRegion = () => {
         <Card>
           <CardHeader className="bg-primary">
             <CardTitle className="text-white">
-              {params.id ? "Update Region" : "Create Region"}
+            {params.id ? (
+                <FormattedMessage
+                  id={"Update Region"}
+                  defaultMessage="Update Region"
+                />
+              ) : (
+                <FormattedMessage
+                  id={"Create Region"}
+                  defaultMessage="Create Region"
+                />
+              )}
             </CardTitle>
           </CardHeader>
           <CardBody>
@@ -116,10 +130,13 @@ const AddRegion = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                    Name(En) <strong className="text-danger">*</strong>
+                  <FormattedMessage id={"Name(En)"} defaultMessage="Name(En)" />
+                   <strong className="text-danger">*</strong>
                   </Label>
                   <Input
-                    placeholder="name(en)"
+                    placeholder={
+                      context.locale === "sa" ? "الاسم (بالإنجليزية)" : "name (En)"
+                    }
                     value={data.name_en}
                     onChange={(e) => handleChange("name_en", e.target.value)}
                     invalid={data.name_en === "" && validation ? true : false}
@@ -134,10 +151,13 @@ const AddRegion = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                    Name(Ar) <strong className="text-danger">*</strong>
+                  <FormattedMessage id={"Name(Ar)"} defaultMessage="Name(Ar)" />
+                    <strong className="text-danger">*</strong>
                   </Label>
                   <Input
-                    placeholder="name(ar)"
+                    placeholder={
+                      context.locale === "sa" ? "الاسم (بالعربية)" : "name (Ar)"
+                    }
                     value={data.name_ar}
                     onChange={(e) => handleChange("name_ar", e.target.value)}
                     invalid={data.name_ar === "" && validation ? true : false}
