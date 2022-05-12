@@ -9,9 +9,9 @@ const PowerBy = ({ icons, textClass }) => {
       className={textClass ? textClass : "text-white"}
       target={"_blank"}
     >
-      <div className=" d-flex flex-row mx-auto">
-        <img src={textClass ? AscendIcon: AscendBlack} alt="image" />
-        <span className="ms-1">POWERED BY ASCEND</span>
+      <div className="d-flex flex-row mx-auto">
+        <img src={textClass ? AscendIcon : AscendBlack} alt="image" />
+        <span className="ms-50 mt-50">POWERED BY ASCEND</span>
       </div>
     </a>
   );

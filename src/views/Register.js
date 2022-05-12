@@ -160,10 +160,10 @@ const Register = () => {
             </div>
           </div>
         </div>
+        <div className="d-flex justify-content-center w-100  ">
+          <PowerBy textClass={"customPowerTitle"} />
+        </div>
       </Col>
-      <div className="d-flex justify-content-center w-100  ">
-        <PowerBy textClass={"customPowerTitle"} />
-      </div>
     </Row>
   );
 };

@@ -175,6 +175,9 @@ const Login = () => {
                         </div>
                       </div>
                     </div>
+                    <div className="d-flex justify-content-center w-100 mt-1">
+                      <PowerBy textClass={"customPowerTitle"} />
+                    </div>
                   </Col>
                 </div>
               </div>
@@ -182,9 +185,6 @@ const Login = () => {
           </div>
         </div>
       </Col>
-      <div className="d-flex justify-content-center w-100 ">
-        <PowerBy textClass={"customPowerTitle"} />
-      </div>
     </Row>
   );
 };
