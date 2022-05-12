@@ -122,7 +122,6 @@ const Add = () => {
       }
     }
   };
-  console.log(context.locale);
   if (isUserLoggedIn()) {
     return (
       <React.Fragment>
@@ -168,10 +167,11 @@ const Add = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                    Father Name <strong className="text-danger">*</strong>
+                  <FormattedMessage id={"Father Name"} defaultMessage="Father Name" />
+                    <strong className="text-danger">*</strong>
                   </Label>
                   <Input
-                    placeholder="father name"
+                    placeholder={context.locale === "sa" ? "اسم الأب" : "Father name"}
                     value={data.father_name}
                     onChange={(e) =>
                       handleChange("father_name", e.target.value)
@@ -190,10 +190,11 @@ const Add = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                    Family Name <strong className="text-danger">*</strong>
+                  <FormattedMessage id={"Family Name"} defaultMessage="Family Name" /> 
+                  <strong className="text-danger">*</strong>
                   </Label>
                   <Input
-                    placeholder="family name"
+                    placeholder={context.locale === "sa" ? " اسم العائلة" : "Father name"}
                     value={data.family_name}
                     onChange={(e) =>
                       handleChange("family_name", e.target.value)
@@ -212,10 +213,11 @@ const Add = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                    Email <strong className="text-danger">*</strong>
+                  <FormattedMessage id={"Email "} defaultMessage="Email" /> 
+                    <strong className="text-danger">*</strong>
                   </Label>
                   <Input
-                    placeholder="user email"
+                    placeholder={context.locale === "sa" ? " البريد الالكتروني للمستخدم " : "user Email"}
                     type="email"
                     value={data.email}
                     disabled={params.id ? true : false}
@@ -249,10 +251,11 @@ const Add = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                    Password <strong className="text-danger">*</strong>
+                  <FormattedMessage id={"Password"} defaultMessage="Password" /> 
+                    <strong className="text-danger">*</strong>
                   </Label>
                   <Input
-                    placeholder="user Password"
+                     placeholder={context.locale === "sa" ? " البريد الالكتروني للمستخدم " : "password"}
                     type="password"
                     value={data.password}
                     onChange={(e) =>
@@ -270,7 +273,9 @@ const Add = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                    Role <strong className="text-danger">*</strong>
+                  <FormattedMessage id={"Role"} defaultMessage="Role" /> 
+
+                    <strong className="text-danger">*</strong>
                   </Label>
                   <Select
                     options={ruleOpt}
