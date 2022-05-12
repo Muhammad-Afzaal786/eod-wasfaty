@@ -20,6 +20,8 @@ import { SC } from "./Heloper/Apicall/ServerCall";
 import { login, loginUser } from "./Heloper/Apicall/endPoints";
 import { X } from "react-feather";
 import { errorHandle } from "./Heloper/Action/ErrorHandle";
+import PowerBy from "./Heloper/PowerBy";
+
 const Login = () => {
   const navigate = useNavigate();
   const [validation, setValidation] = useState(false);
@@ -75,132 +77,115 @@ const Login = () => {
   };
 
   return (
-    // <div className="loginMain">
-    //   <Row className="bg-primary w-50 d-flex justify-content-center align-item-center">
-    //     <Col lg="6">
-    //       <Card>
-    //         <CardHeader>
-    //           <CardTitle>gdfgdg</CardTitle>
-    //         </CardHeader>
-    //       </Card>
-    //     </Col>
-    //   </Row>
-    // </div>
-    <div className="app-content content ">
-      <div className="content-wrapper">
-        <Row className="auth-inner py-2 content-header  ">
-          <Col className="mx-auto " lg="4" sm="12">
-            <div className="content-header row ">
-              <div className="content-body">
-                <div className="auth-wrapper auth-v1 px-2">
-                  <div className="auth-inner my-auto">
-                    <div className="card-header ">
-                      <Col className="px-xl-2 mx-auto " sm="8" md="6" lg="12">
-                        <div className="card mb-0 bg-blue">
-                          <div className="card-header">
-                            <CardTitle tag="h2" className="fw-bold mb-1 ">
-                              <img
-                                src={logo}
-                                className="img-fluid "
-                                alt="mot-logo"
-                              />
-                            </CardTitle>
+    <Row className="loginMain">
+      <Col className="mx-auto " lg="4" sm="12">
+        <div className="content-header row ">
+          <div className="content-body">
+            <div>
+              <div>
+                <div className="card-header ">
+                  <Col className="px-xl-2 mx-auto " sm="8" md="6" lg="12">
+                    <div className="card mb-0 ">
+                      <div className="card-header">
+                        <CardTitle tag="h2" className="fw-bold mb-1 ">
+                          <img
+                            src={logo}
+                            className="img-fluid "
+                            alt="mot-logo"
+                          />
+                        </CardTitle>
+                      </div>
+                      <div className="card-body">
+                        <Alert color="danger" isOpen={validation}>
+                          <div className="alert-body">
+                            <X
+                              size={15}
+                              onClick={() => setValidation(false)}
+                              className="curser-pointer"
+                            />
+                            <span>{error}</span>
                           </div>
-                          <div className="card-body">
-                            <Alert color="danger" isOpen={validation}>
-                              <div className="alert-body">
-                                <X
-                                  size={15}
-                                  onClick={() => setValidation(false)}
-                                  className="curser-pointer"
-                                />
-                                <span>{error}</span>
-                              </div>
-                            </Alert>
-                            <CardText>
-                              <h4 className="card-title mb-1">
-                                Welcome to EOD-MOT 👋
-                              </h4>
-                              <p className="card-text">
-                                Please sign-in to your account and start the
-                                adventure
-                              </p>{" "}
-                            </CardText>
-                            <div className="">
-                              <Form
-                                className="auth-login-form mt-2 "
-                                onSubmit={handleSubmit}
-                              >
-                                <div className="mb-1">
-                                  <Label className="form-label" for="email">
-                                    Email
-                                  </Label>
-                                  <Input
-                                    type="email"
-                                    id="email"
-                                    placeholder="john@example.com"
-                                    required
-                                    autoFocus
-                                    onChange={handleChange}
-                                    value={formData.email}
-                                  />
-                                </div>
-                                <div className="mb-1">
-                                  <div className="d-flex justify-content-between">
-                                    <Label
-                                      className="form-label"
-                                      for="password"
-                                    >
-                                      Password
-                                    </Label>
-                                    <Link to="#">
-                                      <small>Forgot Password?</small>
-                                    </Link>
-                                  </div>
-                                  <InputPasswordToggle
-                                    onChange={handleChange}
-                                    value={formData.password}
-                                    className="input-group-merge"
-                                    id="password"
-                                    required
-                                  />
-                                </div>
-                                <div className="form-check mb-1">
-                                  <Input
-                                    type="checkbox"
-                                    onChange={handleChange}
-                                    value={formData.remember}
-                                  />
-                                  <Label className="form-check-label">
-                                    Remember Me
-                                  </Label>
-                                </div>
-                                <Button color="primary" block>
-                                  Sign in
-                                </Button>
-                                <Button
-                                  tag={Link}
-                                  to="/register"
-                                  color="success"
-                                  block
-                                  className="mt-1"
-                                >
-                                  Register
-                                </Button>
-                              </Form>
-                            </div>
-                          </div>
+                        </Alert>
+                        <div className="d-flex flex-column">
+                          <h4 className="">Welcome to EOD-MOT 👋</h4>
+                          <p className="card-text">
+                            Please sign-in to your account and start the
+                            adventure
+                          </p>
                         </div>
-                      </Col>
+                        <div className="">
+                          <Form
+                            className="auth-login-form mt-2 "
+                            onSubmit={handleSubmit}
+                          >
+                            <div className="mb-1">
+                              <Label className="form-label" for="email">
+                                Email
+                              </Label>
+                              <Input
+                                type="email"
+                                id="email"
+                                placeholder="john@example.com"
+                                required
+                                autoFocus
+                                onChange={handleChange}
+                                value={formData.email}
+                              />
+                            </div>
+                            <div className="mb-1">
+                              <div className="d-flex justify-content-between">
+                                <Label className="form-label" for="password">
+                                  Password
+                                </Label>
+                                <Link to="#">
+                                  <small>Forgot Password?</small>
+                                </Link>
+                              </div>
+                              <InputPasswordToggle
+                                onChange={handleChange}
+                                value={formData.password}
+                                className="input-group-merge"
+                                id="password"
+                                required
+                              />
+                            </div>
+                            <div className="form-check mb-1">
+                              <Input
+                                type="checkbox"
+                                onChange={handleChange}
+                                value={formData.remember}
+                              />
+                              <Label className="form-check-label">
+                                Remember Me
+                              </Label>
+                            </div>
+                            <Button color="primary" block>
+                              Sign in
+                            </Button>
+                            <Button
+                              tag={Link}
+                              to="/register"
+                              color="success"
+                              block
+                              className="mt-1"
+                            >
+                              Register
+                            </Button>
+                          </Form>
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                    <div className="d-flex justify-content-center w-100 mt-1">
+                      <PowerBy textClass={"customPowerTitle"} />
+                    </div>
+                  </Col>
                 </div>
               </div>
             </div>
-          </Col>
-        </Row>
-      </div>
-    </div>
+          </div>
+        </div>
+      </Col>
+    </Row>
   );
 };
 

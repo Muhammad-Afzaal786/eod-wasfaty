@@ -9,6 +9,7 @@ import SideBarImg from "./sideBar-Image.jpg";
 import VerticalMenuHeader from "./VerticalMenuHeader";
 import VerticalNavMenuItems from "./VerticalNavMenuItems";
 // import bottomPattern from "../../../../../assets/images/pages/patern.svg";
+import PowerBy from "../../../../../views/Heloper/PowerBy";
 const Sidebar = (props) => {
   // ** Props
   const { menuCollapsed, menu, skin, menuData } = props;
@@ -103,7 +104,7 @@ const Sidebar = (props) => {
               </ul>
               <ul>
                 <div
-                  className="SideBottom w-100 "
+                  className="SideBottom w-100  "
                   style={{
                     backgroundImage: `url(${SideImage})`,
                     backgroundPosition: "center",
@@ -113,11 +114,9 @@ const Sidebar = (props) => {
                     height: "40%",
                   }}
                 >
-                  {/* <img
-                    src={SideImage}
-                    alt="bottomImage"
-                    className="h-100 w-100 img-fluid "
-                  /> */}
+                  <div className="sidePowerBy">
+                    <PowerBy />
+                  </div>
                 </div>
               </ul>
             </PerfectScrollbar>
