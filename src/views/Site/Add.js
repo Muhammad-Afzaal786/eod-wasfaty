@@ -58,6 +58,8 @@ const Add = () => {
     SC.getCall(site_show + "/" + id).then((res) => {
       if (res.status === 200 && res.data) {
         let rowData = res.data?.data[0];
+        console.log("cityID",rowData.regionId)
+        console.log("regionID",rowData.cityId)
         setData({
           licenseNumber: rowData.licenseNumber,
           licienceType: rowData.licienceType,
@@ -83,8 +85,8 @@ const Add = () => {
           facilityTypeAr: rowData.facilityTypeAr,
           classificationAr: rowData.classificationAr,
           classificationEn: rowData.classificationEn,
-          regionId: rowData.regionId,
-          cityId: rowData.cityId,
+          regionId: rowData.region,
+          cityId: rowData.city,
         });
       }
     });
@@ -150,8 +152,8 @@ const getCity = () => {
       facilityTypeAr: data.facilityTypeAr,
       classificationAr: data.classificationAr,
       classificationEn: data.classificationEn,
-      regionId: data.regionId,
-      cityId: data.cityId,
+      regionId: data.regionId._id,
+      cityId: data.cityId._id,
     };
 
     if (
@@ -812,11 +814,13 @@ const getCity = () => {
                 <Col lg="12">
                   <Label>
                     <FormattedMessage id={"Region"} defaultMessage="Region" />
+                    <strong className="text-danger">*</strong>
                   </Label>
                   <Select
                     name="regionId"
                     options={region}
                     className="react-select"
+                    menuPlacement="top"
                     classNamePrefix="select"
                     getOptionLabel={(Opt) => Opt.name}
                     getOptionValue={(Opt) => Opt._id}
@@ -840,6 +844,7 @@ const getCity = () => {
                     name="cityId"
                     options={city}
                     className="react-select"
+                    menuPlacement="top"
                     classNamePrefix="select"
                     getOptionLabel={(Opt) => Opt.name}
                     getOptionValue={(Opt) => Opt._id}
