@@ -1,9 +1,10 @@
 // ** React Imports
-import { Fragment, useEffect, useState } from "react";
+import { useContext,Fragment, useEffect, useState } from "react";
 
 // ** Utils
 import { isObjEmpty } from "@utils";
-
+import { FormattedMessage } from "react-intl";
+import { IntlContext } from "../../../utility/context/Internationalization";
 // ** Third Party Components
 import * as yup from "yup";
 import { useForm, Controller } from "react-hook-form";
@@ -39,6 +40,7 @@ const AccountDetails = ({
   const [region, setRegion] = useState([]);
   const [city, setCity] = useState([]);
   const [site, setSite] = useState([]);
+  let context = useContext(IntlContext);
 
   useEffect(() => {
     getSite();
@@ -159,7 +161,9 @@ const AccountDetails = ({
           </Col> */}
           <Col lg="12">
             <Label>
-              Tourism License number <strong className="text-danger">*</strong>
+            <FormattedMessage id={"Tourism License number"} defaultMessage="Tourism License number" />
+
+             <strong className="text-danger">*</strong>
             </Label>
             <Select
               options={site}
@@ -181,7 +185,8 @@ const AccountDetails = ({
         <Row className="mt-1">
           <div className="d-flex justify-content-between">
             <span className="switchLabel">
-              Is the inspector have a relationship the owner of the facility? *
+            <FormattedMessage id={"Is the inspector have a relationship the owner of the facility?"} defaultMessage="Is the inspector have a relationship the owner of the facility?" />
+              *
             </span>
             <SwitchIcons
               handleChange={handleChange}
@@ -194,7 +199,9 @@ const AccountDetails = ({
         <Row className="mt-1">
           <Col lg="12">
             <Label>
-              Longitude <strong className="text-danger">*</strong>
+            <FormattedMessage id={"Longitude"} defaultMessage="Longitude" />
+
+               <strong className="text-danger">*</strong>
             </Label>
             <Input
               type="number"
@@ -214,7 +221,9 @@ const AccountDetails = ({
         <Row className="mt-1">
           <Col lg="12">
             <Label>
-              Latitude <strong className="text-danger">*</strong>
+            <FormattedMessage id={"Latitude"} defaultMessage="Latitude" />
+
+              <strong className="text-danger">*</strong>
             </Label>
             <Input
               type="number"
@@ -240,14 +249,16 @@ const AccountDetails = ({
               className="p-50"
               onClick={() => getLocation()}
             >
-              Get Coordinates
+              {context.locale === "sa" ? "احصل على إحداثيات" : "Get Coordinates" }
             </Button>
           </Col>
         </Row>
         <Row className="mt-1">
           <Col lg="12">
             <Label>
-              Remarks <strong className="text-danger">*</strong>
+            <FormattedMessage id={"Remarks"} defaultMessage="Remarks" />
+              
+            <strong className="text-danger">*</strong>
             </Label>
             <Input
               value={data.remarks}

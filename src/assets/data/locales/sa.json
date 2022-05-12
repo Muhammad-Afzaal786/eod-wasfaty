@@ -41,6 +41,19 @@
   "Classification (En)":"التصنيف (بالإنجليزية)",
   "Region":"منطقة",
   "City":"مدينة",
+  "EOD Operation Form":"نموذج عملية التخلص من الذخائر المتفجرة",
+  "Is the inspector have a relationship the owner of the facility?":"هل للمفتش علاقة بصاحب المنشأة؟",
+  "Tourism License number":"رقم الرخصة السياحية",
+  "Remarks":"ملاحظات",
+  "Is the facility working":"هل المرفق يعمل",
+  "Reasons for not working":"أسباب عدم العمل",
+  "Picture if the facility not working":"صورة إذا كان المرفق لا يعمل",
+  "A picture of the building showing the sign, the commercial name and the main entrance":"صورة للمبنى توضح اللافتة والاسم التجاري والمدخل الرئيسي",
+  "Have you been notified of registration in the calendar tourism licensing platform within the specified period of 4 days?":"هل تم إخطارك بالتسجيل في منصة التراخيص السياحية التقويمية خلال الفترة المحددة البالغة 4 أيام؟",
+  "Reasons for not notifying the facility of registration in the tourism licensing platform":"أسباب عدم إخطار المنشأة بالتسجيل في منصة التراخيص السياحية",
+  "Was the facility provided with the registration link and update method?":"هل تم تزويد المنشأة برابط التسجيل وطريقة التحديث؟",
+  "Is the tourist license valid?":"هل الرخصة السياحية سارية المفعول؟",
   "":""
+
   
 }

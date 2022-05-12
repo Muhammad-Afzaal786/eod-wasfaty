@@ -1,11 +1,12 @@
 // ** React Imports
-import { Fragment } from "react";
+import { useContext,Fragment } from "react";
 
 // ** Third Party Components
 import Select from "react-select";
 import { useForm, Controller } from "react-hook-form";
 import { ArrowLeft, ArrowRight } from "react-feather";
-
+import { FormattedMessage } from "react-intl";
+import { IntlContext } from "../../../utility/context/Internationalization";
 // ** Utils
 import { selectThemeColors } from "@utils";
 
@@ -34,6 +35,7 @@ const PersonalInfo = ({
 }) => {
   // ** Hooks
   const { handleSubmit } = useForm();
+  let context = useContext(IntlContext);
 
   const onSubmit = () => {
     if (data.facility_working) {
@@ -102,7 +104,7 @@ const PersonalInfo = ({
           <Row className="mt-1">
             <div className="d-flex justify-content-between">
               <Label className="switchLabel">
-                Is the facility working
+              <FormattedMessage id={"Is the facility working"} defaultMessage="Is the facility working" />
                 <strong className="text-danger"> *</strong>
               </Label>
 

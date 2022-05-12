@@ -1,4 +1,4 @@
-import React, { Fragment, useRef } from "react";
+import React, { useContext,Fragment, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Card, CardBody } from "reactstrap";
@@ -6,10 +6,13 @@ import { site_index } from "../Heloper/Apicall/endPoints";
 import { SC } from "../Heloper/Apicall/ServerCall";
 import { SiteCol, userCol } from "../Heloper/Columns";
 import Pagination from "../Heloper/Components/Pagination";
+import { IntlContext } from "../../utility/context/Internationalization";
+
 
 const SiteList = () => {
   const pagination = useRef();
   const deleteOpt = useSelector((state) => state.layout.deleteAction);
+  const context = useContext(IntlContext)
 
   const navigate = useNavigate();
   const paginationCall = (data) => {
@@ -35,7 +38,7 @@ const SiteList = () => {
         endPoint={site_index}
         // selectMulti
         // activateUser
-        title="SiteList"
+        title={context.locale === "sa" ? "قائمة المواقع" : "Site List" }
       />
     </Fragment>
   );
