@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 // ** Icons Imports
 import { Facebook, Twitter, Mail, GitHub, LogOut } from "react-feather";
+import AscendBlack from "../assets/images/icons/PowerLogo.png";
+
 // ** Custom Components
 import InputPasswordToggle from "@components/input-password-toggle";
 // ** Reactstrap Imports
@@ -161,7 +163,7 @@ const Register = () => {
           </div>
         </div>
         <div className="d-flex justify-content-center w-100  ">
-          <PowerBy textClass={"customPowerTitle"} />
+          <PowerBy textClass={"customPowerTitle"} icons={AscendBlack} />
         </div>
       </Col>
     </Row>
