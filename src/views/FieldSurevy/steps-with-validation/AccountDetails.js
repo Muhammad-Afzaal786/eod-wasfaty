@@ -275,7 +275,7 @@ const AccountDetails = ({
         <div className="d-flex justify-content-end mt-1">
           <Button type="submit" color="primary" className="btn-next">
             <span className="align-middle d-sm-inline-block d-none">
-              {!data.inspectorRelation ? "Save & Continue" : "Submit"}
+              {!data.inspectorRelation  ? context.locale === "sa" ? "حفظ ومتابعة" : "Save & Continue"  : context.locale === "sa" ? "إرسال" : "Submit"}
             </span>
             {/* <ArrowRight
               size={14}

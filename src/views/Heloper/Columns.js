@@ -6,7 +6,7 @@ import PDFModal from "./PDFView/PDFModal";
 
 export const userCol = [
   {
-    Header: "NAME",
+    Header: <FormattedMessage id={"NAME"} defaultMessage="NAME" />,
     accessor: "name",
     sortable: false,
     Cell: ({ row }) => {
@@ -18,7 +18,7 @@ export const userCol = [
     },
   },
   {
-    Header: "FATHER NAME",
+    Header: <FormattedMessage id={"FATHER NAME"} defaultMessage="FATHER NAME" />,
     accessor: "father_name",
     sortable: false,
     Cell: ({ row }) => {
@@ -31,7 +31,7 @@ export const userCol = [
   },
 
   {
-    Header: "FAMILY NAME",
+    Header: <FormattedMessage id={"FAMILY NAME"} defaultMessage="FAMILY NAME" />,
     accessor: "family_name",
     sortable: false,
     Cell: ({ row }) => {
@@ -43,7 +43,7 @@ export const userCol = [
     },
   },
   {
-    Header: "EMAIL",
+    Header: <FormattedMessage id={"EMAIL"} defaultMessage="EMAIL" />,
     accessor: "email",
     sortable: false,
     Cell: ({ row }) => {
@@ -55,7 +55,7 @@ export const userCol = [
     },
   },
   {
-    Header: "TYPE",
+    Header: <FormattedMessage id={"TYPE"} defaultMessage="TYPE" />,
     accessor: "type",
     sortable: false,
     Cell: ({ row }) => {
@@ -67,7 +67,7 @@ export const userCol = [
     },
   },
   {
-    Header: "ACTION",
+    Header: <FormattedMessage id={"ACTION"} defaultMessage="ACTION" />,
     accessor: "_id",
     sortable: false,
     Cell: ({ row }) => {
@@ -89,7 +89,7 @@ export const userCol = [
 //region list column
 export const regionCol = [
   {
-    Header: "NAME(en)",
+    Header: <FormattedMessage id={"NAME (En)"} defaultMessage="NAME (En)" />,
     accessor: "name",
     sortable: false,
     Cell: ({ row }) => {
@@ -101,7 +101,7 @@ export const regionCol = [
     },
   },
   {
-    Header: "NAME(Ar)",
+    Header:<FormattedMessage id={"NAME(Ar)"} defaultMessage="NAME(Ar)" /> ,
     accessor: "father_name",
     sortable: false,
     Cell: ({ row }) => {
@@ -113,7 +113,7 @@ export const regionCol = [
     },
   },
   {
-    Header: "ACTION",
+    Header: <FormattedMessage id={"ACTION"} defaultMessage="ACTION" />,
     accessor: "_id",
     sortable: false,
     Cell: ({ row }) => {
@@ -136,7 +136,7 @@ export const regionCol = [
 // Site Columns
 export const SiteCol = [
   {
-    Header: "Owner Name",
+    Header: <FormattedMessage id={"Owner Name"} defaultMessage="Owner Name" />,
     accessor: "ownerName",
     sortable: false,
     Cell: ({ row }) => {
@@ -148,7 +148,7 @@ export const SiteCol = [
     },
   },
   {
-    Header: "Email",
+    Header: <FormattedMessage id={"Email"} defaultMessage="Email" />,
     accessor: "email",
     sortable: false,
     Cell: ({ row }) => {
@@ -160,7 +160,7 @@ export const SiteCol = [
     },
   },
   {
-    Header: "ACTION",
+    Header: <FormattedMessage id={"ACTION"} defaultMessage="ACTION" />,
     accessor: "_id",
     sortable: false,
     Cell: ({ row }) => {

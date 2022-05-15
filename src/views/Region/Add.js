@@ -172,7 +172,10 @@ const AddRegion = () => {
 
               <Row>
                 <div className="mt-1">
-                  <Button color="primary">Submit</Button>
+                  <Button color="primary">
+                  {context.locale === "sa" ? "إرسال" : "Submit" }
+                    
+                    </Button>
                 </div>
               </Row>
             </Form>

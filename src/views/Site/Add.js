@@ -189,12 +189,12 @@ const Add = () => {
             <CardTitle className="text-white">
             {params.id ? (
                 <FormattedMessage
-                  id={"Update Site"}
+                  id={"Update site"}
                   defaultMessage="Update site"
                 />
               ) : (
                 <FormattedMessage
-                  id={"Create Site"}
+                  id={"Create site"}
                   defaultMessage="Create site"
                 />
               )}
@@ -819,7 +819,10 @@ const Add = () => {
 
               <Row>
                 <div className="mt-1">
-                  <Button color="primary">Submit</Button>
+                  <Button color="primary">
+                  {context.locale === "sa" ? "إرسال" : "Submit" }
+                    
+                  </Button>
                 </div>
               </Row>
             </Form>

@@ -1,11 +1,12 @@
 // ** React Imports
-import { Fragment, useState } from "react";
+import { useContext,Fragment, useState } from "react";
 
 // ** Third Party Components
 import { useForm, Controller } from "react-hook-form";
 import { ArrowLeft, ArrowRight } from "react-feather";
 import cloneDeep from "clone-deep";
-
+import { FormattedMessage } from "react-intl";
+import { IntlContext } from "../../../utility/context/Internationalization";
 // ** Reactstrap Imports
 import { Label, Row, Col, Button, Form, Input, FormFeedback } from "reactstrap";
 import Violation from "../Violation";
@@ -29,6 +30,7 @@ const Address = ({
   // ** Hooks
   const { handleSubmit } = useForm();
   const [field, setField] = useState([initField]);
+  let context = useContext(IntlContext);
   //handle inputs value
   const handleChange = (index, key, fValue) => {
     let fieldTmp = cloneDeep(field);
@@ -95,7 +97,7 @@ const Address = ({
             className="align-middle me-sm-25 me-0"
           ></ArrowLeft>
           <span className="align-middle d-sm-inline-block d-none">
-            Previous
+          {context.locale === "sa" ? "سابق" : "Previous" }
           </span>
         </Button>
         <Button
@@ -104,7 +106,7 @@ const Address = ({
           className="btn-next"
           onClick={() => onSubmit()}
         >
-          <span className="align-middle d-sm-inline-block d-none">Submit</span>
+          <span className="align-middle d-sm-inline-block d-none">{context.locale === "sa" ? "إرسال" : "Submit" }</span>
           {/* <ArrowRight
             size={14}
             className="align-middle ms-sm-25 ms-0"

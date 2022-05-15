@@ -294,7 +294,8 @@ const Add = () => {
               <Row>
                 <div className="mt-1">
                   <Button color="primary" type="submit">
-                    Submit
+                  {context.locale === "sa" ? "إرسال" : "Submit" }
+                
                   </Button>
                 </div>
               </Row>

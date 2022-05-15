@@ -1,4 +1,4 @@
-import React, { useContext,useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Col, Input, Label } from "reactstrap";
 import Select, { components } from "react-select";
 import cloneDeep from "clone-deep";
@@ -77,7 +77,11 @@ const Violation = (props) => {
         <React.Fragment key={index}>
           <div className="d-flex justify-content-between mt-1">
             <Label>
-              Is there a violation<strong className="text-danger">*</strong>
+              <FormattedMessage
+                id={"Is there a violation"}
+                defaultMessage="Is there a violation"
+              />
+              <strong className="text-danger">*</strong>
             </Label>
 
             <div className="form-switch form-check-success">
@@ -102,7 +106,11 @@ const Violation = (props) => {
             <React.Fragment key={index}>
               <Col lg="12 mb-1">
                 <Label>
-                  violation items<strong className="text-danger">*</strong>
+                  <FormattedMessage
+                    id={"violation items"}
+                    defaultMessage="violation items"
+                  />
+                  <strong className="text-danger">*</strong>
                 </Label>
                 <Select
                   options={itemOpt}
@@ -126,6 +134,10 @@ const Violation = (props) => {
               {item.violation_item === "other" && (
                 <Col lg="12 mb-1">
                   <Label>
+                    <FormattedMessage
+                      id={"Violation clause (Explanation of the violation)"}
+                      defaultMessage="Violation clause (Explanation of the violation)"
+                    />
                     Violation clause (Explanation of the violation)
                     <strong className="text-danger">*</strong>
                   </Label>
@@ -153,7 +165,11 @@ const Violation = (props) => {
               )}
               <Col lg="12 mb-1">
                 <Label>
-                  violation picture
+                  <FormattedMessage
+                    id={"violation picture"}
+                    defaultMessage="violation picture"
+                  />
+
                   <strong className="text-danger">*</strong>
                 </Label>
                 <FileUploader
@@ -176,7 +192,7 @@ const Violation = (props) => {
       <Col lg="12" className="mb-2">
         <div>
           <Button color="primary" type="button" onClick={() => addField()}>
-            Add Violation
+            {context.locale === "sa" ? "أضف الانتهاك" : "Add Violation"}
           </Button>
         </div>
       </Col>
@@ -184,7 +200,11 @@ const Violation = (props) => {
         <>
           <Col lg="12 mb-2">
             <Label>
-              violation Number<strong className="text-danger">*</strong>
+              <FormattedMessage
+                id={"violation Number"}
+                defaultMessage="violation Number"
+              />
+              <strong className="text-danger">*</strong>
             </Label>
             <Input
               type="number"
@@ -206,7 +226,12 @@ const Violation = (props) => {
           </Col>
           <Col lg="12 mb-2">
             <Label>
-              Record Picture<strong className="text-danger">*</strong>
+              <FormattedMessage
+                id={"Record Picture"}
+                defaultMessage="Record Picture"
+              />
+
+              <strong className="text-danger">*</strong>
             </Label>
             <FileUploader
               handleChange={props.handleChange}

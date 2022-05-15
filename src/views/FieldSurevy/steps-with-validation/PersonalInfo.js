@@ -149,7 +149,7 @@ const PersonalInfo = ({
           <Row className="mt-1">
             <Col lg="12" className="mb-1">
               <Label className="mb-50">
-                Picture if the facility not working
+              <FormattedMessage id={"Picture if the facility not working"} defaultMessage="Picture if the facility not working" />
                 <strong className="text-danger">*</strong>
               </Label>
               <FileUploader
@@ -231,9 +231,8 @@ const PersonalInfo = ({
             <div className="d-flex justify-content-between mb-1">
               <Label className="switchLabel">
               <FormattedMessage id={
-                "Was the facility provided with the registration link and update method? "
-                } defaultMessage="Was the facility provided with the registration link and update
-                method?" />
+                "Was the facility provided with the registration link and update method?"
+                } defaultMessage="Was the facility provided with the registration link and updat method?" />
                 <strong className="text-danger"> *</strong>
               </Label>
               <SwitchIcons
@@ -245,7 +244,10 @@ const PersonalInfo = ({
 
             <div className="d-flex justify-content-between">
               <Label className="switchLabel">
-                Is the tourist license valid?{" "}
+              <FormattedMessage id={
+                "Is the tourist license valid?"
+                } defaultMessage="Is the tourist license valid?" />
+               
                 <strong className="text-danger"> *</strong>
               </Label>
               <SwitchIcons
@@ -331,7 +333,7 @@ const PersonalInfo = ({
               <FormattedMessage id={
                 "Commercial Registration No."
                 } defaultMessage="Commercial Registration No." />
-                Commercial Registration No.</Label>
+               </Label>
               <Input
                 type="number"
                 value={data.registration_no}
@@ -342,7 +344,9 @@ const PersonalInfo = ({
             </Col>
             <Col lg="12 mb-1">
               <Label className="mb-50">
-                Commercial Registration Image{" "}
+              <FormattedMessage id={
+                "Commercial Registration Image"
+                } defaultMessage="Commercial Registration Image" />
                 <strong className="text-danger"> *</strong>{" "}
               </Label>
               <FileUploader
@@ -357,7 +361,13 @@ const PersonalInfo = ({
             </Col>
 
             <Col lg="12 mb-2">
-              <Label>Facility Mobile number</Label>
+
+              <Label>
+
+              <FormattedMessage id={
+                "Facility Mobile number"
+                } defaultMessage="Facility Mobile number" />
+              </Label>
               <Input
                 type="number"
                 value={data.Facility_Mobile_number}
@@ -368,7 +378,12 @@ const PersonalInfo = ({
             </Col>
 
             <Col lg="12 mb-2">
-              <Label>Facility number</Label>
+              <Label>
+              <FormattedMessage id={
+                "Facility number"
+                } defaultMessage="Facility number" />
+
+              </Label>
               <Input
                 type="number"
                 value={data.facility_number}
@@ -379,7 +394,12 @@ const PersonalInfo = ({
             </Col>
 
             <Col lg="12 mb-2">
-              <Label>facility email</Label>
+              <Label>
+
+              <FormattedMessage id={
+                "facility email"
+                } defaultMessage="facility email" />
+              </Label>
               <Input
                 type="email"
                 value={data.facility_email}
@@ -389,7 +409,10 @@ const PersonalInfo = ({
 
             <Col lg="12 mb-2">
               <Label>
-                Facility Room Number
+              <FormattedMessage id={
+                "Facility Room Number"
+                } defaultMessage="Facility Room Number" />
+                
                 <strong className="text-danger">*</strong>
               </Label>
               <Input
@@ -411,7 +434,10 @@ const PersonalInfo = ({
 
             <Col lg="12 mb-2">
               <Label>
-                Tourist license copy?
+                
+                <FormattedMessage id={
+                "Tourist license copy?"
+                } defaultMessage="Tourist license copy?" />
                 <strong className="text-danger"> * </strong>
               </Label>
               <FileUploader
@@ -427,7 +453,10 @@ const PersonalInfo = ({
 
             <Col lg="12 mb-2">
               <Label>
-                Municipal license picture
+              <FormattedMessage id={
+                "Municipal license picture"
+                } defaultMessage="Municipal license picture" />
+               
                 <strong className="text-danger">*</strong>
               </Label>
               <FileUploader
@@ -443,7 +472,10 @@ const PersonalInfo = ({
 
             <Col lg="12 mb-2">
               <Label>
-                the civil defense license picture
+              <FormattedMessage id={
+                "the civil defense license picture"
+                } defaultMessage="the civil defense license picture" />
+                
                 <strong className="text-danger">* </strong>
               </Label>
               <FileUploader
@@ -477,7 +509,7 @@ const PersonalInfo = ({
           </Button>
           <Button type="submit" color="primary" className="btn-next">
             <span className="align-middle d-sm-inline-block d-none">
-              {data.facility_working ? "Save & Continue" : "Submit"}
+              {data.facility_working ? context.locale === "sa" ? "حفظ ومتابعة" : "Save & Continue"  : context.locale === "sa" ? "إرسال" : "Submit"}
             </span>
             {/* <ArrowRight
               size={14}
