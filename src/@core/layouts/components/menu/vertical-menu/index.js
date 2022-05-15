@@ -1,7 +1,7 @@
 // ** React Imports
 import { Fragment, useState, useRef } from "react";
 // ** Third Party Components
-import PowerPic from "../../../../../assets/images/icons/PowerLogo.png";
+import PowerPic from "../../../../../assets/images/logo/footer-1.svg";
 import classnames from "classnames";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import SideImage from "./BottomPic.svg";
@@ -116,7 +116,7 @@ const Sidebar = (props) => {
                   }}
                 >
                   <div className="sidePowerBy">
-                    <PowerBy  icons={PowerPic}/>
+                    <PowerBy icons={PowerPic} />
                   </div>
                 </div>
               </ul>
