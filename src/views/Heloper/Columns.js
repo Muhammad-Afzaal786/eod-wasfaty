@@ -6,7 +6,7 @@ import PDFModal from "./PDFView/PDFModal";
 
 export const userCol = [
   {
-    Header: "NAME",
+    Header: "Name",
     accessor: "name",
     sortable: false,
     Cell: ({ row }) => {
@@ -18,7 +18,7 @@ export const userCol = [
     },
   },
   {
-    Header: "FATHER NAME",
+    Header: "Father name",
     accessor: "father_name",
     sortable: false,
     Cell: ({ row }) => {
@@ -31,7 +31,7 @@ export const userCol = [
   },
 
   {
-    Header: "FAMILY NAME",
+    Header: "Family name",
     accessor: "family_name",
     sortable: false,
     Cell: ({ row }) => {
@@ -43,7 +43,7 @@ export const userCol = [
     },
   },
   {
-    Header: "EMAIL",
+    Header: "Email",
     accessor: "email",
     sortable: false,
     Cell: ({ row }) => {
@@ -55,7 +55,7 @@ export const userCol = [
     },
   },
   {
-    Header: "TYPE",
+    Header: "Type",
     accessor: "type",
     sortable: false,
     Cell: ({ row }) => {
@@ -67,7 +67,7 @@ export const userCol = [
     },
   },
   {
-    Header: "ACTION",
+    Header: "Action",
     accessor: "_id",
     sortable: false,
     Cell: ({ row }) => {
@@ -89,7 +89,7 @@ export const userCol = [
 //region list column
 export const regionCol = [
   {
-    Header: "NAME(en)",
+    Header: "Name(en)",
     accessor: "name",
     sortable: false,
     Cell: ({ row }) => {
@@ -101,7 +101,7 @@ export const regionCol = [
     },
   },
   {
-    Header: "NAME(Ar)",
+    Header: "Name(Ar)",
     accessor: "father_name",
     sortable: false,
     Cell: ({ row }) => {
@@ -113,7 +113,7 @@ export const regionCol = [
     },
   },
   {
-    Header: "ACTION",
+    Header: "Action",
     accessor: "_id",
     sortable: false,
     Cell: ({ row }) => {
@@ -160,7 +160,7 @@ export const SiteCol = [
     },
   },
   {
-    Header: "ACTION",
+    Header: "Action",
     accessor: "_id",
     sortable: false,
     Cell: ({ row }) => {
@@ -182,7 +182,7 @@ export const SiteCol = [
 //field survey columns
 export const fieldSurveyCol = [
   {
-    Header: "INSPECTOR NAME",
+    Header: "Inspector name",
     accessor: "name",
     sortable: false,
     Cell: ({ row }) => {
@@ -194,7 +194,7 @@ export const fieldSurveyCol = [
     },
   },
   {
-    Header: "INSPECTOR ADDRESS",
+    Header: "Inspector address",
     accessor: "name",
     sortable: false,
     Cell: ({ row }) => {
@@ -214,7 +214,7 @@ export const fieldSurveyCol = [
     },
   },
   {
-    Header: "TOURISM LICENSE NUMBER",
+    Header: "Tourism license number",
     accessor: "number",
     sortable: false,
     Cell: ({ row }) => {
@@ -226,7 +226,7 @@ export const fieldSurveyCol = [
     },
   },
   {
-    Header: "SUBMISSION AT",
+    Header: "Submission at",
     accessor: "create_at",
     sortable: false,
     Cell: ({ row }) => {
@@ -238,7 +238,7 @@ export const fieldSurveyCol = [
     },
   },
   {
-    Header: "ACTION",
+    Header: "Action",
     accessor: "_id",
     sortable: false,
     show: false,
@@ -259,7 +259,7 @@ export const fieldSurveyCol = [
   },
   {
     Header: (
-      <FormattedMessage id={"Export AS PDF"} defaultMessage="Export as Pdf" />
+      <FormattedMessage id={"Export as Pdf"} defaultMessage="Export as Pdf" />
     ),
     accessor: "_id",
     Cell: ({ row }) => {

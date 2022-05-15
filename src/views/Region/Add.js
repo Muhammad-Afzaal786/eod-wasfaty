@@ -1,4 +1,4 @@
-import React, { useContext,useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import {
   Button,
   Card,
@@ -24,10 +24,11 @@ import {
 import { SC } from "../Heloper/Apicall/ServerCall";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import { isUserLoggedIn } from "@utils";
 import { FormattedMessage } from "react-intl";
 import { IntlContext } from "../../utility/context/Internationalization";
+import { hasRule } from "../Heloper/HasRule";
 
 const AddRegion = () => {
   const [data, setData] = useState(regionCreateObj);
@@ -35,7 +36,6 @@ const AddRegion = () => {
   const navigate = useNavigate();
   const params = useParams();
   let context = useContext(IntlContext);
-
 
   useEffect(() => {
     if (params.id) {
@@ -106,21 +106,21 @@ const AddRegion = () => {
       }
     }
   };
-  if (isUserLoggedIn) {
+  if (isUserLoggedIn() && hasRule() === "admin") {
     return (
       <React.Fragment>
         <Card>
           <CardHeader className="bg-primary">
             <CardTitle className="text-white">
-            {params.id ? (
+              {params.id ? (
                 <FormattedMessage
-                  id={"Update Region"}
-                  defaultMessage="Update Region"
+                  id={"Update region"}
+                  defaultMessage="Update region"
                 />
               ) : (
                 <FormattedMessage
-                  id={"Create Region"}
-                  defaultMessage="Create Region"
+                  id={"Create region"}
+                  defaultMessage="Create region"
                 />
               )}
             </CardTitle>
@@ -130,12 +130,17 @@ const AddRegion = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"Name(En)"} defaultMessage="Name(En)" />
-                   <strong className="text-danger">*</strong>
+                    <FormattedMessage
+                      id={"Name(En)"}
+                      defaultMessage="Name(En)"
+                    />
+                    <strong className="text-danger">*</strong>
                   </Label>
                   <Input
                     placeholder={
-                      context.locale === "sa" ? "الاسم (بالإنجليزية)" : "name (En)"
+                      context.locale === "sa"
+                        ? "الاسم (بالإنجليزية)"
+                        : "name (En)"
                     }
                     value={data.name_en}
                     onChange={(e) => handleChange("name_en", e.target.value)}
@@ -151,7 +156,10 @@ const AddRegion = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"Name(Ar)"} defaultMessage="Name(Ar)" />
+                    <FormattedMessage
+                      id={"Name(Ar)"}
+                      defaultMessage="Name(Ar)"
+                    />
                     <strong className="text-danger">*</strong>
                   </Label>
                   <Input

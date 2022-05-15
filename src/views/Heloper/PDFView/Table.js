@@ -119,9 +119,13 @@ const Table = ({ rowData }) => {
             <Text>Location Coordinates</Text>
           </View>
           <View style={styles.right}>
-            <View>
-              <Text>Longitude:{rowData?.site?.longitude}</Text>
-              <Text>Latitude:{rowData?.site?.latitude}</Text>
+            <View style={styles.location}>
+              <View>
+                <Text>Longitude:{rowData?.site?.longitude}</Text>
+              </View>
+              <View style={{ top: 10 }}>
+                <Text>Latitude:{rowData?.site?.latitude}</Text>
+              </View>
             </View>
           </View>
         </View>
@@ -373,7 +377,11 @@ const Table = ({ rowData }) => {
                   <Text>Is there a violation</Text>
                 </View>
                 <View style={styles.right}>
-                  <Text>{item.violation_items?.value ? "Yes" : "No"}</Text>
+                  <Text>
+                    {item.violation_items?.value
+                      ? item.violation_items?.value
+                      : "-----"}
+                  </Text>
                 </View>
               </View>
               <View style={styles.Row1}>
@@ -495,6 +503,10 @@ const styles = StyleSheet.create({
     width: "100%",
     fontSize: 14,
     padding: 10,
+  },
+  location: {
+    display: "flex",
+    flexDirection: "column",
   },
   Row1: {
     flexDirection: "row",

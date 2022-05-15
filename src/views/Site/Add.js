@@ -1,4 +1,4 @@
-import React, { useContext,useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import {
   Button,
   Card,
@@ -13,7 +13,7 @@ import {
   Row,
 } from "reactstrap";
 import { useNavigate } from "react-router";
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import Validation from "../Heloper/Components/FieldValidation";
 import { SC } from "../Heloper/Apicall/ServerCall";
 import toast from "react-hot-toast";
@@ -37,6 +37,7 @@ import {
   get_form_siteData,
   region_index,
 } from "../Heloper/Apicall/endPoints";
+import { hasRule } from "../Heloper/HasRule";
 const Add = () => {
   const [data, setData] = useState(siteCreateObj);
   const [validation, setValidation] = useState(false);
@@ -48,18 +49,18 @@ const Add = () => {
   const params = useParams();
   useEffect(() => {
     if (params.id) {
-      getData(params.id);}
-      getRegion();
-      getCity();
-    
+      getData(params.id);
+    }
+    getRegion();
+    getCity();
   }, []);
   //get data for update site
   const getData = (id) => {
     SC.getCall(site_show + "/" + id).then((res) => {
       if (res.status === 200 && res.data) {
         let rowData = res.data?.data[0];
-        console.log("cityID",rowData.regionId)
-        console.log("regionID",rowData.cityId)
+        console.log("cityID", rowData.regionId);
+        console.log("regionID", rowData.cityId);
         setData({
           licenseNumber: rowData.licenseNumber,
           licienceType: rowData.licienceType,
@@ -96,34 +97,34 @@ const Add = () => {
   const handleChange = (key, value) => {
     setData({ ...data, [key]: value });
   };
-//get region from api
-const getRegion = () => {
-  SC.getCall(get_form_region).then(
-    (res) => {
-      if (res.status === 200 && res.data) {
-        let rowData = res.data.data;
-        setRegion(rowData);
+  //get region from api
+  const getRegion = () => {
+    SC.getCall(get_form_region).then(
+      (res) => {
+        if (res.status === 200 && res.data) {
+          let rowData = res.data.data;
+          setRegion(rowData);
+        }
+      },
+      (error) => {
+        errorHandle(error, navigate);
       }
-    },
-    (error) => {
-      errorHandle(error, navigate);
-    }
-  );
-};
-//get city from api
-const getCity = () => {
-  SC.getCall(get_form_city).then(
-    (res) => {
-      if (res.status === 200 && res.data) {
-        let rowData = res.data.data;
-        setCity(rowData);
+    );
+  };
+  //get city from api
+  const getCity = () => {
+    SC.getCall(get_form_city).then(
+      (res) => {
+        if (res.status === 200 && res.data) {
+          let rowData = res.data.data;
+          setCity(rowData);
+        }
+      },
+      (error) => {
+        errorHandle(error, navigate);
       }
-    },
-    (error) => {
-      errorHandle(error, navigate);
-    }
-  );
-};
+    );
+  };
   // Form Submit Change
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -222,13 +223,13 @@ const getCity = () => {
     }
   };
 
-  if (isUserLoggedIn) {
+  if (isUserLoggedIn() && hasRule() === "admin") {
     return (
       <React.Fragment>
         <Card>
           <CardHeader className="bg-primary">
             <CardTitle className="text-white">
-            {params.id ? (
+              {params.id ? (
                 <FormattedMessage
                   id={"Update site"}
                   defaultMessage="Update site"
@@ -246,11 +247,16 @@ const getCity = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"License Number"} defaultMessage="License Number" />
+                    <FormattedMessage
+                      id={"License Number"}
+                      defaultMessage="License Number"
+                    />
                     <strong className="text-danger">*</strong>
                   </Label>
                   <Input
-                    placeholder={context.locale === "sa" ? "رقم الرخصة" : "License Number" }
+                    placeholder={
+                      context.locale === "sa" ? "رقم الرخصة" : "License Number"
+                    }
                     type="number"
                     value={data.licenseNumber}
                     onChange={(e) =>
@@ -270,12 +276,17 @@ const getCity = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"Licience Type"} defaultMessage="Licience Type" />
+                    <FormattedMessage
+                      id={"Licience Type"}
+                      defaultMessage="Licience Type"
+                    />
 
-                     <strong className="text-danger">*</strong>
+                    <strong className="text-danger">*</strong>
                   </Label>
                   <Input
-                    placeholder={context.locale === "sa" ? "نوع الرخصة" : "Licience Type" }
+                    placeholder={
+                      context.locale === "sa" ? "نوع الرخصة" : "Licience Type"
+                    }
                     value={data.licienceType}
                     onChange={(e) =>
                       handleChange("licienceType", e.target.value)
@@ -295,8 +306,10 @@ const getCity = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label className="d-block">
-                  
-                  <FormattedMessage id={"Issue Date"} defaultMessage="Issue Date" />
+                    <FormattedMessage
+                      id={"Issue Date"}
+                      defaultMessage="Issue Date"
+                    />
 
                     <strong className="text-danger ">*</strong>
                   </Label>
@@ -316,9 +329,11 @@ const getCity = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"Start Date"} defaultMessage="Start Date" />
+                    <FormattedMessage
+                      id={"Start Date"}
+                      defaultMessage="Start Date"
+                    />
 
-                    
                     <strong className="text-danger">*</strong>
                   </Label>
 
@@ -337,9 +352,11 @@ const getCity = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  
-                  <FormattedMessage id={"End Date"} defaultMessage="End Date" />
-                    
+                    <FormattedMessage
+                      id={"End Date"}
+                      defaultMessage="End Date"
+                    />
+
                     <strong className="text-danger">*</strong>
                   </Label>
                   <Flatpickr
@@ -357,12 +374,17 @@ const getCity = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"Owner Identity"} defaultMessage="Owner Identity" />
+                    <FormattedMessage
+                      id={"Owner Identity"}
+                      defaultMessage="Owner Identity"
+                    />
 
-                   <strong className="text-danger">*</strong>
+                    <strong className="text-danger">*</strong>
                   </Label>
                   <Input
-                    placeholder={context.locale === "sa" ? "هوية المالك" : "Owner Identity" }
+                    placeholder={
+                      context.locale === "sa" ? "هوية المالك" : "Owner Identity"
+                    }
                     value={data.ownerIdentity}
                     onChange={(e) =>
                       handleChange("ownerIdentity", e.target.value)
@@ -382,12 +404,17 @@ const getCity = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"Owner Name"} defaultMessage="Owner Name" />
+                    <FormattedMessage
+                      id={"Owner Name"}
+                      defaultMessage="Owner Name"
+                    />
 
-                     <strong className="text-danger">*</strong>
+                    <strong className="text-danger">*</strong>
                   </Label>
                   <Input
-                    placeholder={context.locale === "sa" ? "اسم المالك" : "Owner Name" }
+                    placeholder={
+                      context.locale === "sa" ? "اسم المالك" : "Owner Name"
+                    }
                     value={data.ownerName}
                     onChange={(e) => handleChange("ownerName", e.target.value)}
                     invalid={data.ownerName === "" && validation ? true : false}
@@ -403,12 +430,19 @@ const getCity = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"operator Identity"} defaultMessage="operator Identity" />
+                    <FormattedMessage
+                      id={"operator Identity"}
+                      defaultMessage="operator Identity"
+                    />
 
                     <strong className="text-danger">*</strong>
                   </Label>
                   <Input
-                    placeholder={context.locale === "sa" ? "هوية المشغل" : "operator Identity" }
+                    placeholder={
+                      context.locale === "sa"
+                        ? "هوية المشغل"
+                        : "operator Identity"
+                    }
                     value={data.operatorIdentity}
                     onChange={(e) =>
                       handleChange("operatorIdentity", e.target.value)
@@ -427,12 +461,19 @@ const getCity = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"Operator Name (Ar)"} defaultMessage="Operator Name (Ar)" />
+                    <FormattedMessage
+                      id={"Operator Name (Ar)"}
+                      defaultMessage="Operator Name (Ar)"
+                    />
 
                     <strong className="text-danger">*</strong>
                   </Label>
                   <Input
-                    placeholder={context.locale === "sa" ? "اسم المشغل (بالعربية)" : "Operator Name (Ar)" }
+                    placeholder={
+                      context.locale === "sa"
+                        ? "اسم المشغل (بالعربية)"
+                        : "Operator Name (Ar)"
+                    }
                     value={data.operatorNameAr}
                     onChange={(e) =>
                       handleChange("operatorNameAr", e.target.value)
@@ -452,12 +493,19 @@ const getCity = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"Operator Name (En)"} defaultMessage="Operator Name (En)" />
+                    <FormattedMessage
+                      id={"Operator Name (En)"}
+                      defaultMessage="Operator Name (En)"
+                    />
 
                     <strong className="text-danger">*</strong>
                   </Label>
                   <Input
-                    placeholder={context.locale === "sa" ? "اسم المشغل (بالإنجليزية)" : "Operator Name (En)" }
+                    placeholder={
+                      context.locale === "sa"
+                        ? "اسم المشغل (بالإنجليزية)"
+                        : "Operator Name (En)"
+                    }
                     value={data.operatorNameEn}
                     onChange={(e) =>
                       handleChange("operatorNameEn", e.target.value)
@@ -477,13 +525,20 @@ const getCity = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"CR Number"} defaultMessage="CR Number" />
+                    <FormattedMessage
+                      id={"CR Number"}
+                      defaultMessage="CR Number"
+                    />
 
-                     <strong className="text-danger">*</strong>
+                    <strong className="text-danger">*</strong>
                   </Label>
                   <Input
                     type="number"
-                    placeholder={context.locale === "sa" ? "رقم السجل التجاري" : "CR Number" }
+                    placeholder={
+                      context.locale === "sa"
+                        ? "رقم السجل التجاري"
+                        : "CR Number"
+                    }
                     value={data.CRNumber}
                     onChange={(e) => handleChange("CRNumber", e.target.value)}
                     invalid={data.CRNumber === "" && validation ? true : false}
@@ -499,13 +554,18 @@ const getCity = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"Latitude"} defaultMessage="Latitude" />
+                    <FormattedMessage
+                      id={"Latitude"}
+                      defaultMessage="Latitude"
+                    />
 
                     <strong className="text-danger">*</strong>
                   </Label>
                   <Input
                     type="number"
-                    placeholder={context.locale === "sa" ? "خط العرض" : "Latitude" }
+                    placeholder={
+                      context.locale === "sa" ? "خط العرض" : "Latitude"
+                    }
                     value={data.latitude}
                     onChange={(e) => handleChange("latitude", e.target.value)}
                     invalid={data.latitude === "" && validation ? true : false}
@@ -521,12 +581,17 @@ const getCity = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"Longitude"} defaultMessage="Longitude" />
-                  <strong className="text-danger">*</strong>
+                    <FormattedMessage
+                      id={"Longitude"}
+                      defaultMessage="Longitude"
+                    />
+                    <strong className="text-danger">*</strong>
                   </Label>
                   <Input
                     type="number"
-                    placeholder={context.locale === "sa" ? "خط الطول" : "Longitude" }
+                    placeholder={
+                      context.locale === "sa" ? "خط الطول" : "Longitude"
+                    }
                     value={data.longitude}
                     onChange={(e) => handleChange("longitude", e.target.value)}
                     invalid={data.longitude === "" && validation ? true : false}
@@ -542,12 +607,17 @@ const getCity = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"Building Number"} defaultMessage="Building Number" />
-                   <strong className="text-danger">*</strong>
+                    <FormattedMessage
+                      id={"Building Number"}
+                      defaultMessage="Building Number"
+                    />
+                    <strong className="text-danger">*</strong>
                   </Label>
                   <Input
                     type="number"
-                    placeholder={context.locale === "sa" ? "رقم المبنى" : "Building Number" }
+                    placeholder={
+                      context.locale === "sa" ? "رقم المبنى" : "Building Number"
+                    }
                     value={data.buildingNumber}
                     onChange={(e) =>
                       handleChange("buildingNumber", e.target.value)
@@ -567,12 +637,19 @@ const getCity = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"Street Name (Ar)"} defaultMessage="Street Name (Ar)" />
+                    <FormattedMessage
+                      id={"Street Name (Ar)"}
+                      defaultMessage="Street Name (Ar)"
+                    />
 
-                     <strong className="text-danger">*</strong>
+                    <strong className="text-danger">*</strong>
                   </Label>
                   <Input
-                    placeholder={context.locale === "sa" ? "اسم الشارع (بالعربية)" : "Street Name (Ar)" }
+                    placeholder={
+                      context.locale === "sa"
+                        ? "اسم الشارع (بالعربية)"
+                        : "Street Name (Ar)"
+                    }
                     value={data.streetNameAr}
                     onChange={(e) =>
                       handleChange("streetNameAr", e.target.value)
@@ -592,13 +669,19 @@ const getCity = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"District Area (Ar)"} defaultMessage="District Area (Ar)" />
+                    <FormattedMessage
+                      id={"District Area (Ar)"}
+                      defaultMessage="District Area (Ar)"
+                    />
 
-                   
                     <strong className="text-danger">*</strong>
                   </Label>
                   <Input
-                    placeholder={context.locale === "sa" ? "منطقة الحي (بالعربية)" : "District Area (Ar)" }
+                    placeholder={
+                      context.locale === "sa"
+                        ? "منطقة الحي (بالعربية)"
+                        : "District Area (Ar)"
+                    }
                     value={data.districtAreaAr}
                     onChange={(e) =>
                       handleChange("districtAreaAr", e.target.value)
@@ -618,13 +701,15 @@ const getCity = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"PO Box"} defaultMessage="PO Box" />
+                    <FormattedMessage id={"PO Box"} defaultMessage="PO Box" />
 
                     <strong className="text-danger">*</strong>
                   </Label>
                   <Input
                     type="number"
-                    placeholder={context.locale === "sa" ? "صندوق بريد" : "PO Box" }
+                    placeholder={
+                      context.locale === "sa" ? "صندوق بريد" : "PO Box"
+                    }
                     value={data.POBox}
                     onChange={(e) => handleChange("POBox", e.target.value)}
                     invalid={data.POBox === "" && validation ? true : false}
@@ -640,13 +725,15 @@ const getCity = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"Mobile"} defaultMessage="Mobile" />
+                    <FormattedMessage id={"Mobile"} defaultMessage="Mobile" />
 
                     <strong className="text-danger">*</strong>
                   </Label>
                   <Input
                     type="number"
-                    placeholder={context.locale === "sa" ? "التليفون المحمول " : "Mobile" }
+                    placeholder={
+                      context.locale === "sa" ? "التليفون المحمول " : "Mobile"
+                    }
                     value={data.mobile}
                     onChange={(e) => handleChange("mobile", e.target.value)}
                     invalid={data.mobile === "" && validation ? true : false}
@@ -662,14 +749,13 @@ const getCity = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"Phone"} defaultMessage="Phone" />
+                    <FormattedMessage id={"Phone"} defaultMessage="Phone" />
 
                     <strong className="text-danger">*</strong>
                   </Label>
                   <Input
                     type="number"
-                    placeholder={context.locale === "sa" ? "هاتف " : "Phone" }
-
+                    placeholder={context.locale === "sa" ? "هاتف " : "Phone"}
                     value={data.phone}
                     onChange={(e) => handleChange("phone", e.target.value)}
                     invalid={data.phone === "" && validation ? true : false}
@@ -685,13 +771,15 @@ const getCity = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"Email"} defaultMessage="Email" />
+                    <FormattedMessage id={"Email"} defaultMessage="Email" />
 
-                     <strong className="text-danger">*</strong>
+                    <strong className="text-danger">*</strong>
                   </Label>
                   <Input
                     type="email"
-                    placeholder={context.locale === "sa" ? "بريد الالكتروني" : "Email" }
+                    placeholder={
+                      context.locale === "sa" ? "بريد الالكتروني" : "Email"
+                    }
                     value={data.email}
                     onChange={(e) => handleChange("email", e.target.value)}
                     invalid={data.email === "" && validation ? true : false}
@@ -707,11 +795,18 @@ const getCity = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"Facility Type (En)"} defaultMessage="Facility Type (En)" />
+                    <FormattedMessage
+                      id={"Facility Type (En)"}
+                      defaultMessage="Facility Type (En)"
+                    />
                     <strong className="text-danger">*</strong>
                   </Label>
                   <Input
-                    placeholder={context.locale === "sa" ? "نوع المنشأة (بالإنجليزية)" : "Facility Type (En)" }
+                    placeholder={
+                      context.locale === "sa"
+                        ? "نوع المنشأة (بالإنجليزية)"
+                        : "Facility Type (En)"
+                    }
                     value={data.facilityTypeEn}
                     onChange={(e) =>
                       handleChange("facilityTypeEn", e.target.value)
@@ -731,13 +826,18 @@ const getCity = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"Facility Type (Ar)"} defaultMessage="Facility Type (Ar)" />
+                    <FormattedMessage
+                      id={"Facility Type (Ar)"}
+                      defaultMessage="Facility Type (Ar)"
+                    />
 
                     <strong className="text-danger">*</strong>
                   </Label>
                   <Input
                     placeholder={
-                      context.locale === "sa" ? "نوع المنشأة (عربي)" : "Facility Type (Ar)" 
+                      context.locale === "sa"
+                        ? "نوع المنشأة (عربي)"
+                        : "Facility Type (Ar)"
                     }
                     value={data.facilityTypeAr}
                     onChange={(e) =>
@@ -758,14 +858,18 @@ const getCity = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"Classification (Ar)"} defaultMessage="Classification (Ar)" />
+                    <FormattedMessage
+                      id={"Classification (Ar)"}
+                      defaultMessage="Classification (Ar)"
+                    />
 
-                  
                     <strong className="text-danger">*</strong>
                   </Label>
                   <Input
                     placeholder={
-                      context.locale === "sa" ? "التصنيف (عربي)" : "التصنيف (عربي)"
+                      context.locale === "sa"
+                        ? "التصنيف (عربي)"
+                        : "التصنيف (عربي)"
                     }
                     value={data.classificationAr}
                     onChange={(e) =>
@@ -786,14 +890,18 @@ const getCity = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"Classification (En)"} defaultMessage="Classification (En)" />
+                    <FormattedMessage
+                      id={"Classification (En)"}
+                      defaultMessage="Classification (En)"
+                    />
 
-  
                     <strong className="text-danger">*</strong>
                   </Label>
                   <Input
                     placeholder={
-                      context.locale === "sa" ? "التصنيف (بالإنجليزية)" : "Classification (En)"
+                      context.locale === "sa"
+                        ? "التصنيف (بالإنجليزية)"
+                        : "Classification (En)"
                     }
                     value={data.classificationEn}
                     onChange={(e) =>
