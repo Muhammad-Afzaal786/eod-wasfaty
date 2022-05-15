@@ -1,5 +1,5 @@
 // ** React Imports
-import { useEffect, useRef, useState } from "react";
+import { useContext,useEffect, useRef, useState } from "react";
 
 // ** Custom Components
 import Wizard from "@components/wizard";
@@ -15,11 +15,13 @@ import { isUserLoggedIn } from "@utils";
 import { SC } from "../Heloper/Apicall/ServerCall";
 import { inspection_create } from "../Heloper/Apicall/endPoints";
 import toast from "react-hot-toast";
+import { IntlContext } from "../../utility/context/Internationalization";
 
 const WizardHorizontal = () => {
   const [data, setData] = useState(fieldSurveyObj);
   const [validation, setValidation] = useState(false);
   let navigate = useNavigate();
+  let context = useContext(IntlContext);
   //handle inputs value
   const handleChange = (key, value) => {
     setData({ ...data, [key]: value });
@@ -76,9 +78,9 @@ const WizardHorizontal = () => {
   const steps = [
     {
       id: "account-details",
-      title: "Step-1",
+      title: context.locale === "sa" ? "الخطوة 1" : "Step-1",
       key: 0,
-      subtitle: "Facility Information",
+      subtitle:context.locale === "sa" ? "معلومات المنشأة" : "Facility Information",
       content: (
         <AccountDetails
           stepper={stepper}
@@ -93,8 +95,8 @@ const WizardHorizontal = () => {
     },
     {
       id: "personal-info",
-      title: "Step-2",
-      subtitle: "Is Facility Working",
+      title: context.locale === "sa" ? "الخطوة 2" : " Step-2",
+      subtitle:context.locale === "sa" ? "تعمل المنشأة" : "Is Facility Working",
       key: 0,
 
       content: (
@@ -111,8 +113,8 @@ const WizardHorizontal = () => {
     },
     {
       id: "step-address",
-      title: "Step-3",
-      subtitle: "Violation",
+      title: context.locale === "sa" ? "الخطوه 3" : " Step-3",
+      subtitle:context.locale === "sa" ? "انتهاك": "Violation",
       key: 2,
       content: (
         <Address
