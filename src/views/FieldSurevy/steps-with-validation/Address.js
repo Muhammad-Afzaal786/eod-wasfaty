@@ -12,7 +12,7 @@ import { Label, Row, Col, Button, Form, Input, FormFeedback } from "reactstrap";
 import Violation from "../Violation";
 import { Item } from "react-contexify";
 const initField = {
-  value: true,
+  value: [],
   violation_item: "",
   violation_Picture: [],
   violation_number: "",
@@ -37,9 +37,9 @@ const Address = ({
     if (key === "value" && !fValue) {
       fieldTmp[index] =
         index === 0
-          ? { ...initField, value: false }
+          ? { ...initField, value: [] }
           : {
-              value: fValue,
+              value: [],
               violation_item: "",
               violation_Picture: "",
             };
@@ -52,7 +52,7 @@ const Address = ({
   const onSubmit = () => {
     //check violation item validation
     const checkValidation = field.map((Item) => {
-      if (Item.value) {
+      if (Item.value.value === "yes") {
         if (
           Item.violation_item?.length === 0 ||
           Item.violation_Picture?.length === 0 ||
@@ -71,7 +71,10 @@ const Address = ({
     if (checkValidation?.filter((item) => item === true)?.length > 0) {
       setValidation(true);
     } else {
-      dataSubmit(field);
+      const postData = field?.map((item) => {
+        return { ...item, value: item.value?.value || "" };
+      });
+      dataSubmit(postData);
     }
   };
   return (

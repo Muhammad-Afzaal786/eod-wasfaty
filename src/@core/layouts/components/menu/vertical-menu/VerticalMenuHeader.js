@@ -55,10 +55,7 @@ const VerticalMenuHeader = (props) => {
     <div className="navbar-header  ">
       <ul className="nav navbar-nav flex-row">
         <li className="nav-item me-auto">
-          <NavLink
-            to={user ? getHomeRouteForLoggedInUser(user.role) : "/"}
-            className="navbar-brand"
-          >
+          <NavLink to={"/"} className="navbar-brand">
             {/* <span className="brand-logo"> */}
             {menuCollapsed && !menuHover ? (
               <img

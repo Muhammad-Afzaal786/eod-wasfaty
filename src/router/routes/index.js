@@ -20,6 +20,7 @@ import AddSite from "../../views/Site/Add";
 import SiteList from "../../views/Site/List";
 import AddSurvey from "../../views/FieldSurevy/Add";
 import FieldSurveyList from "../../views/FieldSurevy/List";
+import Dashboard from "../../views/Dashoard";
 
 const getLayout = {
   blank: <BlankLayout />,
@@ -31,7 +32,7 @@ const getLayout = {
 const TemplateTitle = "%s - Vuexy React Admin Template";
 
 // ** Default Route
-const DefaultRoute = "/user/list";
+const DefaultRoute = "/";
 
 const Home = lazy(() => import("../../views/Home"));
 const SecondPage = lazy(() => import("../../views/SecondPage"));
@@ -42,55 +43,72 @@ const Error = lazy(() => import("../../views/Error"));
 
 // ** Merge Routes
 const Routes = [
+  // {
+  //   path: "/",
+  //   index: true,
+  //   element: <Navigate replace to={DefaultRoute} />,
+  // },
   {
     path: "/",
-    index: true,
-    element: <Navigate replace to={DefaultRoute} />,
+    element: <Dashboard />,
+    permissions: ["admin"],
   },
   {
     path: "/user/add",
     element: <Add />,
+    permissions: ["admin"],
   },
   {
     path: "/user/update/:id",
     element: <Add />,
+    permissions: ["admin"],
   },
   {
     path: "/user/list",
     element: <List />,
+    permissions: ["admin"],
   },
   {
     path: "/region/add",
     element: <AddRegion />,
+    permissions: ["admin"],
   },
   {
     path: "/region/update/:id",
     element: <AddRegion />,
+    permissions: ["admin"],
   },
   {
     path: "/region/list",
     element: <RegionList />,
+    permissions: ["admin"],
   },
   {
     path: "/site/add",
     element: <AddSite />,
+    permissions: ["admin"],
   },
   {
     path: "/site/update/:id",
     element: <AddSite />,
+    permissions: ["admin"],
   },
   {
     path: "/site/list",
     element: <SiteList />,
+    permissions: ["admin"],
   },
   {
     path: "/fieldSurvey/add",
     element: <AddSurvey />,
+    permissions: ["admin", "inspector"],
   },
   {
     path: "/fieldSurvey/list",
     element: <FieldSurveyList />,
+    permissions: ["admin"],
   },
+
   {
     path: "/login",
     element: <Login />,

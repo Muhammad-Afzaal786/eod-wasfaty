@@ -9,7 +9,9 @@ export const userHeader = [
 ];
 //region list header
 export const regionHeader = [
-  { title: "Region name", dataIndex: "name" },
+  { title: "Region name(en)", dataIndex: "name" },
+  { title: "Region name(ar)", dataIndex: "name_ar" },
+
   { title: "Created At", dataIndex: "created_at" },
 ];
 //region list fieldSurvey

@@ -18,6 +18,7 @@ import "@styles/react/libs/react-select/_react-select.scss";
 import SwitchIcons from "../../Heloper/Components/Switcher";
 import FileUploader from "../../Heloper/Components/FileUploader";
 import Validation from "../../Heloper/Components/FieldValidation";
+import Selector from "../../Heloper/Components/Selector";
 
 const defaultValues = {
   lastName: "",
@@ -38,11 +39,14 @@ const PersonalInfo = ({
   let context = useContext(IntlContext);
 
   const onSubmit = () => {
-    if (data.facility_working) {
+    if (data.facility_working?.value === "yes") {
       if (
         data.building_showing_the_sign?.length === 0 ||
         data.operator_name === "" ||
         data.registration_image?.length === 0 ||
+        data.specified_period?.length === 0 ||
+        data.update_method?.length === 0 ||
+        data.license_valid?.length === 0 ||
         data.facility_room_number === "" ||
         data.Tourist_license_copy?.length === 0 ||
         data.Municipal_license_picture?.length === 0 ||
@@ -50,17 +54,21 @@ const PersonalInfo = ({
       ) {
         setValidation(true);
       } else if (
-        !data.specified_period &&
+        data.specified_period?.value === "no" &&
         data.Reasons_for_not_notifying === ""
       ) {
         setValidation(true);
-      } else if (!data.license_valid && data.not_renewing_the_license === "") {
+      } else if (
+        data.license_valid?.value === "no" &&
+        data.not_renewing_the_license === ""
+      ) {
         setValidation(true);
       } else {
         stepper.next();
         setValidation(false);
       }
-    } else {
+    } else if (data.facility_working?.length === 0) setValidation(true);
+    else {
       if (data.reasonOpt?.length === 0) setValidation(true);
       else if (
         data?.reasonOpt?.value ===
@@ -100,23 +108,26 @@ const PersonalInfo = ({
   return (
     <Fragment>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        {!data.inspectorRelation && (
+        {data.inspectorRelation.value === "no" && (
           <Row className="mt-1">
-            <div className="d-flex justify-content-between">
+            <Col lg="12">
               <Label className="switchLabel">
-              <FormattedMessage id={"Is the facility working"} defaultMessage="Is the facility working" />
-                <strong className="text-danger"> *</strong>
+                Is the facility working
+                <strong className="text-danger">*</strong>
               </Label>
+            </Col>
 
-              <SwitchIcons
+            <Col lg="12">
+              <Selector
                 name="facility_working"
                 handleChange={handleChange}
                 value={data.facility_working}
+                validation={validation}
               />
-            </div>
+            </Col>
           </Row>
         )}
-        {!data?.facility_working && (
+        {data?.facility_working?.value === "no" && (
           <Row className="mt-1">
             <Col lg="12">
               <Label>
@@ -165,7 +176,7 @@ const PersonalInfo = ({
             </Col>
           </Row>
         )}
-        {data.facility_working && (
+        {data.facility_working?.value === "yes" && (
           <Row className="mt-1">
             <Col lg="12" className="mb-1">
               <Label className="mb-50">
@@ -185,7 +196,7 @@ const PersonalInfo = ({
                 type="select"
               />
             </Col>
-            <div className="d-flex justify-content-between mb-1">
+            <Col lg="12">
               <Label className="switchLabel">
               <FormattedMessage id={
                 "Have you been notified of registration in the calendar tourism licensing platform within the specified period of 4 days?"
@@ -194,13 +205,16 @@ const PersonalInfo = ({
 
                 <strong className="text-danger"> *</strong>
               </Label>
-              <SwitchIcons
+            </Col>
+            <Col lg="12">
+              <Selector
                 value={data?.specified_period}
                 name="specified_period"
                 handleChange={handleChange}
+                validation={validation}
               />
-            </div>
-            {!data?.specified_period && (
+            </Col>
+            {data?.specified_period?.value === "no" && (
               <Col lg="12" className="mb-1">
                 <Label>
                 <FormattedMessage id={
@@ -228,21 +242,24 @@ const PersonalInfo = ({
                 />
               </Col>
             )}
-            <div className="d-flex justify-content-between mb-1">
+            <Col lg="12">
               <Label className="switchLabel">
               <FormattedMessage id={
                 "Was the facility provided with the registration link and update method?"
                 } defaultMessage="Was the facility provided with the registration link and updat method?" />
                 <strong className="text-danger"> *</strong>
               </Label>
-              <SwitchIcons
+            </Col>
+            <Col lg="12">
+              <Selector
                 value={data?.update_method}
                 name="update_method"
                 handleChange={handleChange}
+                validation={validation}
               />
-            </div>
+            </Col>
 
-            <div className="d-flex justify-content-between">
+            <Col lg="12">
               <Label className="switchLabel">
               <FormattedMessage id={
                 "Is the tourist license valid?"
@@ -250,13 +267,16 @@ const PersonalInfo = ({
                
                 <strong className="text-danger"> *</strong>
               </Label>
-              <SwitchIcons
+            </Col>
+            <Col lg="12">
+              <Selector
                 value={data?.license_valid}
                 name="license_valid"
                 handleChange={handleChange}
+                validation={validation}
               />
-            </div>
-            {!data?.license_valid && (
+            </Col>
+            {data?.license_valid?.value === "no" && (
               <Col lg="12" className="mb-1">
                 <Label>
                 <FormattedMessage id={
@@ -509,7 +529,9 @@ const PersonalInfo = ({
           </Button>
           <Button type="submit" color="primary" className="btn-next">
             <span className="align-middle d-sm-inline-block d-none">
-              {data.facility_working ? context.locale === "sa" ? "حفظ ومتابعة" : "Save & Continue"  : context.locale === "sa" ? "إرسال" : "Submit"}
+              {data.facility_working?.value === "yes"
+                ?context.locale === "sa" ? "حفظ ومتابعة" : "Save & Continue"
+                : "Submit"}
             </span>
             {/* <ArrowRight
               size={14}

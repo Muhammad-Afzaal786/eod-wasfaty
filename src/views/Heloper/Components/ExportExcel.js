@@ -8,7 +8,6 @@ import { FormattedMessage } from "react-intl";
 
 import XLSX from "xlsx";
 import { ExportSheet } from "react-xlsx-sheet";
-
 import { connect } from "react-redux";
 import { SC } from "../Apicall/ServerCall";
 import { DateFormat } from "../DateFormat";
@@ -47,6 +46,7 @@ class ExportExcel extends Component {
               return {
                 ...item,
                 name: item.name,
+                name_ar: item.name_ar,
                 created_at: DateFormat(item.created_at),
               };
             } else if (this.props.endPoint === "inspection-index") {
@@ -108,7 +108,5 @@ class ExportExcel extends Component {
     );
   }
 }
-const mapState = (state) => {
-  return { id: state.layout.orgId };
-};
-export default connect(mapState, null)(ExportExcel);
+
+export default ExportExcel;

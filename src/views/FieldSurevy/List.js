@@ -1,12 +1,13 @@
-import React, { useContext,Fragment, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { Fragment, useRef } from "react";
+import { useNavigate, Navigate } from "react-router-dom";
 import { Card, CardBody } from "reactstrap";
 import { inspection_index } from "../Heloper/Apicall/endPoints";
 import { SC } from "../Heloper/Apicall/ServerCall";
 import { fieldSurveyCol, regionCol, userCol } from "../Heloper/Columns";
 import Pagination from "../Heloper/Components/Pagination";
 import { FieldSurveyHeader } from "../Heloper/Header";
-import { IntlContext } from "../../utility/context/Internationalization";
+import { isUserLoggedIn } from "@utils";
+import { hasRule } from "../Heloper/HasRule";
 
 const FieldSurveyList = () => {
   const pagination = useRef();
@@ -17,27 +18,31 @@ const FieldSurveyList = () => {
       inspection_index + `?page=${data.page}&per_page=${data.pageSize}`
     );
   };
-  return (
-    <Fragment>
-      <Pagination
-        refs={pagination}
-        columns={fieldSurveyCol}
-        getDataCall={paginationCall}
-        filterView={false}
-        showAllToggle={true}
-        downloadData={true}
-        navigate={navigate}
-        downloadFileName={"FieldSurveyList"}
-        minRows={5}
-        history={history}
-        title={context.locale === "sa" ? "قائمة المسح الميداني" : "Field Survey List" }
-        headers={FieldSurveyHeader}
-        endPoint={inspection_index}
-        // selectMulti
-        // activateUser
-      />
-    </Fragment>
-  );
+  if (isUserLoggedIn() && hasRule() === "admin") {
+    return (
+      <Fragment>
+        <Pagination
+          refs={pagination}
+          columns={fieldSurveyCol}
+          getDataCall={paginationCall}
+          filterView={false}
+          showAllToggle={true}
+          downloadData={true}
+          navigate={navigate}
+          downloadFileName={"FieldSurveyList"}
+          minRows={5}
+          history={history}
+          title="Field survey list"
+          headers={FieldSurveyHeader}
+          endPoint={inspection_index}
+          // selectMulti
+          // activateUser
+        />
+      </Fragment>
+    );
+  } else {
+    return <Navigate to="/login" />;
+  }
 };
 
 export default FieldSurveyList;

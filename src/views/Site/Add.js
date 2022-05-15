@@ -13,13 +13,15 @@ import {
   Row,
 } from "reactstrap";
 import { useNavigate } from "react-router";
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import Validation from "../Heloper/Components/FieldValidation";
 import { SC } from "../Heloper/Apicall/ServerCall";
 import toast from "react-hot-toast";
 import { siteCreateObj } from "../Heloper/Object";
 import Flatpickr from "react-flatpickr";
 // import "../../@core/scss/react/libs/flatpickr/flatpickr.scss";
+import Select, { components } from "react-select";
+
 import { isUserLoggedIn } from "@utils";
 import {
   site_show,
@@ -29,10 +31,19 @@ import {
 import { DateFormat } from "../Heloper/DateFormat";
 import { FormattedMessage } from "react-intl";
 import { IntlContext } from "../../utility/context/Internationalization";
+import {
+  get_form_city,
+  get_form_region,
+  get_form_siteData,
+  region_index,
+} from "../Heloper/Apicall/endPoints";
+import { hasRule } from "../Heloper/HasRule";
 const Add = () => {
   const [data, setData] = useState(siteCreateObj);
   const [validation, setValidation] = useState(false);
   const [emailMsg, setEmailMsg] = useState("");
+  const [region, setRegion] = useState([]);
+  const [city, setCity] = useState([]);
   const navigate = useNavigate();
   let context = useContext(IntlContext);
   const params = useParams();
@@ -40,12 +51,16 @@ const Add = () => {
     if (params.id) {
       getData(params.id);
     }
+    getRegion();
+    getCity();
   }, []);
   //get data for update site
   const getData = (id) => {
     SC.getCall(site_show + "/" + id).then((res) => {
       if (res.status === 200 && res.data) {
         let rowData = res.data?.data[0];
+        console.log("cityID", rowData.regionId);
+        console.log("regionID", rowData.cityId);
         setData({
           licenseNumber: rowData.licenseNumber,
           licienceType: rowData.licienceType,
@@ -71,8 +86,8 @@ const Add = () => {
           facilityTypeAr: rowData.facilityTypeAr,
           classificationAr: rowData.classificationAr,
           classificationEn: rowData.classificationEn,
-          regionId: rowData.regionId,
-          cityId: rowData.cityId,
+          regionId: rowData.region,
+          cityId: rowData.city,
         });
       }
     });
@@ -82,7 +97,34 @@ const Add = () => {
   const handleChange = (key, value) => {
     setData({ ...data, [key]: value });
   };
-
+  //get region from api
+  const getRegion = () => {
+    SC.getCall(get_form_region).then(
+      (res) => {
+        if (res.status === 200 && res.data) {
+          let rowData = res.data.data;
+          setRegion(rowData);
+        }
+      },
+      (error) => {
+        errorHandle(error, navigate);
+      }
+    );
+  };
+  //get city from api
+  const getCity = () => {
+    SC.getCall(get_form_city).then(
+      (res) => {
+        if (res.status === 200 && res.data) {
+          let rowData = res.data.data;
+          setCity(rowData);
+        }
+      },
+      (error) => {
+        errorHandle(error, navigate);
+      }
+    );
+  };
   // Form Submit Change
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -111,8 +153,8 @@ const Add = () => {
       facilityTypeAr: data.facilityTypeAr,
       classificationAr: data.classificationAr,
       classificationEn: data.classificationEn,
-      regionId: data.regionId,
-      cityId: data.cityId,
+      regionId: data.regionId._id,
+      cityId: data.cityId._id,
     };
 
     if (
@@ -181,13 +223,13 @@ const Add = () => {
     }
   };
 
-  if (isUserLoggedIn) {
+  if (isUserLoggedIn() && hasRule() === "admin") {
     return (
       <React.Fragment>
         <Card>
           <CardHeader className="bg-primary">
             <CardTitle className="text-white">
-            {params.id ? (
+              {params.id ? (
                 <FormattedMessage
                   id={"Update site"}
                   defaultMessage="Update site"
@@ -769,7 +811,6 @@ const Add = () => {
                   />
                 </Col>
               </Row>
-
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
@@ -783,17 +824,15 @@ const Add = () => {
                       context.locale === "sa" ? "منطقة" : "Region"
                     }
                     value={data.regionId}
-                    onChange={(e) => handleChange("regionId", e.target.value)}
-                    invalid={data.regionId === "" && validation ? true : false}
+                    onChange={(e) => handleChange("regionId", e)}
                   />
                   <Validation
-                    type="number"
-                    value={data.regionId}
                     validation={validation}
+                    type="select"
+                    value={data.regionId}
                   />
                 </Col>
               </Row>
-
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
@@ -806,13 +845,12 @@ const Add = () => {
                       context.locale === "sa" ? "مدينة" : "City"
                     }
                     value={data.cityId}
-                    onChange={(e) => handleChange("cityId", e.target.value)}
-                    invalid={data.cityId === "" && validation ? true : false}
+                    onChange={(e) => handleChange("cityId", e)}
                   />
                   <Validation
-                    type="number"
-                    value={data.cityId}
                     validation={validation}
+                    type="select"
+                    value={data.cityId}
                   />
                 </Col>
               </Row>

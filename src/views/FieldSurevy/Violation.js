@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Button, Col, Input, Label } from "reactstrap";
+import { Button, Col, Input, Label, Row } from "reactstrap";
 import Select, { components } from "react-select";
 import cloneDeep from "clone-deep";
 import SwitchIcons from "../Heloper/Components/Switcher";
@@ -17,24 +17,24 @@ const Violation = (props) => {
     ]);
   };
 
-  const CustomLabel = ({ htmlFor, handleChange, index }) => {
-    return (
-      <Label className="form-check-label" htmlFor={htmlFor}>
-        <span
-          className="switch-icon-left"
-          onClick={() => handleChange(index, "value", false)}
-        >
-          Yes
-        </span>
-        <span
-          className="switch-icon-right text-white"
-          onClick={() => handleChange(index, "value", true)}
-        >
-          No
-        </span>
-      </Label>
-    );
-  };
+  // const CustomLabel = ({ htmlFor, handleChange, index }) => {
+  //   return (
+  //     <Label className="form-check-label" htmlFor={htmlFor}>
+  //       <span
+  //         className="switch-icon-left"
+  //         onClick={() => handleChange(index, "value", false)}
+  //       >
+  //         Yes
+  //       </span>
+  //       <span
+  //         className="switch-icon-right text-white"
+  //         onClick={() => handleChange(index, "value", true)}
+  //       >
+  //         No
+  //       </span>
+  //     </Label>
+  //   );
+  // };
   const itemOpt = [
     {
       label: "Practicing the activity before obtaining the license",
@@ -70,39 +70,39 @@ const Violation = (props) => {
 
     { label: "Other", value: "other" },
   ];
+  const Opt = [
+    { label: "YES", value: "yes" },
+    { label: "NO", value: "no" },
+  ];
   return (
     <React.Fragment>
       {/* for yes case If there is violation */}
       {props.field?.map((item, index) => (
         <React.Fragment key={index}>
-          <div className="d-flex justify-content-between mt-1">
-            <Label>
-              <FormattedMessage
-                id={"Is there a violation"}
-                defaultMessage="Is there a violation"
-              />
-              <strong className="text-danger">*</strong>
-            </Label>
+          <Row>
+            <Col lg="12">
+              <Label>
+                Is there a violation<strong className="text-danger">*</strong>
+              </Label>
+            </Col>
 
-            <div className="form-switch form-check-success">
-              <Input
-                type="switch"
-                id="violation"
-                checked={item.value}
-                className="customWidth"
-                name={"violation"}
-                onChange={(e) =>
-                  props.handleChange(index, "value", e.target.checked)
-                }
+            <Col lg="12" className="mb-1">
+              <Select
+                options={Opt}
+                className="react-select"
+                classNamePrefix="select"
+                value={item.value}
+                // menuPlacement="top"
+                onChange={(e) => props.handleChange(index, "value", e)}
               />
-              <CustomLabel
-                htmlFor="icon-primary"
-                handleChange={props.handleChange}
-                index={index}
+              <Validation
+                type="select"
+                value={item.value}
+                validation={props.validation}
               />
-            </div>
-          </div>
-          {item.value && (
+            </Col>
+          </Row>
+          {item.value.value === "yes" && (
             <React.Fragment key={index}>
               <Col lg="12 mb-1">
                 <Label>
@@ -196,7 +196,7 @@ const Violation = (props) => {
           </Button>
         </div>
       </Col>
-      {props.field.length > 0 && props.field[0].value && (
+      {props.field.length > 0 && props.field[0].value.value === "yes" && (
         <>
           <Col lg="12 mb-2">
             <Label>

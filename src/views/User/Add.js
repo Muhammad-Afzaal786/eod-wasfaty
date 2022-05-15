@@ -28,6 +28,7 @@ import { useParams, Navigate } from "react-router-dom";
 import { isUserLoggedIn } from "@utils";
 import { FormattedMessage } from "react-intl";
 import { IntlContext } from "../../utility/context/Internationalization";
+import { hasRule } from "../Heloper/HasRule";
 
 const Add = () => {
   const [data, setData] = useState(userCreateObj);
@@ -122,7 +123,7 @@ const Add = () => {
       }
     }
   };
-  if (isUserLoggedIn()) {
+  if (isUserLoggedIn() && hasRule() === "admin") {
     return (
       <React.Fragment>
         <Card>
@@ -167,11 +168,16 @@ const Add = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"Father Name"} defaultMessage="Father Name" />
+                    <FormattedMessage
+                      id={"Father Name"}
+                      defaultMessage="Father Name"
+                    />
                     <strong className="text-danger">*</strong>
                   </Label>
                   <Input
-                    placeholder={context.locale === "sa" ? "اسم الأب" : "Father name"}
+                    placeholder={
+                      context.locale === "sa" ? "اسم الأب" : "Father name"
+                    }
                     value={data.father_name}
                     onChange={(e) =>
                       handleChange("father_name", e.target.value)
@@ -190,11 +196,16 @@ const Add = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"Family Name"} defaultMessage="Family Name" /> 
-                  <strong className="text-danger">*</strong>
+                    <FormattedMessage
+                      id={"Family Name"}
+                      defaultMessage="Family Name"
+                    />
+                    <strong className="text-danger">*</strong>
                   </Label>
                   <Input
-                    placeholder={context.locale === "sa" ? " اسم العائلة" : "Father name"}
+                    placeholder={
+                      context.locale === "sa" ? " اسم العائلة" : "Father name"
+                    }
                     value={data.family_name}
                     onChange={(e) =>
                       handleChange("family_name", e.target.value)
@@ -213,11 +224,15 @@ const Add = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"Email "} defaultMessage="Email" /> 
+                    <FormattedMessage id={"Email "} defaultMessage="Email" />
                     <strong className="text-danger">*</strong>
                   </Label>
                   <Input
-                    placeholder={context.locale === "sa" ? " البريد الالكتروني للمستخدم " : "user Email"}
+                    placeholder={
+                      context.locale === "sa"
+                        ? " البريد الالكتروني للمستخدم "
+                        : "user Email"
+                    }
                     type="email"
                     value={data.email}
                     disabled={params.id ? true : false}
@@ -251,11 +266,18 @@ const Add = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"Password"} defaultMessage="Password" /> 
+                    <FormattedMessage
+                      id={"Password"}
+                      defaultMessage="Password"
+                    />
                     <strong className="text-danger">*</strong>
                   </Label>
                   <Input
-                     placeholder={context.locale === "sa" ? " البريد الالكتروني للمستخدم " : "password"}
+                    placeholder={
+                      context.locale === "sa"
+                        ? " البريد الالكتروني للمستخدم "
+                        : "password"
+                    }
                     type="password"
                     value={data.password}
                     onChange={(e) =>
@@ -273,7 +295,7 @@ const Add = () => {
               <Row className="mt-1">
                 <Col lg="12">
                   <Label>
-                  <FormattedMessage id={"Role"} defaultMessage="Role" /> 
+                    <FormattedMessage id={"Role"} defaultMessage="Role" />
 
                     <strong className="text-danger">*</strong>
                   </Label>

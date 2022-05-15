@@ -7,6 +7,8 @@ import { SC } from "../Heloper/Apicall/ServerCall";
 import { userCol } from "../Heloper/Columns";
 import Pagination from "../Heloper/Components/Pagination";
 import { userHeader } from "../Heloper/Header";
+import { hasRule } from "../Heloper/HasRule";
+import { isUserLoggedIn } from "@utils";
 
 const List = () => {
   const pagination = useRef();
@@ -17,28 +19,32 @@ const List = () => {
       get_user + `?page=${data.page}&per_page=${data.pageSize}`
     );
   };
-  return (
-    <Fragment>
-      <Pagination
-        refs={pagination}
-        columns={userCol}
-        getDataCall={paginationCall}
-        filterView={false}
-        showAllToggle={true}
-        navigate={navigate}
-        downloadData={true}
-        downloadFileName={"userList"}
-        minRows={5}
-        deleteActive={deleteOpt}
-        history={history}
-        headers={userHeader}
-        endPoint={get_user}
-        // selectMulti
-        // activateUser
-        title="User List"
-      />
-    </Fragment>
-  );
+  if (isUserLoggedIn() && hasRule() === "admin") {
+    return (
+      <Fragment>
+        <Pagination
+          refs={pagination}
+          columns={userCol}
+          getDataCall={paginationCall}
+          filterView={false}
+          showAllToggle={true}
+          navigate={navigate}
+          downloadData={true}
+          downloadFileName={"userList"}
+          minRows={5}
+          deleteActive={deleteOpt}
+          history={history}
+          headers={userHeader}
+          endPoint={get_user}
+          // selectMulti
+          // activateUser
+          title="User list"
+        />
+      </Fragment>
+    );
+  } else {
+    return <Navigate to="/login" />;
+  }
 };
 
 export default List;

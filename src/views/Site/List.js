@@ -1,13 +1,14 @@
 import React, { useContext,Fragment, useRef } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { Card, CardBody } from "reactstrap";
 import { site_index } from "../Heloper/Apicall/endPoints";
 import { SC } from "../Heloper/Apicall/ServerCall";
 import { SiteCol, userCol } from "../Heloper/Columns";
 import Pagination from "../Heloper/Components/Pagination";
+import { hasRule } from "../Heloper/HasRule";
+import { isUserLoggedIn } from "@utils";
 import { IntlContext } from "../../utility/context/Internationalization";
-
 
 const SiteList = () => {
   const pagination = useRef();
@@ -20,28 +21,32 @@ const SiteList = () => {
       site_index + `?page=${data.page}&per_page=${data.pageSize}`
     );
   };
-  return (
-    <Fragment>
-      <Pagination
-        refs={pagination}
-        columns={SiteCol}
-        getDataCall={paginationCall}
-        filterView={false}
-        navigate={navigate}
-        showAllToggle={true}
-        downloadData={false}
-        deleteActive={deleteOpt}
-        downloadFileName={"siteList"}
-        minRows={5}
-        history={history}
-        // headers={userRequestHeader}
-        endPoint={site_index}
-        // selectMulti
-        // activateUser
-        title={context.locale === "sa" ? "قائمة المواقع" : "Site List" }
-      />
-    </Fragment>
-  );
+  if (isUserLoggedIn() && hasRule() === "admin") {
+    return (
+      <Fragment>
+        <Pagination
+          refs={pagination}
+          columns={SiteCol}
+          getDataCall={paginationCall}
+          filterView={false}
+          navigate={navigate}
+          showAllToggle={true}
+          downloadData={false}
+          deleteActive={deleteOpt}
+          downloadFileName={"siteList"}
+          minRows={5}
+          history={history}
+          // headers={userRequestHeader}
+          endPoint={site_index}
+          // selectMulti
+          // activateUser
+          title="Site list"
+        />
+      </Fragment>
+    );
+  } else {
+    return <Navigate to="/login" />;
+  }
 };
 
 export default SiteList;
