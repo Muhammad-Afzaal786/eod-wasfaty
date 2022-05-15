@@ -1,8 +1,10 @@
-import React, { Component } from "react";
+import React, { useContext,Component } from "react";
 import moment from "moment";
 import { Download } from "react-feather";
 import { Button, Spinner } from "reactstrap";
 // import Export from "../../../assets/images/pages/Download.png";
+import { FormattedMessage } from "react-intl";
+
 
 import XLSX from "xlsx";
 import { ExportSheet } from "react-xlsx-sheet";
@@ -82,7 +84,7 @@ class ExportExcel extends Component {
         {!loading ? (
           <Button color="primary" onClick={this.getData}>
             {/* <img src={Export} width="15px" /> */}
-            <span className="ml-50">Export</span>
+            <span className="ml-50"><FormattedMessage id={"Export"} defaultMessage="Export" /> </span>
           </Button>
         ) : (
           <Button.Ripple color="primary" className="DownloadBtn" outline>

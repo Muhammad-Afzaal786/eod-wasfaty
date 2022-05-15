@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 // import { Facebook, Twitter, Mail, GitHub } from 'react-feather'
 import InputPasswordToggle from "@components/input-password-toggle";
 import {
@@ -21,12 +21,11 @@ import { login, loginUser } from "./Heloper/Apicall/endPoints";
 import { X } from "react-feather";
 import { errorHandle } from "./Heloper/Action/ErrorHandle";
 import PowerBy from "./Heloper/PowerBy";
-
 const Login = () => {
   const navigate = useNavigate();
   const [validation, setValidation] = useState(false);
   const [error, setError] = useState("");
-
+  let context = useContext(IntlContext);
   const [formData, setformData] = useState({
     email: "",
     password: "",

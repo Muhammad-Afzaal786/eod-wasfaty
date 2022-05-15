@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from "react";
+import React, { useContext,Component, Fragment } from "react";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import "../../../@core/scss/base/plugins/tables/rtable.scss";
-
+import { IntlContext } from "../../../utility/context/Internationalization";
 import { Card, CardBody, Spinner } from "reactstrap";
 import ListLoading from "../ListLoading";
 import ExportExcel from "./ExportExcel";
@@ -138,6 +138,7 @@ class Pagination extends Component {
   };
 
   render() {
+    
     const { showAll, data, pages, filtered, pageSize, page, checkData } =
       this.state;
     const {
@@ -240,15 +241,15 @@ class Pagination extends Component {
               }
               data={data}
               pages={pages}
-              rowsText={"Rows"}
-              pageText={"Page"}
+              rowsText={this.context.locale === "sa" ? "صفوف" : "Rows" }
+              pageText={this.context.locale === "sa" ? "صفحة" : "Page" }
               columns={selectMulti ? [...multicolumns, ...columns] : columns}
               filtered={filtered}
               pageSizeOptions={this.props.pageSizeOptions}
               defaultPageSize={pageSize}
-              ofText={"of"}
-              previousText={"Previous"}
-              nextText={"Next"}
+              ofText={this.context.locale === "sa" ? "من" : "of" }
+              previousText={this.context.locale === "sa" ? "سابق" : "Previous" }
+              nextText={this.context.locale === "sa" ? "التالي" : "Next"}
               pageSize={pageSize}
               loading={loadingOrder}
               defaultSorted={this.props.defaultSorted || []}
@@ -302,6 +303,7 @@ const mapState = (state) => {
     deleteOpt: state.layout.deleteOp,
   };
 };
+Pagination.contextType=IntlContext;
 export default connect(mapState, null)(Pagination);
 
 // export default Pagination;

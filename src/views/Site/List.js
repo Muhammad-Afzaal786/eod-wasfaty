@@ -12,7 +12,7 @@ import { IntlContext } from "../../utility/context/Internationalization";
 const SiteList = () => {
   const pagination = useRef();
   const deleteOpt = useSelector((state) => state.layout.deleteAction);
-  const context = useContext(IntlContext)
+  let context = useContext(IntlContext);
 
   const navigate = useNavigate();
   const paginationCall = (data) => {
