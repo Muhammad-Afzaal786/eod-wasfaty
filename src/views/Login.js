@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import AscendBlack from "../assets/images/icons/PowerLogo.png";
 // import { Facebook, Twitter, Mail, GitHub } from 'react-feather'
 import InputPasswordToggle from "@components/input-password-toggle";
 import {
@@ -176,7 +177,7 @@ const Login = () => {
                       </div>
                     </div>
                     <div className="d-flex justify-content-center w-100 mt-1">
-                      <PowerBy textClass={"customPowerTitle"} />
+                      <PowerBy textClass={"customPowerTitle"} icons={AscendBlack}/>
                     </div>
                   </Col>
                 </div>
