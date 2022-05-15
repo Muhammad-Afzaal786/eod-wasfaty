@@ -7,14 +7,17 @@ import FileUploader from "../Heloper/Components/FileUploader";
 import Validation from "../Heloper/Components/FieldValidation";
 import { FormattedMessage } from "react-intl";
 import { IntlContext } from "../../utility/context/Internationalization";
+import { data } from "jquery";
 const Violation = (props) => {
   let context = useContext(IntlContext);
 
   const addField = () => {
-    props.setField([
-      ...props.field,
-      { value: true, violation_item: [], violation_Picture: "" },
-    ]);
+    if (props.data.is_violation?.value === "yes") {
+      props.setField([
+        ...props.field,
+        { violation_item: [], violation_Picture: "" },
+      ]);
+    }
   };
 
   // const CustomLabel = ({ htmlFor, handleChange, index }) => {
@@ -74,35 +77,36 @@ const Violation = (props) => {
     { label: "YES", value: "yes" },
     { label: "NO", value: "no" },
   ];
+  console.log(props.data);
   return (
     <React.Fragment>
       {/* for yes case If there is violation */}
-      {props.field?.map((item, index) => (
-        <React.Fragment key={index}>
-          <Row>
-            <Col lg="12">
-              <Label>
-                Is there a violation<strong className="text-danger">*</strong>
-              </Label>
-            </Col>
+      <Row>
+        <Col lg="12">
+          <Label>
+            Is there a violation<strong className="text-danger">*</strong>
+          </Label>
+        </Col>
 
-            <Col lg="12" className="mb-1">
-              <Select
-                options={Opt}
-                className="react-select"
-                classNamePrefix="select"
-                value={item.value}
-                // menuPlacement="top"
-                onChange={(e) => props.handleChange(index, "value", e)}
-              />
-              <Validation
-                type="select"
-                value={item.value}
-                validation={props.validation}
-              />
-            </Col>
-          </Row>
-          {item.value.value === "yes" && (
+        <Col lg="12" className="mb-1">
+          <Select
+            options={Opt}
+            className="react-select"
+            classNamePrefix="select"
+            value={props.data.is_violation}
+            // menuPlacement="top"
+            onChange={(e) => props.handleChange("is_violation", e)}
+          />
+          <Validation
+            type="select"
+            value={props.data.is_violation}
+            validation={props.validation}
+          />
+        </Col>
+      </Row>
+      {props.data?.is_violation?.value === "yes" &&
+        props.field?.map((item, index) => (
+          <React.Fragment key={index}>
             <React.Fragment key={index}>
               <Col lg="12 mb-1">
                 <Label>
@@ -117,7 +121,7 @@ const Violation = (props) => {
                     value: item.violation_item,
                   }}
                   onChange={(e) =>
-                    props.handleChange(index, "violation_item", e.value)
+                    props.handleField(index, "violation_item", e.value)
                   }
                 />
                 <Validation
@@ -136,7 +140,7 @@ const Violation = (props) => {
                   <Input
                     value={item.violation_clause}
                     onChange={(e) =>
-                      props.handleChange(
+                      props.handleField(
                         index,
                         "violation_clause",
                         e.target.value
@@ -161,7 +165,7 @@ const Violation = (props) => {
                   <strong className="text-danger">*</strong>
                 </Label>
                 <FileUploader
-                  handleChange={props.handleChange}
+                  handleChange={props.handleField}
                   index={index}
                   name="violation_Picture"
                   call="violation"
@@ -173,9 +177,8 @@ const Violation = (props) => {
                 />
               </Col>
             </React.Fragment>
-          )}
-        </React.Fragment>
-      ))}
+          </React.Fragment>
+        ))}
 
       <Col lg="12" className="mb-2">
         <div>
@@ -184,7 +187,7 @@ const Violation = (props) => {
           </Button>
         </div>
       </Col>
-      {props.field.length > 0 && props.field[0].value.value === "yes" && (
+      {props.field.length > 0 && props.data.is_violation.value === "yes" && (
         <>
           <Col lg="12 mb-2">
             <Label>
@@ -194,7 +197,7 @@ const Violation = (props) => {
               type="number"
               value={props.field[0].violation_number}
               onChange={(e) =>
-                props.handleChange(0, "violation_number", e.target.value)
+                props.handleField(0, "violation_number", e.target.value)
               }
               invalid={
                 props.field[0].violation_number === "" && props.validation
@@ -213,7 +216,7 @@ const Violation = (props) => {
               Record Picture<strong className="text-danger">*</strong>
             </Label>
             <FileUploader
-              handleChange={props.handleChange}
+              handleChange={props.handleField}
               index={0}
               name="violation_record_picture"
               call="violation"
