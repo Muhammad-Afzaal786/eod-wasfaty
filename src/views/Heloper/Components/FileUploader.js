@@ -11,6 +11,7 @@ import { uploadFileS3 } from "../Minio";
 import FileProgressBar from "./FileProgressBar";
 import { Row } from "reactstrap";
 import { fiveRandomNumbers } from "../RandomId";
+import { FormattedMessage } from "react-intl";
 // import { uploadFileS3 } from "../../../../src/Minio";
 
 // import FilePreview from "./FilePreview";
@@ -136,8 +137,12 @@ function FileUploader(props) {
               </div>
 
               <p className="text-center">
-                Drop your file here to upload or click here to select from
-                storage
+                <FormattedMessage
+                  id={
+                    "Drop your file here to upload or click here to select from storage"
+                  }
+                  defaultMessage="Drop your file here to upload or click here to select from storage"
+                />
               </p>
             </div>
 

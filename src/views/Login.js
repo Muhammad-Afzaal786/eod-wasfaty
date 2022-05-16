@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Ascend from "../assets/images/logo/Footer-2.svg";
 // import { Facebook, Twitter, Mail, GitHub } from 'react-feather'
 import InputPasswordToggle from "@components/input-password-toggle";
@@ -26,7 +26,6 @@ const Login = () => {
   const navigate = useNavigate();
   const [validation, setValidation] = useState(false);
   const [error, setError] = useState("");
-  let context = useContext(IntlContext);
   const [formData, setformData] = useState({
     email: "",
     password: "",

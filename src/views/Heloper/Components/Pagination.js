@@ -1,4 +1,4 @@
-import React, { useContext,Component, Fragment } from "react";
+import React, { useContext, Component, Fragment } from "react";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import "../../../@core/scss/base/plugins/tables/rtable.scss";
@@ -39,7 +39,7 @@ class Pagination extends Component {
 
   dataCall = (page = this.state.page, pageSize = this.state.pageSize) => {
     this.setState({
-      loading: false,
+      loading: true,
     });
     var data = {
       pageSize: this.state.showAll ? this.state.total : this.myRef.current,
@@ -138,7 +138,6 @@ class Pagination extends Component {
   };
 
   render() {
-    
     const { showAll, data, pages, filtered, pageSize, page, checkData } =
       this.state;
     const {
@@ -241,14 +240,14 @@ class Pagination extends Component {
               }
               data={data}
               pages={pages}
-              rowsText={this.context.locale === "sa" ? "صفوف" : "Rows" }
-              pageText={this.context.locale === "sa" ? "صفحة" : "Page" }
+              rowsText={this.context.locale === "sa" ? "صفوف" : "Rows"}
+              pageText={this.context.locale === "sa" ? "صفحة" : "Page"}
               columns={selectMulti ? [...multicolumns, ...columns] : columns}
               filtered={filtered}
               pageSizeOptions={this.props.pageSizeOptions}
               defaultPageSize={pageSize}
-              ofText={this.context.locale === "sa" ? "من" : "of" }
-              previousText={this.context.locale === "sa" ? "سابق" : "Previous" }
+              ofText={this.context.locale === "sa" ? "من" : "of"}
+              previousText={this.context.locale === "sa" ? "سابق" : "Previous"}
               nextText={this.context.locale === "sa" ? "التالي" : "Next"}
               pageSize={pageSize}
               loading={loadingOrder}
@@ -303,7 +302,7 @@ const mapState = (state) => {
     deleteOpt: state.layout.deleteOp,
   };
 };
-Pagination.contextType=IntlContext;
+Pagination.contextType = IntlContext;
 export default connect(mapState, null)(Pagination);
 
 // export default Pagination;

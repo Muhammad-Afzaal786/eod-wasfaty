@@ -9,13 +9,13 @@ import {
 import { FormattedMessage } from "react-intl";
 import { IntlContext } from "../../utility/context/Internationalization";
 export default [
-  {
-    id: "dashboard",
-    title: <FormattedMessage id={"Dashboard"} defaultMessage="Dashboard" />,
-    icon: <Home size={20} />,
-    navLink: "/",
-    permissions: ["admin", "inspector"],
-  },
+  // {
+  //   id: "dashboard",
+  //   icon: <Home size={20} />,
+  //   title: <FormattedMessage id={"Dashboard"} defaultMessage="Dashboard" />,
+  //   navLink: "/",
+  //   permissions: ["admin", "inspector"],
+  // },
   {
     id: "user",
     title: <FormattedMessage id={"Users"} defaultMessage="Users" />,
@@ -30,7 +30,7 @@ export default [
       },
       {
         id: "list",
-        title:<FormattedMessage id={"List"} defaultMessage="List" /> ,
+        title: <FormattedMessage id={"List"} defaultMessage="List" />,
         navLink: "user/list",
         permissions: ["admin"],
       },
@@ -51,7 +51,7 @@ export default [
       },
       {
         id: "list",
-        title:<FormattedMessage id={"List"} defaultMessage="List" />,
+        title: <FormattedMessage id={"List"} defaultMessage="List" />,
         navLink: "region/list",
         permissions: ["admin"],
       },
@@ -72,7 +72,7 @@ export default [
       },
       {
         id: "list",
-        title:<FormattedMessage id={"List"} defaultMessage="List" />,
+        title: <FormattedMessage id={"List"} defaultMessage="List" />,
         navLink: "site/list",
         permissions: ["admin"],
       },
@@ -80,7 +80,9 @@ export default [
   },
   {
     id: "Field Survey",
-    title: <FormattedMessage id={"Field survey"} defaultMessage="Field survey" />,
+    title: (
+      <FormattedMessage id={"Field survey"} defaultMessage="Field survey" />
+    ),
     icon: <Clipboard size={20} />,
     permissions: ["admin", "inspector"],
 
@@ -93,7 +95,7 @@ export default [
       },
       {
         id: "list",
-        title:<FormattedMessage id={"List"} defaultMessage="List" />,
+        title: <FormattedMessage id={"List"} defaultMessage="List" />,
         navLink: "fieldSurvey/list",
         permissions: ["admin"],
       },

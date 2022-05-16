@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import { Input, FormFeedback } from "reactstrap";
 function Validation(props) {
   return (
@@ -18,7 +19,10 @@ function Validation(props) {
               props.value?.length === 0 && props.validation ? "true" : "false"
             }
           >
-            This Option is required!
+            <FormattedMessage
+              id={"This Option is required!"}
+              defaultMessage="This Option is required!"
+            />
           </FormFeedback>
         </>
       ) : props.type === "text" ? (
@@ -26,14 +30,20 @@ function Validation(props) {
           className="ml-1"
           invalid={props.value === "" && props.validation ? "true" : "false"}
         >
-          This Option is required!
+          <FormattedMessage
+            id={"This Option is required!"}
+            defaultMessage="This Option is required!"
+          />
         </FormFeedback>
       ) : (
         <FormFeedback
           className="ml-1"
           invalid={!props.value && props.validation ? "true" : "false"}
         >
-          This Option is required!
+          <FormattedMessage
+            id={"This Option is required!"}
+            defaultMessage="This Option is required!"
+          />
         </FormFeedback>
       )}
     </React.Fragment>
