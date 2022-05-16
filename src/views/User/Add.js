@@ -169,8 +169,8 @@ const Add = () => {
                 <Col lg="12">
                   <Label>
                     <FormattedMessage
-                      id={"Father Name"}
-                      defaultMessage="Father Name"
+                      id={"Father name"}
+                      defaultMessage="Father name"
                     />
                     <strong className="text-danger">*</strong>
                   </Label>
@@ -197,8 +197,8 @@ const Add = () => {
                 <Col lg="12">
                   <Label>
                     <FormattedMessage
-                      id={"Family Name"}
-                      defaultMessage="Family Name"
+                      id={"Family name"}
+                      defaultMessage="Family name"
                     />
                     <strong className="text-danger">*</strong>
                   </Label>

@@ -83,12 +83,17 @@ const Violation = (props) => {
       <Row>
         <Col lg="12">
           <Label>
-            Is there a violation<strong className="text-danger">*</strong>
+            <FormattedMessage
+              id={"Is there a violation"}
+              defaultMessage="Is there a violation"
+            />
+            <strong className="text-danger">*</strong>
           </Label>
         </Col>
 
         <Col lg="12" className="mb-1">
           <Select
+            placeholder={context.locale === "sa" ? "تحديد" : "select"}
             options={Opt}
             className="react-select"
             classNamePrefix="select"
@@ -116,6 +121,7 @@ const Violation = (props) => {
                   <strong className="text-danger">*</strong>
                 </Label>
                 <Select
+                  placeholder={context.locale === "sa" ? "تحديد" : "select"}
                   options={itemOpt}
                   className="react-select"
                   classNamePrefix="select"
@@ -141,7 +147,6 @@ const Violation = (props) => {
                       id={"Violation clause (Explanation of the violation)"}
                       defaultMessage="Violation clause (Explanation of the violation)"
                     />
-                    Violation clause (Explanation of the violation)
                     <strong className="text-danger">*</strong>
                   </Label>
                   <Input
