@@ -361,35 +361,27 @@ const Table = ({ rowData }) => {
             )}
           </View>
         </View>
+        <View style={styles.Row2}>
+          <View style={styles.left}>
+            <Text>22</Text>
+          </View>
+
+          <View style={styles.center}>
+            <Text>Is there a violation</Text>
+          </View>
+          <View style={styles.right}>
+            <Text>{rowData.is_violation ? rowData.is_violation : "-----"}</Text>
+          </View>
+        </View>
         {rowData.violation_data?.length > 0 &&
           rowData.violation_data?.map((item, index) => (
             <View key={index}>
-              <View style={styles.Row2}>
-                <View style={styles.left}>
-                  <Text>
-                    {index === 0
-                      ? isCount1 + parseInt(index)
-                      : 26 + parseInt(index)}
-                  </Text>
-                </View>
-
-                <View style={styles.center}>
-                  <Text>Is there a violation</Text>
-                </View>
-                <View style={styles.right}>
-                  <Text>
-                    {item.violation_items?.value
-                      ? item.violation_items?.value
-                      : "-----"}
-                  </Text>
-                </View>
-              </View>
               <View style={styles.Row1}>
                 <View style={styles.left}>
                   <Text>
                     {index === 0
                       ? isCount2 + parseInt(index)
-                      : 27 + parseInt(index)}
+                      : 26 + parseInt(index)}
                   </Text>
                 </View>
 

@@ -77,7 +77,6 @@ const Violation = (props) => {
     { label: "YES", value: "yes" },
     { label: "NO", value: "no" },
   ];
-  console.log(props.data);
   return (
     <React.Fragment>
       {/* for yes case If there is violation */}
