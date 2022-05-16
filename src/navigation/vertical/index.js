@@ -9,13 +9,13 @@ import {
 import { FormattedMessage } from "react-intl";
 import { IntlContext } from "../../utility/context/Internationalization";
 export default [
-  // {
-  //   id: "dashboard",
-  //   icon: <Home size={20} />,
-  //   title: <FormattedMessage id={"Dashboard"} defaultMessage="Dashboard" />,
-  //   navLink: "/",
-  //   permissions: ["admin", "inspector"],
-  // },
+  {
+    id: "home",
+    title: <FormattedMessage id={"Dashboard"} defaultMessage="Dashboard" />,
+    icon: <Home size={20} />,
+    navLink: "/",
+    permissions: ["admin", "inspector"],
+  },
   {
     id: "user",
     title: <FormattedMessage id={"Users"} defaultMessage="Users" />,

@@ -6,7 +6,7 @@ import PDFModal from "./PDFView/PDFModal";
 
 export const userCol = [
   {
-    Header:<FormattedMessage id={"Name"} defaultMessage="Name" />,
+    Header: <FormattedMessage id={"Name"} defaultMessage="Name" />,
     accessor: "name",
     sortable: false,
     Cell: ({ row }) => {
@@ -18,7 +18,9 @@ export const userCol = [
     },
   },
   {
-    Header:<FormattedMessage id={"Father name"} defaultMessage="Father name" />,
+    Header: (
+      <FormattedMessage id={"Father name"} defaultMessage="Father name" />
+    ),
     accessor: "father_name",
     sortable: false,
     Cell: ({ row }) => {
@@ -28,10 +30,11 @@ export const userCol = [
         </div>
       );
     },
-  
   },
   {
-    Header: <FormattedMessage id={"Family name"} defaultMessage="Family name" />,
+    Header: (
+      <FormattedMessage id={"Family name"} defaultMessage="Family name" />
+    ),
     accessor: "family_name",
     sortable: false,
     Cell: ({ row }) => {
@@ -78,6 +81,7 @@ export const userCol = [
             deleteOp={true}
             endPoint={delete_user}
             name="user"
+            message_ar="تريد حذف المستخدم!"
             path="/user/update/"
             _id={row._id}
           />
@@ -124,6 +128,7 @@ export const regionCol = [
             deleteOp={true}
             endPoint={region_delete}
             name="region"
+            message_ar="تريد حذف المنطقة!"
             path="/region/update/"
             _id={row._id}
           />
@@ -160,7 +165,6 @@ export const SiteCol = [
     },
   },
   {
-  
     Header: <FormattedMessage id={"Action"} defaultMessage="Action" />,
     accessor: "_id",
     sortable: false,
@@ -172,6 +176,7 @@ export const SiteCol = [
             deleteOp={true}
             endPoint={site_delete}
             name="site"
+            message_ar="تريد حذف الموقع!"
             path="/site/update/"
             _id={row._id}
           />
@@ -183,7 +188,9 @@ export const SiteCol = [
 //field survey columns
 export const fieldSurveyCol = [
   {
-    Header: <FormattedMessage id={"Inspector name"} defaultMessage="Inspector name" />,
+    Header: (
+      <FormattedMessage id={"Inspector name"} defaultMessage="Inspector name" />
+    ),
     accessor: "name",
     sortable: false,
     Cell: ({ row }) => {
@@ -195,7 +202,12 @@ export const fieldSurveyCol = [
     },
   },
   {
-    Header: <FormattedMessage id={"Inspector address"} defaultMessage="Inspector address" />,
+    Header: (
+      <FormattedMessage
+        id={"Inspector address"}
+        defaultMessage="Inspector address"
+      />
+    ),
     accessor: "name",
     sortable: false,
     Cell: ({ row }) => {
@@ -215,7 +227,12 @@ export const fieldSurveyCol = [
     },
   },
   {
-    Header: <FormattedMessage id={"Tourism license number"} defaultMessage="Tourism license numberInspector address" />,
+    Header: (
+      <FormattedMessage
+        id={"Tourism license number"}
+        defaultMessage="Tourism license numberInspector address"
+      />
+    ),
     accessor: "number",
     sortable: false,
     Cell: ({ row }) => {
@@ -227,7 +244,9 @@ export const fieldSurveyCol = [
     },
   },
   {
-    Header: <FormattedMessage id={"Submission at"} defaultMessage="Submission at" />,
+    Header: (
+      <FormattedMessage id={"Submission at"} defaultMessage="Submission at" />
+    ),
     accessor: "create_at",
     sortable: false,
     Cell: ({ row }) => {

@@ -8,12 +8,13 @@ import { handleConfirmCancel } from "./SweetAlert";
 import { UncontrolledTooltip } from "reactstrap";
 import { SC } from "../Apicall/ServerCall";
 import { handleDeleteOP } from "../../../redux/layout";
+import { IntlContext } from "../../../utility/context/Internationalization";
 const Action = (props) => {
   let { _id, endPoint, deleteOp, editOp, path, name } = props;
   const [state, setstate] = useState("");
   const [visibility, setVisibility] = useState(false);
   const dispatch = useDispatch();
-  const context = { locale: "en" };
+  const context = useContext(IntlContext);
   let navigate = useNavigate();
 
   const deleteField = () => {
@@ -56,7 +57,7 @@ const Action = (props) => {
                 locale,
                 context,
                 {
-                  showMsgArabic: props.showMsgArabic,
+                  showMsgArabic: props.message_ar,
                 },
                 name
               )
