@@ -112,7 +112,7 @@ const PersonalInfo = ({
           <Row className="mt-1">
             <Col lg="12">
               <Label className="switchLabel">
-                Is the facility working
+              <FormattedMessage id={"Is the facility working"} defaultMessage="Is the facility working" />
                 <strong className="text-danger">*</strong>
               </Label>
             </Col>
@@ -136,6 +136,7 @@ const PersonalInfo = ({
                 <strong className="text-danger"> *</strong>
               </Label>
               <Select
+                  placeholder= {context.locale === "sa" ? "تحديد" : "select"}
                 options={reasonOpt}
                 className="react-select"
                 classNamePrefix="select"

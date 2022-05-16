@@ -9,7 +9,7 @@
   "Update region": "منطقة التحديث",
   "Name": "اسم",
   "Father name":"اسم الأب",
-  "Family name":"اسم العائلة ",
+  "Family name":"اسم العائلة",
   "Email ":"بريد الالكتروني ",
   "Password":"كلمه السر",
   "Role":"دور" ,
@@ -99,8 +99,11 @@
   "Tourism license number":"رقم الرخصة السياحية",
   "Submission at":"التقديم في",
   "Site list":"قائمة المواقع",
-  "Export as Pdf":"تصدير بتنسيق Pdf"
-
+  "Export as Pdf":"تصدير بتنسيق Pdf",
+  "Is the facility working":"هل المرفق يعمل",
+  "Drop your file here to upload or click here to select from storage":"قم بإسقاط الملف هنا للتحميل أو انقر هنا للاختيار من التخزين",
+  "":"",
+  "":""
 
  
   

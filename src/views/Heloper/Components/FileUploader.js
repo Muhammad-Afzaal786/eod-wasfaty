@@ -3,6 +3,7 @@ import { useDropzone } from "react-dropzone";
 import { Fragment } from "react";
 import Dropzone from "react-dropzone";
 import { ArrowDown, ArrowUp, File, XCircle } from "react-feather";
+import { FormattedMessage } from "react-intl";
 
 import file from "../../../assets/images/icons/file.svg";
 import document from "../../../assets/images/icons/Light.svg";
@@ -136,8 +137,7 @@ function FileUploader(props) {
               </div>
 
               <p className="text-center">
-                Drop your file here to upload or click here to select from
-                storage
+              <FormattedMessage id={"Drop your file here to upload or click here to select from storage"} defaultMessage="Drop your file here to upload or click here to select from storage" />
               </p>
             </div>
 
