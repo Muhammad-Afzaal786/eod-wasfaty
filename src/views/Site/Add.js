@@ -924,6 +924,7 @@ const Add = () => {
                     <strong className="text-danger">*</strong>
                   </Label>
                   <Select
+                  placeholder= {context.locale === "sa" ? "تحديد" : "select"}
                     name="regionId"
                     options={region}
                     className="react-select"
@@ -948,6 +949,7 @@ const Add = () => {
                     <strong className="text-danger">*</strong>
                   </Label>
                   <Select
+                  placeholder= {context.locale === "sa" ? "تحديد" : "select"}
                     name="cityId"
                     options={city}
                     className="react-select"
