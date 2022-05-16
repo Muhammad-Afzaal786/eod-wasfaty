@@ -11,7 +11,7 @@ import { IntlContext } from "../../utility/context/Internationalization";
 export default [
   {
     id: "dashboard",
-    title: "Dashboard",
+    title: <FormattedMessage id={"Dashboard"} defaultMessage="Dashboard" />,
     icon: <Home size={20} />,
     navLink: "/",
     permissions: ["admin", "inspector"],
@@ -80,9 +80,7 @@ export default [
   },
   {
     id: "Field Survey",
-        title: <FormattedMessage id={"Field survey"} defaultMessage="Field survey" />,
-    
-
+    title: <FormattedMessage id={"Field survey"} defaultMessage="Field survey" />,
     icon: <Clipboard size={20} />,
     permissions: ["admin", "inspector"],
 

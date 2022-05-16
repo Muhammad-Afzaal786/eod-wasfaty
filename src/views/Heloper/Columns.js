@@ -6,7 +6,7 @@ import PDFModal from "./PDFView/PDFModal";
 
 export const userCol = [
   {
-    Header: "Name",
+    Header:<FormattedMessage id={"Name"} defaultMessage="Name" />,
     accessor: "name",
     sortable: false,
     Cell: ({ row }) => {
@@ -18,6 +18,7 @@ export const userCol = [
     },
   },
   {
+    Header:<FormattedMessage id={"Father name"} defaultMessage="Father name" />,
     Header: "Father name",
     accessor: "father_name",
     sortable: false,
@@ -28,10 +29,10 @@ export const userCol = [
         </div>
       );
     },
+  
   },
-
   {
-    Header: "Family name",
+    Header: <FormattedMessage id={"Family name"} defaultMessage="Family name" />,
     accessor: "family_name",
     sortable: false,
     Cell: ({ row }) => {
@@ -43,7 +44,7 @@ export const userCol = [
     },
   },
   {
-    Header: "Email",
+    Header: <FormattedMessage id={"Email"} defaultMessage="Email" />,
     accessor: "email",
     sortable: false,
     Cell: ({ row }) => {
@@ -55,7 +56,7 @@ export const userCol = [
     },
   },
   {
-    Header: "Type",
+    Header: <FormattedMessage id={"Type"} defaultMessage="Type" />,
     accessor: "type",
     sortable: false,
     Cell: ({ row }) => {
@@ -67,7 +68,7 @@ export const userCol = [
     },
   },
   {
-    Header: "Action",
+    Header: <FormattedMessage id={"Action"} defaultMessage="Action" />,
     accessor: "_id",
     sortable: false,
     Cell: ({ row }) => {
@@ -89,7 +90,7 @@ export const userCol = [
 //region list column
 export const regionCol = [
   {
-    Header: "Name(en)",
+    Header: <FormattedMessage id={"Name(en)"} defaultMessage="Name(en)" />,
     accessor: "name",
     sortable: false,
     Cell: ({ row }) => {
@@ -101,7 +102,7 @@ export const regionCol = [
     },
   },
   {
-    Header: "Name(Ar)",
+    Header: <FormattedMessage id={"Name(Ar)"} defaultMessage="Name(Ar)" />,
     accessor: "father_name",
     sortable: false,
     Cell: ({ row }) => {
@@ -113,7 +114,7 @@ export const regionCol = [
     },
   },
   {
-    Header: "Action",
+    Header: <FormattedMessage id={"Action"} defaultMessage="Action" />,
     accessor: "_id",
     sortable: false,
     Cell: ({ row }) => {
@@ -160,7 +161,8 @@ export const SiteCol = [
     },
   },
   {
-    Header: "Action",
+  
+    Header: <FormattedMessage id={"Action"} defaultMessage="Action" />,
     accessor: "_id",
     sortable: false,
     Cell: ({ row }) => {
@@ -182,7 +184,7 @@ export const SiteCol = [
 //field survey columns
 export const fieldSurveyCol = [
   {
-    Header: "Inspector name",
+    Header: <FormattedMessage id={"Inspector name"} defaultMessage="Inspector name" />,
     accessor: "name",
     sortable: false,
     Cell: ({ row }) => {
@@ -194,7 +196,7 @@ export const fieldSurveyCol = [
     },
   },
   {
-    Header: "Inspector address",
+    Header: <FormattedMessage id={"Inspector address"} defaultMessage="Inspector address" />,
     accessor: "name",
     sortable: false,
     Cell: ({ row }) => {
@@ -214,7 +216,7 @@ export const fieldSurveyCol = [
     },
   },
   {
-    Header: "Tourism license number",
+    Header: <FormattedMessage id={"Tourism license number"} defaultMessage="Tourism license numberInspector address" />,
     accessor: "number",
     sortable: false,
     Cell: ({ row }) => {
@@ -226,7 +228,7 @@ export const fieldSurveyCol = [
     },
   },
   {
-    Header: "Submission at",
+    Header: <FormattedMessage id={"Submission at"} defaultMessage="Submission at" />,
     accessor: "create_at",
     sortable: false,
     Cell: ({ row }) => {
@@ -238,7 +240,7 @@ export const fieldSurveyCol = [
     },
   },
   {
-    Header: "Action",
+    Header: <FormattedMessage id={"Action"} defaultMessage="Action" />,
     accessor: "_id",
     sortable: false,
     show: false,
