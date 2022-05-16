@@ -69,6 +69,7 @@ const WizardHorizontal = ({ loading, setLoading }) => {
       specified_period: data.specified_period.value || "",
       license_valid: data.license_valid.value || "",
       update_method: data.update_method.value || "",
+      is_violation: data.is_violation?.value,
 
       tourism_License_number: data.tourism_License_number?._id,
       reasonOpt: data.reasonOpt?.value || "",

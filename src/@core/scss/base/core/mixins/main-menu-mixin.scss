@@ -144,7 +144,7 @@
   background: $theme-bg;
 
   .navigation {
-    background: $primary;
+    // background: $primary;
     .navigation-header {
       color: lighten($theme-color, 21.5%);
       margin: calc(#{$content-padding} + 0.286rem) 0 0.8rem

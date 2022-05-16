@@ -38,6 +38,7 @@ export const fieldSurveyObj = {
   Municipal_license_picture: [],
   the_civil_defense_license_picture: [],
   violation_item: [],
+  is_violation: [],
 };
 export const siteCreateObj = {
   licenseNumber: "",
