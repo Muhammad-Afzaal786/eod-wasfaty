@@ -44,7 +44,6 @@ const Sidebar = (props) => {
       }
     }
   };
-
   return (
     <Fragment>
       <div
@@ -109,13 +108,15 @@ const Sidebar = (props) => {
                   setCurrentActiveGroup={setCurrentActiveGroup}
                 />
               </ul>
-              <ul>
-                <div className="SideBottom w-100">
-                  <div className="sidePowerBy">
-                    <PowerBy icons={PowerPic} />
+              {(!props.menuCollapsed || menuHover) && (
+                <ul>
+                  <div className="SideBottom w-100">
+                    <div className="sidePowerBy">
+                      <PowerBy icons={PowerPic} />
+                    </div>
                   </div>
-                </div>
-              </ul>
+                </ul>
+              )}
             </PerfectScrollbar>
           </Fragment>
         )}
