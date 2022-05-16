@@ -48,8 +48,14 @@ const Sidebar = (props) => {
   return (
     <Fragment>
       <div
+        style={{
+          backgroundImage: `url(${SideBarImg})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+        }}
         className={classnames(
-          "main-menu menu-fixed menu-accordion menu-shadow bg-primary",
+          "main-menu menu-fixed menu-accordion menu-shadow ",
           {
             expanded: menuHover || menuCollapsed === false,
             "menu-light": skin !== "semi-dark" && skin !== "dark",
@@ -71,7 +77,7 @@ const Sidebar = (props) => {
               {...props}
             />
             {/* Vertical Menu Header Shadow */}
-            <div className="shadow-bottom" ref={shadowRef}></div>
+            <div className="shadow-bottom " ref={shadowRef}></div>
             {/* Perfect Scrollbar */}
 
             <PerfectScrollbar
@@ -104,17 +110,7 @@ const Sidebar = (props) => {
                 />
               </ul>
               <ul>
-                <div
-                  className="SideBottom w-100  "
-                  style={{
-                    backgroundImage: `url(${SideImage})`,
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
-                    mixBlendMode: "luminosity",
-                    height: "40%",
-                  }}
-                >
+                <div className="SideBottom w-100">
                   <div className="sidePowerBy">
                     <PowerBy icons={PowerPic} />
                   </div>
