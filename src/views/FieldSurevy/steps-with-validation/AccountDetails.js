@@ -175,6 +175,7 @@ const AccountDetails = ({
              <strong className="text-danger">*</strong>
             </Label>
             <Select
+                  placeholder= {context.locale === "sa" ? "تحديد" : "select"}
               options={site}
               className="react-select"
               classNamePrefix="select"
@@ -196,13 +197,14 @@ const AccountDetails = ({
           <Col lg="12">
             <span className="switchLabel">
             <FormattedMessage id={"Is the inspector have a relationship the owner of the facility?"} defaultMessage="Is the inspector have a relationship the owner of the facility?" />
-              *
+              
               <strong className="text-danger">*</strong>
             </span>
           </Col>
 
           <Col lg="12">
             <Selector
+              placeholder= {context.locale === "sa" ? "تحديد" : "select"}
               handleChange={handleChange}
               name="inspectorRelation"
               value={data.inspectorRelation}

@@ -300,6 +300,7 @@ const Add = () => {
                     <strong className="text-danger">*</strong>
                   </Label>
                   <Select
+                  placeholder= {context.locale === "sa" ? "تحديد" : "select"}
                     options={ruleOpt}
                     className="react-select"
                     classNamePrefix="select"
