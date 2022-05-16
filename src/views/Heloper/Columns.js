@@ -19,7 +19,6 @@ export const userCol = [
   },
   {
     Header:<FormattedMessage id={"Father name"} defaultMessage="Father name" />,
-    Header: "Father name",
     accessor: "father_name",
     sortable: false,
     Cell: ({ row }) => {

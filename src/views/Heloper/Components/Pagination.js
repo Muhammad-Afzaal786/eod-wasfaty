@@ -39,7 +39,7 @@ class Pagination extends Component {
 
   dataCall = (page = this.state.page, pageSize = this.state.pageSize) => {
     this.setState({
-      loading: true,
+      loading: false,
     });
     var data = {
       pageSize: this.state.showAll ? this.state.total : this.myRef.current,
