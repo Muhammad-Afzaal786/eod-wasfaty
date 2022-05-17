@@ -9,7 +9,7 @@ import { Sun, Moon, Menu } from "react-feather";
 
 // ** Reactstrap Imports
 import { NavItem, NavLink } from "reactstrap";
-
+import PowerBy from "../../../../views/Heloper/PowerBy";
 const ThemeNavbar = (props) => {
   // ** Props
   const { skin, setSkin, setMenuVisibility } = props;
@@ -22,7 +22,6 @@ const ThemeNavbar = (props) => {
       return <Moon className="ficon" onClick={() => setSkin("dark")} />;
     }
   };
-
   return (
     <Fragment>
       <div className="bookmark-wrapper d-flex align-items-center">

@@ -131,8 +131,8 @@ const AddRegion = () => {
                 <Col lg="12">
                   <Label>
                     <FormattedMessage
-                      id={"Name(En)"}
-                      defaultMessage="Name(En)"
+                      id={"Name(en)"}
+                      defaultMessage="Name(en)"
                     />
                     <strong className="text-danger">*</strong>
                   </Label>
