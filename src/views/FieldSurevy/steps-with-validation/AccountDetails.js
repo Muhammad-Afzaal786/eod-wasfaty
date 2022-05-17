@@ -1,5 +1,5 @@
 // ** React Imports
-import { useContext,Fragment, useEffect, useState } from "react";
+import { useContext, Fragment, useEffect, useState } from "react";
 
 // ** Utils
 import { isObjEmpty } from "@utils";
@@ -170,12 +170,15 @@ const AccountDetails = ({
           </Col> */}
           <Col lg="12">
             <Label>
-            <FormattedMessage id={"Tourism License number"} defaultMessage="Tourism License number" />
+              <FormattedMessage
+                id={"Tourism License number"}
+                defaultMessage="Tourism License number"
+              />
 
-             <strong className="text-danger">*</strong>
+              <strong className="text-danger">*</strong>
             </Label>
             <Select
-                  placeholder= {context.locale === "sa" ? "تحديد" : "select"}
+              placeholder={context.locale === "sa" ? "تحديد" : "select"}
               options={site}
               className="react-select"
               classNamePrefix="select"
@@ -195,16 +198,21 @@ const AccountDetails = ({
 
         <Row className="mt-1">
           <Col lg="12">
-            <span className="switchLabel">
-            <FormattedMessage id={"Is the inspector have a relationship the owner of the facility?"} defaultMessage="Is the inspector have a relationship the owner of the facility?" />
-              
+            <span>
+              <FormattedMessage
+                id={
+                  "Is the inspector have a relationship the owner of the facility?"
+                }
+                defaultMessage="Is the inspector have a relationship the owner of the facility?"
+              />
+
               <strong className="text-danger">*</strong>
             </span>
           </Col>
 
           <Col lg="12">
             <Selector
-              placeholder= {context.locale === "sa" ? "تحديد" : "select"}
+              placeholder={context.locale === "sa" ? "تحديد" : "select"}
               handleChange={handleChange}
               name="inspectorRelation"
               value={data.inspectorRelation}
@@ -216,9 +224,9 @@ const AccountDetails = ({
         <Row className="mt-1">
           <Col lg="12">
             <Label>
-            <FormattedMessage id={"Longitude"} defaultMessage="Longitude" />
+              <FormattedMessage id={"Longitude"} defaultMessage="Longitude" />
 
-               <strong className="text-danger">*</strong>
+              <strong className="text-danger">*</strong>
             </Label>
             <Input
               type="number"
@@ -238,7 +246,7 @@ const AccountDetails = ({
         <Row className="mt-1">
           <Col lg="12">
             <Label>
-            <FormattedMessage id={"Latitude"} defaultMessage="Latitude" />
+              <FormattedMessage id={"Latitude"} defaultMessage="Latitude" />
 
               <strong className="text-danger">*</strong>
             </Label>
@@ -266,16 +274,18 @@ const AccountDetails = ({
               className="p-50"
               onClick={() => getLocation()}
             >
-              {context.locale === "sa" ? "احصل على إحداثيات" : "Get Coordinates" }
+              {context.locale === "sa"
+                ? "احصل على إحداثيات"
+                : "Get Coordinates"}
             </Button>
           </Col>
         </Row>
         <Row className="mt-1">
           <Col lg="12">
             <Label>
-            <FormattedMessage id={"Remarks"} defaultMessage="Remarks" />
-              
-            <strong className="text-danger">*</strong>
+              <FormattedMessage id={"Remarks"} defaultMessage="Remarks" />
+
+              <strong className="text-danger">*</strong>
             </Label>
             <Input
               value={data.remarks}
@@ -293,9 +303,13 @@ const AccountDetails = ({
         <div className="d-flex justify-content-end mt-1">
           <Button type="submit" color="primary" className="btn-next">
             <span className="align-middle d-sm-inline-block d-none">
-              
               {data.inspectorRelation.value === "no"
-                ?context.locale === "sa" ? "حفظ ومتابعة" : "Save & Continue"  : context.locale === "sa" ? "إرسال" : "Submit"}
+                ? context.locale === "sa"
+                  ? "حفظ ومتابعة"
+                  : "Save & Continue"
+                : context.locale === "sa"
+                ? "إرسال"
+                : "Submit"}
             </span>
             {/* <ArrowRight
               size={14}

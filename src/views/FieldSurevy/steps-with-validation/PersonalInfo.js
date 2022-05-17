@@ -1,5 +1,5 @@
 // ** React Imports
-import { useContext,Fragment } from "react";
+import { useContext, Fragment } from "react";
 
 // ** Third Party Components
 import Select from "react-select";
@@ -111,8 +111,11 @@ const PersonalInfo = ({
         {data.inspectorRelation.value === "no" && (
           <Row className="mt-1">
             <Col lg="12">
-              <Label className="switchLabel">
-              <FormattedMessage id={"Is the facility working"} defaultMessage="Is the facility working" />
+              <Label>
+                <FormattedMessage
+                  id={"Is the facility working"}
+                  defaultMessage="Is the facility working"
+                />
                 <strong className="text-danger">*</strong>
               </Label>
             </Col>
@@ -131,12 +134,15 @@ const PersonalInfo = ({
           <Row className="mt-1">
             <Col lg="12">
               <Label>
-              <FormattedMessage id={"Reasons for not working"} defaultMessage="Reasons for not working" />
+                <FormattedMessage
+                  id={"Reasons for not working"}
+                  defaultMessage="Reasons for not working"
+                />
 
                 <strong className="text-danger"> *</strong>
               </Label>
               <Select
-                  placeholder= {context.locale === "sa" ? "تحديد" : "select"}
+                placeholder={context.locale === "sa" ? "تحديد" : "select"}
                 options={reasonOpt}
                 className="react-select"
                 classNamePrefix="select"
@@ -161,7 +167,10 @@ const PersonalInfo = ({
           <Row className="mt-1">
             <Col lg="12" className="mb-1">
               <Label className="mb-50">
-              <FormattedMessage id={"Picture if the facility not working"} defaultMessage="Picture if the facility not working" />
+                <FormattedMessage
+                  id={"Picture if the facility not working"}
+                  defaultMessage="Picture if the facility not working"
+                />
                 <strong className="text-danger">*</strong>
               </Label>
               <FileUploader
@@ -181,10 +190,13 @@ const PersonalInfo = ({
           <Row className="mt-1">
             <Col lg="12" className="mb-1">
               <Label className="mb-50">
-              <FormattedMessage 
-              id={
-                "A picture of the building showing the sign, the commercial name and the main entrance"} defaultMessage="A picture of the building showing the sign, the commercial name
-                and the main entrance" />
+                <FormattedMessage
+                  id={
+                    "A picture of the building showing the sign, the commercial name and the main entrance"
+                  }
+                  defaultMessage="A picture of the building showing the sign, the commercial name
+                and the main entrance"
+                />
                 <strong className="text-danger"> * </strong>
               </Label>
               <FileUploader
@@ -198,11 +210,14 @@ const PersonalInfo = ({
               />
             </Col>
             <Col lg="12">
-              <Label className="switchLabel">
-              <FormattedMessage id={
-                "Have you been notified of registration in the calendar tourism licensing platform within the specified period of 4 days?"
-                } defaultMessage="Have you been notified of registration in the calendar tourism
-                licensing platform within the specified period of 4 days?" />
+              <Label>
+                <FormattedMessage
+                  id={
+                    "Have you been notified of registration in the calendar tourism licensing platform within the specified period of 4 days?"
+                  }
+                  defaultMessage="Have you been notified of registration in the calendar tourism
+                licensing platform within the specified period of 4 days?"
+                />
 
                 <strong className="text-danger"> *</strong>
               </Label>
@@ -218,11 +233,14 @@ const PersonalInfo = ({
             {data?.specified_period?.value === "no" && (
               <Col lg="12" className="mb-1">
                 <Label>
-                <FormattedMessage id={
-                "Reasons for not notifying the facility of registration in the tourism licensing platform"
-                } defaultMessage="Reasons for not notifying the facility of registration in the
-                tourism licensing platform" />
-               
+                  <FormattedMessage
+                    id={
+                      "Reasons for not notifying the facility of registration in the tourism licensing platform"
+                    }
+                    defaultMessage="Reasons for not notifying the facility of registration in the
+                tourism licensing platform"
+                  />
+
                   <strong className="text-danger">*</strong>
                 </Label>
                 <Input
@@ -244,10 +262,13 @@ const PersonalInfo = ({
               </Col>
             )}
             <Col lg="12">
-              <Label className="switchLabel">
-              <FormattedMessage id={
-                "Was the facility provided with the registration link and update method?"
-                } defaultMessage="Was the facility provided with the registration link and updat method?" />
+              <Label>
+                <FormattedMessage
+                  id={
+                    "Was the facility provided with the registration link and update method?"
+                  }
+                  defaultMessage="Was the facility provided with the registration link and updat method?"
+                />
                 <strong className="text-danger"> *</strong>
               </Label>
             </Col>
@@ -261,11 +282,12 @@ const PersonalInfo = ({
             </Col>
 
             <Col lg="12">
-              <Label className="switchLabel">
-              <FormattedMessage id={
-                "Is the tourist license valid?"
-                } defaultMessage="Is the tourist license valid?" />
-               
+              <Label>
+                <FormattedMessage
+                  id={"Is the tourist license valid?"}
+                  defaultMessage="Is the tourist license valid?"
+                />
+
                 <strong className="text-danger"> *</strong>
               </Label>
             </Col>
@@ -280,9 +302,10 @@ const PersonalInfo = ({
             {data?.license_valid?.value === "no" && (
               <Col lg="12" className="mb-1">
                 <Label>
-                <FormattedMessage id={
-                "Reasons for not renewing the license?"
-                } defaultMessage="Reasons for not renewing the license?" />
+                  <FormattedMessage
+                    id={"Reasons for not renewing the license?"}
+                    defaultMessage="Reasons for not renewing the license?"
+                  />
                   <strong className="text-danger">*</strong>
                 </Label>
                 <Input
@@ -305,10 +328,11 @@ const PersonalInfo = ({
             )}
             <Col lg="12 mb-2">
               <Label>
-              <FormattedMessage id={
-                "operator name"
-                } defaultMessage="operator name" />
-             
+                <FormattedMessage
+                  id={"operator name"}
+                  defaultMessage="operator name"
+                />
+
                 <strong className="text-danger"> *</strong>
               </Label>
               <Input
@@ -324,10 +348,10 @@ const PersonalInfo = ({
             </Col>
             <Col lg="12 mb-2">
               <Label>
-
-              <FormattedMessage id={
-                "operator ID"
-                } defaultMessage="operator ID" />
+                <FormattedMessage
+                  id={"operator ID"}
+                  defaultMessage="operator ID"
+                />
               </Label>
               <Input
                 type="number"
@@ -338,10 +362,11 @@ const PersonalInfo = ({
 
             <Col lg="12 mb-2">
               <Label>
-              <FormattedMessage id={
-                "The trade name according to license"
-                } defaultMessage="The trade name according to license" />
-                </Label>
+                <FormattedMessage
+                  id={"The trade name according to license"}
+                  defaultMessage="The trade name according to license"
+                />
+              </Label>
               <Input
                 type="text"
                 value={data.trade_name}
@@ -350,11 +375,11 @@ const PersonalInfo = ({
             </Col>
             <Col lg="12 mb-2">
               <Label>
-                
-              <FormattedMessage id={
-                "Commercial Registration No."
-                } defaultMessage="Commercial Registration No." />
-               </Label>
+                <FormattedMessage
+                  id={"Commercial Registration No."}
+                  defaultMessage="Commercial Registration No."
+                />
+              </Label>
               <Input
                 type="number"
                 value={data.registration_no}
@@ -365,9 +390,10 @@ const PersonalInfo = ({
             </Col>
             <Col lg="12 mb-1">
               <Label className="mb-50">
-              <FormattedMessage id={
-                "Commercial Registration Image"
-                } defaultMessage="Commercial Registration Image" />
+                <FormattedMessage
+                  id={"Commercial Registration Image"}
+                  defaultMessage="Commercial Registration Image"
+                />
                 <strong className="text-danger"> *</strong>{" "}
               </Label>
               <FileUploader
@@ -382,12 +408,11 @@ const PersonalInfo = ({
             </Col>
 
             <Col lg="12 mb-2">
-
               <Label>
-
-              <FormattedMessage id={
-                "Facility Mobile number"
-                } defaultMessage="Facility Mobile number" />
+                <FormattedMessage
+                  id={"Facility Mobile number"}
+                  defaultMessage="Facility Mobile number"
+                />
               </Label>
               <Input
                 type="number"
@@ -400,10 +425,10 @@ const PersonalInfo = ({
 
             <Col lg="12 mb-2">
               <Label>
-              <FormattedMessage id={
-                "Facility number"
-                } defaultMessage="Facility number" />
-
+                <FormattedMessage
+                  id={"Facility number"}
+                  defaultMessage="Facility number"
+                />
               </Label>
               <Input
                 type="number"
@@ -416,10 +441,10 @@ const PersonalInfo = ({
 
             <Col lg="12 mb-2">
               <Label>
-
-              <FormattedMessage id={
-                "facility email"
-                } defaultMessage="facility email" />
+                <FormattedMessage
+                  id={"facility email"}
+                  defaultMessage="facility email"
+                />
               </Label>
               <Input
                 type="email"
@@ -430,10 +455,11 @@ const PersonalInfo = ({
 
             <Col lg="12 mb-2">
               <Label>
-              <FormattedMessage id={
-                "Facility Room Number"
-                } defaultMessage="Facility Room Number" />
-                
+                <FormattedMessage
+                  id={"Facility Room Number"}
+                  defaultMessage="Facility Room Number"
+                />
+
                 <strong className="text-danger">*</strong>
               </Label>
               <Input
@@ -455,10 +481,10 @@ const PersonalInfo = ({
 
             <Col lg="12 mb-2">
               <Label>
-                
-                <FormattedMessage id={
-                "Tourist license copy?"
-                } defaultMessage="Tourist license copy?" />
+                <FormattedMessage
+                  id={"Tourist license copy?"}
+                  defaultMessage="Tourist license copy?"
+                />
                 <strong className="text-danger"> * </strong>
               </Label>
               <FileUploader
@@ -474,10 +500,11 @@ const PersonalInfo = ({
 
             <Col lg="12 mb-2">
               <Label>
-              <FormattedMessage id={
-                "Municipal license picture"
-                } defaultMessage="Municipal license picture" />
-               
+                <FormattedMessage
+                  id={"Municipal license picture"}
+                  defaultMessage="Municipal license picture"
+                />
+
                 <strong className="text-danger">*</strong>
               </Label>
               <FileUploader
@@ -493,10 +520,11 @@ const PersonalInfo = ({
 
             <Col lg="12 mb-2">
               <Label>
-              <FormattedMessage id={
-                "the civil defense license picture"
-                } defaultMessage="the civil defense license picture" />
-                
+                <FormattedMessage
+                  id={"the civil defense license picture"}
+                  defaultMessage="the civil defense license picture"
+                />
+
                 <strong className="text-danger">* </strong>
               </Label>
               <FileUploader
@@ -524,14 +552,15 @@ const PersonalInfo = ({
               className="align-middle me-sm-25 me-0"
             ></ArrowLeft>
             <span className="align-middle d-sm-inline-block d-none">
-            {context.locale === "sa" ? "سابق" : "Previous" }
-             
+              {context.locale === "sa" ? "سابق" : "Previous"}
             </span>
           </Button>
           <Button type="submit" color="primary" className="btn-next">
             <span className="align-middle d-sm-inline-block d-none">
               {data.facility_working?.value === "yes"
-                ?context.locale === "sa" ? "حفظ ومتابعة" : "Save & Continue"
+                ? context.locale === "sa"
+                  ? "حفظ ومتابعة"
+                  : "Save & Continue"
                 : "Submit"}
             </span>
             {/* <ArrowRight

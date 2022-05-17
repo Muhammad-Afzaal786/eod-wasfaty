@@ -75,7 +75,7 @@ export default [
         id: "list",
         title: <FormattedMessage id={"List"} defaultMessage="List" />,
         navLink: "site/list",
-        permissions: ["admin"],
+        permissions: ["admin", "inspector"],
       },
     ],
   },
