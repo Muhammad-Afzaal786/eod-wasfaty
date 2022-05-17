@@ -16,6 +16,7 @@ export default [
     navLink: "/",
     permissions: ["admin", "inspector"],
   },
+
   {
     id: "user",
     title: <FormattedMessage id={"Users"} defaultMessage="Users" />,
